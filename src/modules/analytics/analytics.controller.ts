@@ -1,5 +1,10 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { AnalyticsService } from './analytics.service.js';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard.js';
 import { RolesGuard } from '../../common/guards/roles.guard.js';
@@ -13,9 +18,13 @@ export class AnalyticsController {
 
   @Get('dashboard')
   @ApiOperation({
-    summary: 'Obtener tablero gerencial (Ventas por departamento en Bs., Top productos, Mermas, Eficiencia)',
+    summary:
+      'Obtener tablero gerencial (Ventas por departamento en Bs., Top productos, Mermas, Eficiencia)',
   })
-  @ApiResponse({ status: 200, description: 'Métricas consolidadas de panadería en Bolivia' })
+  @ApiResponse({
+    status: 200,
+    description: 'Métricas consolidadas de panadería en Bolivia',
+  })
   getDashboard() {
     return this.analyticsService.getDashboardSummary();
   }
@@ -27,5 +36,17 @@ export class AnalyticsController {
   @ApiOperation({ summary: 'Arqueo y cierre de caja diario por sucursal' })
   getCierreDeCaja(@Param('sucursalId') sucursalId: string) {
     return this.analyticsService.getCierreDeCaja(sucursalId);
+  }
+
+  @Get('db-status')
+  @ApiOperation({
+    summary: 'Verificar estado de la conexión a la base de datos PostgreSQL',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Estado y estadísticas de la base de datos PostgreSQL',
+  })
+  getDbStatus() {
+    return this.analyticsService.getDatabaseStatus();
   }
 }

@@ -15,7 +15,10 @@ export class AnalyticsService {
     const totalVentasBs = pedidosPagados.reduce((acc, o) => acc + o.totalBs, 0);
 
     // 2. Ventas por Departamento de Bolivia
-    const ventasPorDepartamento: Record<string, { totalBs: number; cantidadPedidos: number }> = {};
+    const ventasPorDepartamento: Record<
+      string,
+      { totalBs: number; cantidadPedidos: number }
+    > = {};
     for (const d of Object.values(DepartamentoBolivia)) {
       ventasPorDepartamento[d] = { totalBs: 0, cantidadPedidos: 0 };
     }
@@ -35,7 +38,10 @@ export class AnalyticsService {
     }
 
     // 4. Productos más vendidos
-    const ventasPorProducto: Record<string, { nombre: string; unidades: number; totalBs: number }> = {};
+    const ventasPorProducto: Record<
+      string,
+      { nombre: string; unidades: number; totalBs: number }
+    > = {};
     for (const o of this.db.orders) {
       for (const item of o.items) {
         if (!ventasPorProducto[item.productoId]) {
@@ -108,18 +114,30 @@ export class AnalyticsService {
 
   getCierreDeCaja(sucursalId: string) {
     const branch = this.db.branches.find((b) => b.id === sucursalId);
-    const pedidos = this.db.orders.filter((o) => o.sucursalOrigenId === sucursalId);
+    const pedidos = this.db.orders.filter(
+      (o) => o.sucursalOrigenId === sucursalId,
+    );
 
     const totalEfectivo = pedidos
-      .filter((o) => o.metodoPago === 'EFECTIVO_CONTRAENTREGA' && o.estadoPago === PaymentStatus.PAGADO)
+      .filter(
+        (o) =>
+          o.metodoPago === 'EFECTIVO_CONTRAENTREGA' &&
+          o.estadoPago === PaymentStatus.PAGADO,
+      )
       .reduce((sum, o) => sum + o.totalBs, 0);
 
     const totalQrSimple = pedidos
-      .filter((o) => o.metodoPago === 'QR_SIMPLE' && o.estadoPago === PaymentStatus.PAGADO)
+      .filter(
+        (o) =>
+          o.metodoPago === 'QR_SIMPLE' && o.estadoPago === PaymentStatus.PAGADO,
+      )
       .reduce((sum, o) => sum + o.totalBs, 0);
 
     const totalTarjetas = pedidos
-      .filter((o) => o.metodoPago === 'TARJETA' && o.estadoPago === PaymentStatus.PAGADO)
+      .filter(
+        (o) =>
+          o.metodoPago === 'TARJETA' && o.estadoPago === PaymentStatus.PAGADO,
+      )
       .reduce((sum, o) => sum + o.totalBs, 0);
 
     return {
@@ -134,5 +152,9 @@ export class AnalyticsService {
       },
       pedidosProcesados: pedidos.length,
     };
+  }
+
+  getDatabaseStatus() {
+    return this.db.getConnectionInfo();
   }
 }
