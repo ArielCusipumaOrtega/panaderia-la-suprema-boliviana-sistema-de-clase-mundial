@@ -7,12 +7,18 @@ export class GenerateInvoiceDto {
   @IsNotEmpty()
   pedidoId: string;
 
-  @ApiPropertyOptional({ example: '3048591012', description: 'NIT o Carnet de Identidad del comprador' })
+  @ApiPropertyOptional({
+    example: '3048591012',
+    description: 'NIT o Carnet de Identidad del comprador',
+  })
   @IsString()
   @IsOptional()
   nitCiCliente?: string;
 
-  @ApiPropertyOptional({ example: 'CORPORACION DEL VALLE S.A.', description: 'Razón Social para la factura' })
+  @ApiPropertyOptional({
+    example: 'CORPORACION DEL VALLE S.A.',
+    description: 'Razón Social para la factura',
+  })
   @IsString()
   @IsOptional()
   razonSocialCliente?: string;

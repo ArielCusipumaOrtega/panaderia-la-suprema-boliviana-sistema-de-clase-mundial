@@ -9,22 +9,30 @@ export class BillingController {
   constructor(private readonly billingService: BillingService) {}
 
   @Get('facturas')
-  @ApiOperation({ summary: 'Listar todas las facturas electrónicas emitidas en Bolivia' })
+  @ApiOperation({
+    summary: 'Listar todas las facturas electrónicas emitidas en Bolivia',
+  })
   findAll() {
     return this.billingService.findAll();
   }
 
   @Get('facturas/:id')
-  @ApiOperation({ summary: 'Obtener detalle de factura por ID, número o ID de pedido' })
+  @ApiOperation({
+    summary: 'Obtener detalle de factura por ID, número o ID de pedido',
+  })
   findById(@Param('id') id: string) {
     return this.billingService.findById(id);
   }
 
   @Post('emitir')
   @ApiOperation({
-    summary: 'Emitir Factura Computarizada en Línea con Código Único de Facturación (CUF) y QR SIAT',
+    summary:
+      'Emitir Factura Computarizada en Línea con Código Único de Facturación (CUF) y QR SIAT',
   })
-  @ApiResponse({ status: 201, description: 'Factura emitida con éxito y QR generado' })
+  @ApiResponse({
+    status: 201,
+    description: 'Factura emitida con éxito y QR generado',
+  })
   generateInvoice(@Body() dto: GenerateInvoiceDto) {
     return this.billingService.generateInvoice(dto);
   }

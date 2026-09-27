@@ -30,7 +30,9 @@ describe('Panadería La Suprema Boliviana (E2E Tests)', () => {
   });
 
   it('2. GET /api/productos - Debe retornar los panes y repostería boliviana', async () => {
-    const res = await request(app.getHttpServer()).get('/api/productos').expect(200);
+    const res = await request(app.getHttpServer())
+      .get('/api/productos')
+      .expect(200);
     expect(res.body.exito).toBe(true);
     expect(Array.isArray(res.body.data)).toBe(true);
     expect(res.body.data.length).toBeGreaterThan(5);
@@ -42,7 +44,9 @@ describe('Panadería La Suprema Boliviana (E2E Tests)', () => {
   });
 
   it('3. GET /api/sucursales - Debe retornar sucursales en los 9 departamentos de Bolivia', async () => {
-    const res = await request(app.getHttpServer()).get('/api/sucursales').expect(200);
+    const res = await request(app.getHttpServer())
+      .get('/api/sucursales')
+      .expect(200);
     expect(res.body.exito).toBe(true);
     expect(res.body.data.length).toBeGreaterThanOrEqual(10);
     const departamentos = res.body.data.map((s: any) => s.departamento);
@@ -96,7 +100,9 @@ describe('Panadería La Suprema Boliviana (E2E Tests)', () => {
 
   it('6. POST /api/facturacion/emitir - Debe emitir Factura Computarizada SIAT con CUF y QR tributario', async () => {
     // Tomamos el primer pedido existente
-    const pedidosRes = await request(app.getHttpServer()).get('/api/pedidos').expect(200);
+    const pedidosRes = await request(app.getHttpServer())
+      .get('/api/pedidos')
+      .expect(200);
     const primerPedido = pedidosRes.body.data[0];
 
     const res = await request(app.getHttpServer())
@@ -117,7 +123,9 @@ describe('Panadería La Suprema Boliviana (E2E Tests)', () => {
   });
 
   it('7. GET /api/analitica/dashboard - Debe reportar métricas consolidadas en Bolivianos (Bs.)', async () => {
-    const res = await request(app.getHttpServer()).get('/api/analitica/dashboard').expect(200);
+    const res = await request(app.getHttpServer())
+      .get('/api/analitica/dashboard')
+      .expect(200);
     expect(res.body.exito).toBe(true);
     const dash = res.body.data;
     expect(dash.moneda).toBe('BOB (Bolivianos)');

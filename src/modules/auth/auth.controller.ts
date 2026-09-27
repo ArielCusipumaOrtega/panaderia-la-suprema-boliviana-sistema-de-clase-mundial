@@ -7,7 +7,12 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { AuthService } from './auth.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import { RegisterDto } from './dto/register.dto.js';
@@ -21,15 +26,22 @@ export class AuthController {
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ summary: 'Iniciar sesión (Admin, Panadero, Cajero, Cliente)' })
-  @ApiResponse({ status: 200, description: 'Inicio de sesión exitoso con token JWT' })
+  @ApiOperation({
+    summary: 'Iniciar sesión (Admin, Panadero, Cajero, Cliente)',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Inicio de sesión exitoso con token JWT',
+  })
   @ApiResponse({ status: 401, description: 'Credenciales inválidas' })
   async login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
   }
 
   @Post('register')
-  @ApiOperation({ summary: 'Registrar un nuevo cliente o empleado en el sistema' })
+  @ApiOperation({
+    summary: 'Registrar un nuevo cliente o empleado en el sistema',
+  })
   @ApiResponse({ status: 201, description: 'Usuario registrado exitosamente' })
   @ApiResponse({ status: 409, description: 'El correo electrónico ya existe' })
   async register(@Body() registerDto: RegisterDto) {

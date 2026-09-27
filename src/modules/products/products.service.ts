@@ -4,7 +4,10 @@ import {
   ConflictException,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { DatabaseService, ProductEntity } from '../../database/database.service.js';
+import {
+  DatabaseService,
+  ProductEntity,
+} from '../../database/database.service.js';
 import { CreateProductDto, UpdateStockDto } from './dto/create-product.dto.js';
 import { ProductCategory } from '../../common/enums/product-category.enum.js';
 
@@ -24,7 +27,9 @@ export class ProductsService {
       list = list.filter((p) => p.categoria === query.categoria);
     }
     if (query?.aptoEnvioNacional !== undefined) {
-      list = list.filter((p) => p.aptoEnvioNacional === query.aptoEnvioNacional);
+      list = list.filter(
+        (p) => p.aptoEnvioNacional === query.aptoEnvioNacional,
+      );
     }
     if (query?.destacado !== undefined) {
       list = list.filter((p) => p.destacado === query.destacado);
@@ -43,9 +48,13 @@ export class ProductsService {
   }
 
   findById(id: string): ProductEntity {
-    const prod = this.db.products.find((p) => p.id === id || p.codigoSku === id);
+    const prod = this.db.products.find(
+      (p) => p.id === id || p.codigoSku === id,
+    );
     if (!prod) {
-      throw new NotFoundException(`Producto con ID o SKU '${id}' no encontrado`);
+      throw new NotFoundException(
+        `Producto con ID o SKU '${id}' no encontrado`,
+      );
     }
     return prod;
   }
@@ -86,7 +95,9 @@ export class ProductsService {
       (p) => p.codigoSku.toUpperCase() === dto.codigoSku.toUpperCase(),
     );
     if (existing) {
-      throw new ConflictException(`Ya existe un producto con SKU ${dto.codigoSku}`);
+      throw new ConflictException(
+        `Ya existe un producto con SKU ${dto.codigoSku}`,
+      );
     }
 
     const newProduct: ProductEntity = {

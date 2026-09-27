@@ -9,7 +9,10 @@ import {
   IsString,
   Min,
 } from 'class-validator';
-import { ProductCategory, BakingShift } from '../../../common/enums/product-category.enum.js';
+import {
+  ProductCategory,
+  BakingShift,
+} from '../../../common/enums/product-category.enum.js';
 
 export class CreateProductDto {
   @ApiProperty({ example: 'PAN-MARR-02' })
@@ -27,24 +30,36 @@ export class CreateProductDto {
   @IsNotEmpty()
   descripcion: string;
 
-  @ApiProperty({ enum: ProductCategory, example: ProductCategory.PANES_TRADICIONALES })
+  @ApiProperty({
+    enum: ProductCategory,
+    example: ProductCategory.PANES_TRADICIONALES,
+  })
   @IsEnum(ProductCategory)
   categoria: ProductCategory;
 
-  @ApiProperty({ example: 1.50, description: 'Precio en Bolivianos (Bs.)' })
+  @ApiProperty({ example: 1.5, description: 'Precio en Bolivianos (Bs.)' })
   @IsNumber()
   @Min(0.1)
   precioBs: number;
 
-  @ApiProperty({ example: 'unidad', enum: ['unidad', 'docena', 'kilo', 'canasta', 'porción'] })
+  @ApiProperty({
+    example: 'unidad',
+    enum: ['unidad', 'docena', 'kilo', 'canasta', 'porción'],
+  })
   @IsString()
   unidadMedida: 'unidad' | 'docena' | 'kilo' | 'canasta' | 'porción';
 
-  @ApiProperty({ example: 18, description: 'Tiempo de vida útil óptimo en horas' })
+  @ApiProperty({
+    example: 18,
+    description: 'Tiempo de vida útil óptimo en horas',
+  })
   @IsNumber()
   tiempoVidaUtilHoras: number;
 
-  @ApiProperty({ example: false, description: 'Apto para envíos por flota o courier a otras ciudades' })
+  @ApiProperty({
+    example: false,
+    description: 'Apto para envíos por flota o courier a otras ciudades',
+  })
   @IsBoolean()
   aptoEnvioNacional: boolean;
 
@@ -57,7 +72,9 @@ export class CreateProductDto {
   @IsString({ each: true })
   ingredientesPrincipales: string[];
 
-  @ApiProperty({ example: 'https://images.unsplash.com/photo-1509440159596-0249088772ff' })
+  @ApiProperty({
+    example: 'https://images.unsplash.com/photo-1509440159596-0249088772ff',
+  })
   @IsString()
   imagenUrl: string;
 

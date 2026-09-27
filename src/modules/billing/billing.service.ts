@@ -1,19 +1,19 @@
-import {
-  Injectable,
-  NotFoundException,
-  Logger,
-} from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { createHash } from 'crypto';
 import * as QRCode from 'qrcode';
 import { v4 as uuidv4 } from 'uuid';
-import { DatabaseService, InvoiceEntity } from '../../database/database.service.js';
+import {
+  DatabaseService,
+  InvoiceEntity,
+} from '../../database/database.service.js';
 import { GenerateInvoiceDto } from './dto/generate-invoice.dto.js';
 
 @Injectable()
 export class BillingService {
   private readonly logger = new Logger(BillingService.name);
   private readonly NIT_EMISOR = '3049182019';
-  private readonly RAZON_SOCIAL_EMISOR = 'PANADERIA & PASTELERIA ARTESANAL BOLIVIA S.R.L.';
+  private readonly RAZON_SOCIAL_EMISOR =
+    'PANADERIA & PASTELERIA ARTESANAL BOLIVIA S.R.L.';
   private readonly LEYENDA_SIAT =
     'Ley N° 453: El proveedor deberá suministrar el servicio en las modalidades y términos ofertados o convenidos.';
 
@@ -31,7 +31,9 @@ export class BillingService {
         inv.pedidoId === id,
     );
     if (!invoice) {
-      throw new NotFoundException(`Factura con identificador '${id}' no encontrada`);
+      throw new NotFoundException(
+        `Factura con identificador '${id}' no encontrada`,
+      );
     }
     return invoice;
   }
@@ -61,12 +63,17 @@ export class BillingService {
     // Generar Código Único de Facturación (CUF) simulado conforme algoritmo estándar SIAT
     const fechaRaw = fechaEmision.replace(/[-:T.Z]/g, '').slice(0, 14);
     const cadenaParaCuf = `${this.NIT_EMISOR}${fechaRaw}0${numeroFactura}1`;
-    const cufHash = createHash('sha256').update(cadenaParaCuf).digest('hex').toUpperCase().slice(0, 48);
+    const cufHash = createHash('sha256')
+      .update(cadenaParaCuf)
+      .digest('hex')
+      .toUpperCase()
+      .slice(0, 48);
 
     const cufd = `CUFD-${branch.departamento.substring(0, 3).toUpperCase()}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-001`;
 
     const nitCiCliente = dto.nitCiCliente || order.clienteCiNit || '0';
-    const razonSocialCliente = dto.razonSocialCliente || order.razonSocialFactura || order.clienteNombre;
+    const razonSocialCliente =
+      dto.razonSocialCliente || order.razonSocialFactura || order.clienteNombre;
 
     // Enlace QR oficial SIAT
     const urlSiat = `https://siat.impuestos.gob.bo/consulta/QR?nit=${this.NIT_EMISOR}&cuf=${cufHash}&numero=${numeroFactura}&t=${order.totalBs}`;

@@ -1,11 +1,10 @@
-import {
-  Injectable,
-  NotFoundException,
-  Logger,
-} from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import * as QRCode from 'qrcode';
 import { DatabaseService } from '../../database/database.service.js';
-import { GenerateQrSimpleDto, ConfirmPaymentDto } from './dto/process-payment.dto.js';
+import {
+  GenerateQrSimpleDto,
+  ConfirmPaymentDto,
+} from './dto/process-payment.dto.js';
 import { PaymentStatus } from '../../common/enums/payment-method.enum.js';
 import { OrderStatus } from '../../common/enums/order-status.enum.js';
 

@@ -1,6 +1,13 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  ConflictException,
+} from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { DatabaseService, BranchEntity } from '../../database/database.service.js';
+import {
+  DatabaseService,
+  BranchEntity,
+} from '../../database/database.service.js';
 import { CreateBranchDto } from './dto/create-branch.dto.js';
 import { DepartamentoBolivia } from '../../common/constants/bolivia-regions.constant.js';
 
@@ -19,7 +26,9 @@ export class BranchesService {
   findById(id: string): BranchEntity {
     const branch = this.db.branches.find((b) => b.id === id || b.codigo === id);
     if (!branch) {
-      throw new NotFoundException(`Sucursal con ID o código '${id}' no encontrada`);
+      throw new NotFoundException(
+        `Sucursal con ID o código '${id}' no encontrada`,
+      );
     }
     return branch;
   }
@@ -29,7 +38,9 @@ export class BranchesService {
       (b) => b.codigo.toUpperCase() === dto.codigo.toUpperCase(),
     );
     if (existing) {
-      throw new ConflictException(`Ya existe una sucursal con el código ${dto.codigo}`);
+      throw new ConflictException(
+        `Ya existe una sucursal con el código ${dto.codigo}`,
+      );
     }
 
     const newBranch: BranchEntity = {

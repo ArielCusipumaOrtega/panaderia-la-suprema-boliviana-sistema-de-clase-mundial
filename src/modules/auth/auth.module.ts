@@ -9,7 +9,9 @@ import { JwtStrategy } from './strategies/jwt.strategy.js';
   imports: [
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'SECRETO_PANADERIA_BOLIVIANA_CLASE_MUNDIAL_2026',
+      secret:
+        process.env.JWT_SECRET ||
+        'SECRETO_PANADERIA_BOLIVIANA_CLASE_MUNDIAL_2026',
       signOptions: { expiresIn: '7d' },
     }),
   ],

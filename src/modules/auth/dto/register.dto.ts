@@ -1,5 +1,12 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MinLength,
+} from 'class-validator';
 import { UserRole } from '../../../common/enums/role.enum.js';
 import { DepartamentoBolivia } from '../../../common/constants/bolivia-regions.constant.js';
 
@@ -30,7 +37,10 @@ export class RegisterDto {
   @IsNotEmpty()
   ciNit: string;
 
-  @ApiProperty({ enum: DepartamentoBolivia, example: DepartamentoBolivia.LA_PAZ })
+  @ApiProperty({
+    enum: DepartamentoBolivia,
+    example: DepartamentoBolivia.LA_PAZ,
+  })
   @IsEnum(DepartamentoBolivia)
   departamento: DepartamentoBolivia;
 

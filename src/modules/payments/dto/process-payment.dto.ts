@@ -1,5 +1,12 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 import { PaymentMethod } from '../../../common/enums/payment-method.enum.js';
 
 export class GenerateQrSimpleDto {
@@ -8,7 +15,7 @@ export class GenerateQrSimpleDto {
   @IsNotEmpty()
   pedidoId: string;
 
-  @ApiProperty({ example: 75.00, description: 'Monto a cobrar en Bolivianos' })
+  @ApiProperty({ example: 75.0, description: 'Monto a cobrar en Bolivianos' })
   @IsNumber()
   @Min(0.5)
   montoBs: number;
@@ -29,7 +36,10 @@ export class ConfirmPaymentDto {
   @IsEnum(PaymentMethod)
   metodoPago: PaymentMethod;
 
-  @ApiPropertyOptional({ example: 'TXN-BCP-9847291', description: 'Número de comprobante bancario o código de transacción' })
+  @ApiPropertyOptional({
+    example: 'TXN-BCP-9847291',
+    description: 'Número de comprobante bancario o código de transacción',
+  })
   @IsString()
   @IsOptional()
   numeroTransaccion?: string;

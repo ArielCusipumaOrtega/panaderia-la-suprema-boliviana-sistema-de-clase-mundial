@@ -11,9 +11,18 @@ import {
   OrderEntity,
   OrderItemEntity,
 } from '../../database/database.service.js';
-import { CreateOrderDto, UpdateOrderStatusDto } from './dto/create-order.dto.js';
-import { OrderStatus, DeliveryType } from '../../common/enums/order-status.enum.js';
-import { PaymentMethod, PaymentStatus } from '../../common/enums/payment-method.enum.js';
+import {
+  CreateOrderDto,
+  UpdateOrderStatusDto,
+} from './dto/create-order.dto.js';
+import {
+  OrderStatus,
+  DeliveryType,
+} from '../../common/enums/order-status.enum.js';
+import {
+  PaymentMethod,
+  PaymentStatus,
+} from '../../common/enums/payment-method.enum.js';
 import { REGIONES_BOLIVIA } from '../../common/constants/bolivia-regions.constant.js';
 
 @Injectable()
@@ -58,7 +67,9 @@ export class OrdersService {
 
   async create(dto: CreateOrderDto, clienteId?: string): Promise<OrderEntity> {
     if (!dto.items || dto.items.length === 0) {
-      throw new BadRequestException('El pedido debe incluir al menos un producto');
+      throw new BadRequestException(
+        'El pedido debe incluir al menos un producto',
+      );
     }
 
     // 1. Determinar sucursal de origen
@@ -70,7 +81,8 @@ export class OrdersService {
       if (sucursalLocal) {
         sucursalOrigenId = sucursalLocal.id;
       } else {
-        const matriz = this.db.branches.find((b) => b.esMatriz) || this.db.branches[0];
+        const matriz =
+          this.db.branches.find((b) => b.esMatriz) || this.db.branches[0];
         sucursalOrigenId = matriz.id;
       }
     }
@@ -82,10 +94,15 @@ export class OrdersService {
     for (const itemDto of dto.items) {
       const product = this.db.products.find((p) => p.id === itemDto.productoId);
       if (!product) {
-        throw new NotFoundException(`Producto con ID ${itemDto.productoId} no existe`);
+        throw new NotFoundException(
+          `Producto con ID ${itemDto.productoId} no existe`,
+        );
       }
 
-      if (dto.tipoEntrega === DeliveryType.ENVIO_NACIONAL && !product.aptoEnvioNacional) {
+      if (
+        dto.tipoEntrega === DeliveryType.ENVIO_NACIONAL &&
+        !product.aptoEnvioNacional
+      ) {
         throw new BadRequestException(
           `El producto '${product.nombre}' es de consumo fresco inmediato y no resiste envío nacional interdepartamental. Por favor elija un envío express local o retire en tienda.`,
         );
@@ -107,7 +124,8 @@ export class OrdersService {
         );
       }
 
-      const itemSubtotal = Math.round(product.precioBs * itemDto.cantidad * 100) / 100;
+      const itemSubtotal =
+        Math.round(product.precioBs * itemDto.cantidad * 100) / 100;
       subtotalBs += itemSubtotal;
 
       processedItems.push({
@@ -129,7 +147,8 @@ export class OrdersService {
     }
 
     const descuentoBs = 0;
-    const totalBs = Math.round((subtotalBs + costoEnvioBs - descuentoBs) * 100) / 100;
+    const totalBs =
+      Math.round((subtotalBs + costoEnvioBs - descuentoBs) * 100) / 100;
 
     // 4. Generar código único de pedido boliviano
     const correlativo = (this.db.orders.length + 1001).toString();
@@ -209,7 +228,9 @@ export class OrdersService {
         : dto.nota;
     }
     this.db.save();
-    this.logger.log(`Pedido ${order.codigoPedido} actualizado a estado: ${dto.nuevoEstado}`);
+    this.logger.log(
+      `Pedido ${order.codigoPedido} actualizado a estado: ${dto.nuevoEstado}`,
+    );
     return order;
   }
 }

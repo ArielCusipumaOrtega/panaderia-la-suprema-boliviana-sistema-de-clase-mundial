@@ -14,16 +14,21 @@ export interface ApiResponse<T> {
 }
 
 @Injectable()
-export class TransformInterceptor<T>
-  implements NestInterceptor<T, ApiResponse<T>>
-{
+export class TransformInterceptor<T> implements NestInterceptor<
+  T,
+  ApiResponse<T>
+> {
   intercept(
     context: ExecutionContext,
     next: CallHandler,
   ): Observable<ApiResponse<T>> {
     const req = context.switchToHttp().getRequest();
     // If request asks for html or raw static file, don't wrap
-    if (req.url.startsWith('/portal') || req.url === '/' || req.url.startsWith('/api/docs')) {
+    if (
+      req.url.startsWith('/portal') ||
+      req.url === '/' ||
+      req.url.startsWith('/api/docs')
+    ) {
       return next.handle();
     }
     return next.handle().pipe(

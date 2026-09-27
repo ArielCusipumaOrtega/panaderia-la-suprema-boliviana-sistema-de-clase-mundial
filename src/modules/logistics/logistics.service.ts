@@ -48,7 +48,11 @@ export class LogisticsService {
     if (dto.productosIds && dto.productosIds.length > 0) {
       for (const pid of dto.productosIds) {
         const prod = this.db.products.find((p) => p.id === pid);
-        if (prod && !prod.aptoEnvioNacional && dto.tipoEntrega === DeliveryType.ENVIO_NACIONAL) {
+        if (
+          prod &&
+          !prod.aptoEnvioNacional &&
+          dto.tipoEntrega === DeliveryType.ENVIO_NACIONAL
+        ) {
           advertencias.push(
             `El producto "${prod.nombre}" es de consumo fresco inmediato y no resiste viaje interdepartamental prolongado. Te sugerimos retiro local o delivery express en tu ciudad.`,
           );
@@ -72,7 +76,8 @@ export class LogisticsService {
       tiempoEstimado = `${region.tiempoEstimadoNacionalHoras} horas (Despacho interdepartamental con empaque sellado)`;
       // Asignar casa matriz o sucursal principal
       if (!sucursalAsignada) {
-        sucursalAsignada = this.db.branches.find((b) => b.esMatriz) || this.db.branches[0];
+        sucursalAsignada =
+          this.db.branches.find((b) => b.esMatriz) || this.db.branches[0];
       }
     }
 

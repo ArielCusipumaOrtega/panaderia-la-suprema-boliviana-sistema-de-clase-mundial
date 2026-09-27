@@ -8,7 +8,13 @@ import {
   UseGuards,
   Patch,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+  ApiQuery,
+} from '@nestjs/swagger';
 import { BranchesService } from './branches.service.js';
 import { CreateBranchDto } from './dto/create-branch.dto.js';
 import { DepartamentoBolivia } from '../../common/constants/bolivia-regions.constant.js';
@@ -23,8 +29,15 @@ export class BranchesController {
   constructor(private readonly branchesService: BranchesService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Listar todas las sucursales activas en Bolivia (filtrable por departamento)' })
-  @ApiQuery({ name: 'departamento', enum: DepartamentoBolivia, required: false })
+  @ApiOperation({
+    summary:
+      'Listar todas las sucursales activas en Bolivia (filtrable por departamento)',
+  })
+  @ApiQuery({
+    name: 'departamento',
+    enum: DepartamentoBolivia,
+    required: false,
+  })
   findAll(@Query('departamento') departamento?: DepartamentoBolivia) {
     return this.branchesService.findAll(departamento);
   }
@@ -39,7 +52,9 @@ export class BranchesController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: 'Crear una nueva sucursal en Bolivia (Solo Administrador)' })
+  @ApiOperation({
+    summary: 'Crear una nueva sucursal en Bolivia (Solo Administrador)',
+  })
   @ApiResponse({ status: 201, description: 'Sucursal creada exitosamente' })
   create(@Body() dto: CreateBranchDto) {
     return this.branchesService.create(dto);

@@ -30,7 +30,8 @@ export class ProductsController {
 
   @Get()
   @ApiOperation({
-    summary: 'Listar productos con filtros (categoría, apto para envío nacional, destacados, búsqueda)',
+    summary:
+      'Listar productos con filtros (categoría, apto para envío nacional, destacados, búsqueda)',
   })
   @ApiQuery({ name: 'categoria', enum: ProductCategory, required: false })
   @ApiQuery({ name: 'aptoEnvioNacional', type: Boolean, required: false })
@@ -45,14 +46,18 @@ export class ProductsController {
     return this.productsService.findAll({
       categoria,
       aptoEnvioNacional:
-        aptoEnvioNacional !== undefined ? aptoEnvioNacional === 'true' : undefined,
+        aptoEnvioNacional !== undefined
+          ? aptoEnvioNacional === 'true'
+          : undefined,
       destacado: destacado !== undefined ? destacado === 'true' : undefined,
       busqueda,
     });
   }
 
   @Get(':id')
-  @ApiOperation({ summary: 'Obtener detalle de un producto e inventario en sucursales' })
+  @ApiOperation({
+    summary: 'Obtener detalle de un producto e inventario en sucursales',
+  })
   @ApiQuery({ name: 'sucursalId', type: String, required: false })
   findById(@Param('id') id: string, @Query('sucursalId') sucursalId?: string) {
     return this.productsService.getProductWithStock(id, sucursalId);
@@ -62,7 +67,10 @@ export class ProductsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.MAESTRO_PANADERO)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: 'Registrar un nuevo producto en el catálogo (Admin / Maestro Panadero)' })
+  @ApiOperation({
+    summary:
+      'Registrar un nuevo producto en el catálogo (Admin / Maestro Panadero)',
+  })
   @ApiResponse({ status: 201, description: 'Producto creado exitosamente' })
   create(@Body() dto: CreateProductDto) {
     return this.productsService.create(dto);
@@ -72,7 +80,9 @@ export class ProductsController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(UserRole.ADMIN, UserRole.GERENTE_SUCURSAL, UserRole.MAESTRO_PANADERO)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: 'Actualizar stock disponible en una sucursal específica' })
+  @ApiOperation({
+    summary: 'Actualizar stock disponible en una sucursal específica',
+  })
   updateStock(@Param('id') id: string, @Body() dto: UpdateStockDto) {
     return this.productsService.updateStock(id, dto);
   }

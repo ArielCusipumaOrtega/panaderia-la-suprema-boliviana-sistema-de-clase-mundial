@@ -7,7 +7,10 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import { DatabaseService, UserEntity } from '../../database/database.service.js';
+import {
+  DatabaseService,
+  UserEntity,
+} from '../../database/database.service.js';
 import { LoginDto } from './dto/login.dto.js';
 import { RegisterDto } from './dto/register.dto.js';
 import { UserRole } from '../../common/enums/role.enum.js';
@@ -35,7 +38,9 @@ export class AuthService {
     }
 
     if (!user.activo) {
-      throw new UnauthorizedException('La cuenta de usuario se encuentra deshabilitada');
+      throw new UnauthorizedException(
+        'La cuenta de usuario se encuentra deshabilitada',
+      );
     }
 
     const payload = {
@@ -69,7 +74,9 @@ export class AuthService {
       (u) => u.email.toLowerCase() === dto.email.toLowerCase(),
     );
     if (existing) {
-      throw new ConflictException('Ya existe un usuario registrado con este correo');
+      throw new ConflictException(
+        'Ya existe un usuario registrado con este correo',
+      );
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -94,7 +101,9 @@ export class AuthService {
     this.db.users.push(newUser);
     this.db.save();
 
-    this.logger.log(`Nuevo usuario registrado: ${newUser.email} (${newUser.role})`);
+    this.logger.log(
+      `Nuevo usuario registrado: ${newUser.email} (${newUser.role})`,
+    );
 
     const payload = {
       sub: newUser.id,

@@ -82,11 +82,18 @@ export class ProductionService {
   finishBatch(batchId: string, dto: FinishBatchDto): ProductionBatchEntity {
     const batch = this.db.productionBatches.find((b) => b.id === batchId);
     if (!batch) {
-      throw new NotFoundException(`Lote de producción ${batchId} no encontrado`);
+      throw new NotFoundException(
+        `Lote de producción ${batchId} no encontrado`,
+      );
     }
 
-    if (batch.estado === 'FINALIZADO_CONFORME' || batch.estado === 'OBSERVADO') {
-      throw new BadRequestException('Este lote ya ha sido finalizado previamente');
+    if (
+      batch.estado === 'FINALIZADO_CONFORME' ||
+      batch.estado === 'OBSERVADO'
+    ) {
+      throw new BadRequestException(
+        'Este lote ya ha sido finalizado previamente',
+      );
     }
 
     batch.cantidadObtenida = dto.cantidadObtenida;
@@ -100,7 +107,8 @@ export class ProductionService {
 
     // Aumentar el stock de producto terminado en la sucursal correspondiente
     let stockItem = this.db.stock.find(
-      (s) => s.productoId === batch.productoId && s.sucursalId === batch.sucursalId,
+      (s) =>
+        s.productoId === batch.productoId && s.sucursalId === batch.sucursalId,
     );
     if (stockItem) {
       stockItem.cantidadDisponible += dto.cantidadObtenida;

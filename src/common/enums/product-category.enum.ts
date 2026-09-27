@@ -10,6 +10,6 @@ export enum ProductCategory {
 
 export enum BakingShift {
   MADRUGADA = 'MADRUGADA', // 04:30 - 07:00 AM (Pan de la mañana caliente)
-  TARDE = 'TARDE',         // 15:30 - 18:30 PM (Lonche caliente)
-  NOCTURNO = 'NOCTURNO',   // Masas fermentadas lentas y pastelería
+  TARDE = 'TARDE', // 15:30 - 18:30 PM (Lonche caliente)
+  NOCTURNO = 'NOCTURNO', // Masas fermentadas lentas y pastelería
 }

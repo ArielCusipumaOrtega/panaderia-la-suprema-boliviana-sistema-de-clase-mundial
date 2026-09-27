@@ -1,9 +1,20 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsBoolean, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import {
+  IsBoolean,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Min,
+} from 'class-validator';
 import { DepartamentoBolivia } from '../../../common/constants/bolivia-regions.constant.js';
 
 export class CreateBranchDto {
-  @ApiProperty({ example: 'SCZ-02', description: 'Código identificador único de sucursal' })
+  @ApiProperty({
+    example: 'SCZ-02',
+    description: 'Código identificador único de sucursal',
+  })
   @IsString()
   @IsNotEmpty()
   codigo: string;
@@ -13,7 +24,10 @@ export class CreateBranchDto {
   @IsNotEmpty()
   nombre: string;
 
-  @ApiProperty({ enum: DepartamentoBolivia, example: DepartamentoBolivia.SANTA_CRUZ })
+  @ApiProperty({
+    enum: DepartamentoBolivia,
+    example: DepartamentoBolivia.SANTA_CRUZ,
+  })
   @IsEnum(DepartamentoBolivia)
   departamento: DepartamentoBolivia;
 
