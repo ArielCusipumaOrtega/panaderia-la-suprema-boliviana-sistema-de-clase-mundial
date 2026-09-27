@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -16,7 +17,9 @@ async function bootstrap() {
 
   // Configuración de Documentación Interactiva Swagger / OpenAPI
   const config = new DocumentBuilder()
-    .setTitle('Panadería La Suprema Boliviana - API Empresarial de Clase Mundial')
+    .setTitle(
+      'Panadería La Suprema Boliviana - API Empresarial de Clase Mundial',
+    )
     .setDescription(
       `API REST para el sistema integral de panadería y pastelería con cobertura nacional en Bolivia.
       
@@ -28,15 +31,42 @@ async function bootstrap() {
       * **Control de Producción:** Hornadas en turnos Madrugada/Tarde, insumos y control estricto de mermas.`,
     )
     .setVersion('1.0.0')
-    .addTag('1. Autenticación & Usuarios', 'Registro, inicio de sesión y gestión de perfiles con roles')
-    .addTag('2. Sucursales & Cobertura Bolivia', 'Gestión de sucursales físicas en los 9 departamentos')
-    .addTag('3. Catálogo de Panadería & Pastelería', 'Panes tradicionales, masa madre, tortas y canastas')
-    .addTag('4. Logística & Envíos Nacionales Bolivia', 'Cotizador de flete express local y despacho interdepartamental')
-    .addTag('5. Producción & Hornadas (Maestro Panadero)', 'Planificación de horneadas, temperaturas y control de mermas')
-    .addTag('6. Pedidos & Ventas Omnicanal', 'Gestión de pedidos e-commerce, tienda y despachos')
-    .addTag('7. Pasarela de Pagos Bolivia (QR Simple & Tigo Money)', 'Generación de QR Simple interoperable BCB y verificación')
-    .addTag('8. Facturación Computarizada en Línea SIAT / SIN Bolivia', 'Emisión oficial de facturas computarizadas con CUF y QR')
-    .addTag('9. Reportes & Analítica de Negocio Bolivia', 'Dashboard de ventas en Bs. por departamento y arqueo de caja')
+    .addTag(
+      '1. Autenticación & Usuarios',
+      'Registro, inicio de sesión y gestión de perfiles con roles',
+    )
+    .addTag(
+      '2. Sucursales & Cobertura Bolivia',
+      'Gestión de sucursales físicas en los 9 departamentos',
+    )
+    .addTag(
+      '3. Catálogo de Panadería & Pastelería',
+      'Panes tradicionales, masa madre, tortas y canastas',
+    )
+    .addTag(
+      '4. Logística & Envíos Nacionales Bolivia',
+      'Cotizador de flete express local y despacho interdepartamental',
+    )
+    .addTag(
+      '5. Producción & Hornadas (Maestro Panadero)',
+      'Planificación de horneadas, temperaturas y control de mermas',
+    )
+    .addTag(
+      '6. Pedidos & Ventas Omnicanal',
+      'Gestión de pedidos e-commerce, tienda y despachos',
+    )
+    .addTag(
+      '7. Pasarela de Pagos Bolivia (QR Simple & Tigo Money)',
+      'Generación de QR Simple interoperable BCB y verificación',
+    )
+    .addTag(
+      '8. Facturación Computarizada en Línea SIAT / SIN Bolivia',
+      'Emisión oficial de facturas computarizadas con CUF y QR',
+    )
+    .addTag(
+      '9. Reportes & Analítica de Negocio Bolivia',
+      'Dashboard de ventas en Bs. por departamento y arqueo de caja',
+    )
     .addBearerAuth(
       {
         type: 'http',
@@ -59,14 +89,25 @@ async function bootstrap() {
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
 
-  logger.log(`================================================================`);
+  logger.log(
+    `================================================================`,
+  );
   logger.log(`🥖 PANADERÍA LA SUPREMA BOLIVIANA - SISTEMA DE CLASE MUNDIAL 🇧🇴`);
-  logger.log(`================================================================`);
+  logger.log(
+    `================================================================`,
+  );
   logger.log(`🌐 Portal Web & E-Commerce:   http://localhost:${port}/`);
   logger.log(`📑 Documentación Swagger:    http://localhost:${port}/api/docs`);
+  logger.log(
+    `🐘 Base de Datos:            PostgreSQL (${process.env.DB_NAME ?? 'panaderia_la_suprema'} en ${process.env.DB_HOST ?? 'localhost'}:${process.env.DB_PORT ?? 5432})`,
+  );
   logger.log(`⚡ Moneda oficial:           BOB (Bolivianos - Bs.)`);
   logger.log(`🛡️ Facturación SIAT activa:  NIT 3049182019`);
-  logger.log(`📲 Pagos habilitados:        QR Simple Interoperable BCB / Tigo Money`);
-  logger.log(`================================================================`);
+  logger.log(
+    `📲 Pagos habilitados:        QR Simple Interoperable BCB / Tigo Money`,
+  );
+  logger.log(
+    `================================================================`,
+  );
 }
 void bootstrap();

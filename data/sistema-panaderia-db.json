@@ -1,9 +1,23 @@
 {
   "users": [
     {
+      "id": "usr-cliente-01",
+      "email": "cliente@gmail.com",
+      "passwordHash": "$2b$10$QZU.gTlWnvKsxirkywWZKuMroMhBkB2pnQTldxC4NYcIa9PA7wWy2",
+      "nombreCompleto": "Andrea Villarroel Rojas",
+      "telefono": "+591 70765432",
+      "ciNit": "5543210-CB",
+      "departamento": "Cochabamba",
+      "ciudad": "Cochabamba",
+      "direccion": "Av. América Este #780",
+      "role": "CLIENTE",
+      "activo": true,
+      "creadoEn": "2026-09-27T23:01:29.170Z"
+    },
+    {
       "id": "usr-admin-01",
       "email": "admin@panaderia.bo",
-      "passwordHash": "$2b$10$e/Hr3wMt/u4YOU5j7nwJB.Qc9ESsn7NZLXSj/gwkX8Ndt1Ioiyqji",
+      "passwordHash": "$2b$10$QZU.gTlWnvKsxirkywWZKuLAsUGhiHvBTgFFMZdl4PyMsGN5AWKYy",
       "nombreCompleto": "Lic. Gonzalo Céspedes (Director General)",
       "telefono": "+591 77012345",
       "ciNit": "4876211-1K",
@@ -13,12 +27,12 @@
       "role": "ADMIN",
       "sucursalId": "suc-scz-01",
       "activo": true,
-      "creadoEn": "2026-09-27T00:36:34.062Z"
+      "creadoEn": "2026-09-27T23:01:29.169Z"
     },
     {
       "id": "usr-panadero-01",
       "email": "panadero@panaderia.bo",
-      "passwordHash": "$2b$10$e/Hr3wMt/u4YOU5j7nwJB.4LRkVLTCx.nJWxN9/NrTBHmlqTDcWJq",
+      "passwordHash": "$2b$10$QZU.gTlWnvKsxirkywWZKuHJxbGXNxQ.Eu51rkCh9cSV06zxFwBIW",
       "nombreCompleto": "Maestro Don Saturnino Mamani",
       "telefono": "+591 71598765",
       "ciNit": "3498112-LP",
@@ -28,12 +42,12 @@
       "role": "MAESTRO_PANADERO",
       "sucursalId": "suc-lpz-01",
       "activo": true,
-      "creadoEn": "2026-09-27T00:36:34.062Z"
+      "creadoEn": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "usr-cajero-01",
       "email": "cajero@panaderia.bo",
-      "passwordHash": "$2b$10$e/Hr3wMt/u4YOU5j7nwJB.Qc9ESsn7NZLXSj/gwkX8Ndt1Ioiyqji",
+      "passwordHash": "$2b$10$QZU.gTlWnvKsxirkywWZKuLAsUGhiHvBTgFFMZdl4PyMsGN5AWKYy",
       "nombreCompleto": "Valeria Justiniano Suárez",
       "telefono": "+591 76044321",
       "ciNit": "8876123-SC",
@@ -43,21 +57,7 @@
       "role": "CAJERO",
       "sucursalId": "suc-scz-01",
       "activo": true,
-      "creadoEn": "2026-09-27T00:36:34.062Z"
-    },
-    {
-      "id": "usr-cliente-01",
-      "email": "cliente@gmail.com",
-      "passwordHash": "$2b$10$e/Hr3wMt/u4YOU5j7nwJB.DEIo54FT.zPGuKtdDMSTKFCoQqqsURG",
-      "nombreCompleto": "Andrea Villarroel Rojas",
-      "telefono": "+591 70765432",
-      "ciNit": "5543210-CB",
-      "departamento": "Cochabamba",
-      "ciudad": "Cochabamba",
-      "direccion": "Av. América Este #780",
-      "role": "CLIENTE",
-      "activo": true,
-      "creadoEn": "2026-09-27T00:36:34.062Z"
+      "creadoEn": "2026-09-27T23:01:29.170Z"
     }
   ],
   "branches": [
@@ -503,665 +503,665 @@
       "id": "stk-suc-scz-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 59,
+      "cantidadDisponible": 62,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 72,
+      "cantidadDisponible": 89,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 69,
+      "cantidadDisponible": 70,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 113,
+      "cantidadDisponible": 70,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 107,
+      "cantidadDisponible": 102,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 49,
+      "cantidadDisponible": 96,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 108,
+      "cantidadDisponible": 77,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 91,
+      "cantidadDisponible": 72,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 97,
+      "cantidadDisponible": 95,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.062Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 112,
+      "cantidadDisponible": 118,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 112,
+      "cantidadDisponible": 51,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 115,
+      "cantidadDisponible": 63,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 103,
+      "cantidadDisponible": 41,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-scz-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-scz-01",
-      "cantidadDisponible": 112,
+      "cantidadDisponible": 54,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 56,
+      "cantidadDisponible": 76,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 101,
+      "cantidadDisponible": 72,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 42,
+      "cantidadDisponible": 110,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 98,
+      "cantidadDisponible": 90,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 112,
+      "cantidadDisponible": 63,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 87,
+      "cantidadDisponible": 92,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 60,
+      "cantidadDisponible": 46,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 118,
+      "cantidadDisponible": 87,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 99,
+      "cantidadDisponible": 58,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 51,
+      "cantidadDisponible": 46,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 62,
+      "cantidadDisponible": 115,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 48,
+      "cantidadDisponible": 73,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 44,
+      "cantidadDisponible": 41,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-lpz-01",
-      "cantidadDisponible": 73,
+      "cantidadDisponible": 81,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 108,
+      "cantidadDisponible": 79,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 107,
+      "cantidadDisponible": 98,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 43,
+      "cantidadDisponible": 68,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 89,
+      "cantidadDisponible": 88,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 51,
+      "cantidadDisponible": 76,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 48,
+      "cantidadDisponible": 76,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 55,
+      "cantidadDisponible": 79,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 88,
+      "cantidadDisponible": 69,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 89,
+      "cantidadDisponible": 61,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 81,
+      "cantidadDisponible": 104,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 82,
+      "cantidadDisponible": 61,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 106,
+      "cantidadDisponible": 102,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 85,
+      "cantidadDisponible": 40,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-lpz-02-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-lpz-02",
-      "cantidadDisponible": 66,
+      "cantidadDisponible": 88,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 88,
+      "cantidadDisponible": 72,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 115,
+      "cantidadDisponible": 108,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 110,
+      "cantidadDisponible": 57,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 58,
+      "cantidadDisponible": 99,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 78,
+      "cantidadDisponible": 94,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 51,
+      "cantidadDisponible": 86,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 61,
+      "cantidadDisponible": 52,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 88,
+      "cantidadDisponible": 110,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 79,
+      "cantidadDisponible": 82,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 92,
+      "cantidadDisponible": 76,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 60,
+      "cantidadDisponible": 111,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 58,
+      "cantidadDisponible": 73,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 78,
+      "cantidadDisponible": 77,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-cbb-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-cbb-01",
-      "cantidadDisponible": 84,
+      "cantidadDisponible": 98,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 50,
+      "cantidadDisponible": 96,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 100,
+      "cantidadDisponible": 46,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 113,
+      "cantidadDisponible": 61,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 111,
+      "cantidadDisponible": 76,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 91,
+      "cantidadDisponible": 45,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 77,
+      "cantidadDisponible": 44,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 115,
+      "cantidadDisponible": 86,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 95,
+      "cantidadDisponible": 40,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 92,
+      "cantidadDisponible": 93,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 47,
+      "cantidadDisponible": 45,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 117,
+      "cantidadDisponible": 79,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 79,
+      "cantidadDisponible": 75,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 49,
+      "cantidadDisponible": 96,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-chq-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-chq-01",
-      "cantidadDisponible": 103,
+      "cantidadDisponible": 68,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 87,
+      "cantidadDisponible": 71,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 64,
+      "cantidadDisponible": 70,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 119,
+      "cantidadDisponible": 105,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 66,
+      "cantidadDisponible": 47,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 69,
+      "cantidadDisponible": 45,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 82,
+      "cantidadDisponible": 71,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 84,
+      "cantidadDisponible": 86,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 86,
+      "cantidadDisponible": 74,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 60,
+      "cantidadDisponible": 70,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 64,
+      "cantidadDisponible": 99,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 89,
+      "cantidadDisponible": 69,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 54,
+      "cantidadDisponible": 51,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-tja-01",
-      "cantidadDisponible": 71,
+      "cantidadDisponible": 61,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-tja-01-prod-014",
@@ -1169,455 +1169,455 @@
       "sucursalId": "suc-tja-01",
       "cantidadDisponible": 90,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 109,
+      "cantidadDisponible": 79,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 75,
+      "cantidadDisponible": 82,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 78,
+      "cantidadDisponible": 90,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 52,
+      "cantidadDisponible": 71,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 68,
+      "cantidadDisponible": 109,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 46,
+      "cantidadDisponible": 92,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 73,
+      "cantidadDisponible": 119,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 109,
+      "cantidadDisponible": 113,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 57,
+      "cantidadDisponible": 117,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 94,
+      "cantidadDisponible": 66,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 44,
+      "cantidadDisponible": 57,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 75,
+      "cantidadDisponible": 117,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 71,
+      "cantidadDisponible": 77,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-oru-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-oru-01",
-      "cantidadDisponible": 58,
+      "cantidadDisponible": 88,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 42,
+      "cantidadDisponible": 40,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 86,
+      "cantidadDisponible": 82,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 49,
+      "cantidadDisponible": 77,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 67,
+      "cantidadDisponible": 61,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 45,
+      "cantidadDisponible": 69,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 60,
+      "cantidadDisponible": 49,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 78,
+      "cantidadDisponible": 86,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 74,
+      "cantidadDisponible": 111,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 107,
+      "cantidadDisponible": 86,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 55,
+      "cantidadDisponible": 100,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 95,
+      "cantidadDisponible": 60,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 51,
+      "cantidadDisponible": 59,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 90,
+      "cantidadDisponible": 98,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pot-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-pot-01",
-      "cantidadDisponible": 88,
+      "cantidadDisponible": 113,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 84,
+      "cantidadDisponible": 64,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 69,
+      "cantidadDisponible": 63,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 106,
+      "cantidadDisponible": 107,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 51,
+      "cantidadDisponible": 113,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 96,
+      "cantidadDisponible": 64,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 68,
+      "cantidadDisponible": 76,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 104,
+      "cantidadDisponible": 74,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 72,
+      "cantidadDisponible": 55,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 93,
+      "cantidadDisponible": 101,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 44,
+      "cantidadDisponible": 89,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 71,
+      "cantidadDisponible": 75,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 72,
+      "cantidadDisponible": 103,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 84,
+      "cantidadDisponible": 83,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-ben-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-ben-01",
-      "cantidadDisponible": 42,
+      "cantidadDisponible": 41,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-001",
       "productoId": "prod-001",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 96,
+      "cantidadDisponible": 110,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-002",
       "productoId": "prod-002",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 50,
+      "cantidadDisponible": 40,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-003",
       "productoId": "prod-003",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 91,
+      "cantidadDisponible": 42,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-004",
       "productoId": "prod-004",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 65,
+      "cantidadDisponible": 84,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-005",
       "productoId": "prod-005",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 55,
+      "cantidadDisponible": 53,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-006",
       "productoId": "prod-006",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 67,
+      "cantidadDisponible": 82,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-007",
       "productoId": "prod-007",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 112,
+      "cantidadDisponible": 55,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-008",
       "productoId": "prod-008",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 79,
+      "cantidadDisponible": 110,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-009",
       "productoId": "prod-009",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 81,
+      "cantidadDisponible": 97,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-010",
       "productoId": "prod-010",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 115,
+      "cantidadDisponible": 96,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-011",
       "productoId": "prod-011",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 41,
+      "cantidadDisponible": 86,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-012",
       "productoId": "prod-012",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 76,
+      "cantidadDisponible": 60,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-013",
       "productoId": "prod-013",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 91,
+      "cantidadDisponible": 57,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     },
     {
       "id": "stk-suc-pan-01-prod-014",
       "productoId": "prod-014",
       "sucursalId": "suc-pan-01",
-      "cantidadDisponible": 80,
+      "cantidadDisponible": 43,
       "cantidadMinimaAlerta": 15,
-      "ultimaActualizacion": "2026-09-27T00:36:34.063Z"
+      "ultimaActualizacion": "2026-09-27T23:01:29.170Z"
     }
   ],
   "rawMaterials": [
@@ -1711,125 +1711,6 @@
   ],
   "orders": [
     {
-      "id": "ord-e33e22f3",
-      "codigoPedido": "BOL-PED-1005",
-      "clienteNombre": "Carlos Montaño Hurtado",
-      "clienteTelefono": "+591 76012345",
-      "clienteCiNit": "4876543-SC",
-      "razonSocialFactura": "Carlos Montaño",
-      "departamentoDestino": "Santa Cruz",
-      "ciudadDestino": "Santa Cruz de la Sierra",
-      "direccionEntrega": "Av. Las Américas #320",
-      "tipoEntrega": "EXPRESS_LOCAL",
-      "sucursalOrigenId": "suc-scz-01",
-      "items": [
-        {
-          "productoId": "prod-003",
-          "nombreProducto": "Cuñapé Cruceño Horneado Especial",
-          "cantidad": 6,
-          "precioUnitarioBs": 3.5,
-          "subtotalBs": 21
-        },
-        {
-          "productoId": "prod-004",
-          "nombreProducto": "Pan de Arani Cochabambino con Canela y Queso",
-          "cantidad": 1,
-          "precioUnitarioBs": 15,
-          "subtotalBs": 15
-        }
-      ],
-      "subtotalBs": 36,
-      "costoEnvioBs": 10,
-      "descuentoBs": 0,
-      "totalBs": 46,
-      "metodoPago": "QR_SIMPLE",
-      "estadoPago": "PAGADO",
-      "qrSimpleDataUri": "data:image/png;base64,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",
-      "estado": "CONFIRMADO",
-      "creadoEn": "2026-09-27T14:42:19.607Z",
-      "actualizadoEn": "2026-09-27T14:42:19.607Z",
-      "facturaId": "fac-c6fb98d1"
-    },
-    {
-      "id": "ord-37a65ac2",
-      "codigoPedido": "BOL-PED-1004",
-      "clienteNombre": "Carlos Montaño Hurtado",
-      "clienteTelefono": "+591 76012345",
-      "clienteCiNit": "4876543-SC",
-      "razonSocialFactura": "Carlos Montaño",
-      "departamentoDestino": "Santa Cruz",
-      "ciudadDestino": "Santa Cruz de la Sierra",
-      "direccionEntrega": "Av. Las Américas #320",
-      "tipoEntrega": "EXPRESS_LOCAL",
-      "sucursalOrigenId": "suc-scz-01",
-      "items": [
-        {
-          "productoId": "prod-003",
-          "nombreProducto": "Cuñapé Cruceño Horneado Especial",
-          "cantidad": 6,
-          "precioUnitarioBs": 3.5,
-          "subtotalBs": 21
-        },
-        {
-          "productoId": "prod-004",
-          "nombreProducto": "Pan de Arani Cochabambino con Canela y Queso",
-          "cantidad": 1,
-          "precioUnitarioBs": 15,
-          "subtotalBs": 15
-        }
-      ],
-      "subtotalBs": 36,
-      "costoEnvioBs": 10,
-      "descuentoBs": 0,
-      "totalBs": 46,
-      "metodoPago": "QR_SIMPLE",
-      "estadoPago": "PAGADO",
-      "qrSimpleDataUri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAAEECAYAAADOCEoKAAAAAklEQVR4AewaftIAABYeSURBVO3BwY1lya5lwZUHoQOFoCiUl6JQiC1CDgrRf+ADjphwnBtZrxo0+/X9z+9v1lrr/zystdbxsNZax8Naax0Pa611PKy11vGw1lrHw1prHV/8QbjxN2WJN8KNLkt04UaXJSbhxhtZogs3uizRhRtdlujCjS5LdOFGlyUm4UaXJSbhRpclunBjkiXeCDe6LDEJN7osMQk3uixxI9yYZIku3PibssTkYa21joe11joe1lrr+OJSlvikcONGuDHJEl24MQk3flK4MQk33gg3uizxRrjxbwo3uizRZYlJuNFliS7c6LJElyX+TVnik8KNGw9rrXU8rLXW8bDWWscXL4UbN7LEjXCjyxKTcGOSJSbhxiRLdOHGJEt04UaXJbpw441wo8sSXbgxyRJduHEjS3Thxk8KN7osMckSXbjRZYku3OiyRBdu/KRw40aWeONhrbWOh7XWOh7WWuv44v9zWaILN7oscSPcmGSJLtzoskQXbkzCjS5LvJElJuHGJEvcyBJduNFliS5LfFK4MckSN8KNSZbowo3/koe11joe1lrreFhrreOL/7hwo8sSXbjRZYku3JhkiUm40YUbXZaYZIku3LgRbnRZogs3Pinc6LLEJNzossSNcKPLEn9TlujCjUm40WWJ/5KHtdY6HtZa63hYa63ji5eyxN8UbtzIEl24cSPceCPc6LJEF250WWISbnRZogs3JlniRrjRZYkbWaILN7osMckSN8KNSZZ4I0t04UaXJT4pS/xND2utdTystdbxsNZaxxeXwo1/U5bowo1JuNFliS7c6LJEF250WaILN7os0YUbb4QbXZbowo0uS3ThxiTc6LLEjXCjyxJduNFliS7c6LJEF250WWKSJbpwYxJudFmiCze6LHEj3OiyxCTc+Dc9rLXW8bDWWsfDWmsdv77/+f3N/7BwY5IlboQbkyzRhRuTLDEJN25kiUm40WWJLtyYZIkb4caNLPFGuPFGlujCjS5L/KRwo8sS/yUPa611PKy11vGw1lrHr+9/fn8zCDe6LNGFG5+UJf6mcKPLEpNwY5IlunDjJ2WJSbjxSVniRrjRZYlJuNFliS7cuJEl3gg3uizRhRtdlrgRbnxSlnjjYa21joe11joe1lrr+OIPssSNLNGFG5Ms8Unhxo0scSNLTMKNN7LEJNzowo2flCXeyBJduNFliS5LvJElunCjyxKTcKPLEl240WWJT8oSk3DjJz2stdbxsNZax8Naax1fXAo3JuFGlyUm4UaXJbpwY5IlbmSJG+FGlyUmWaILNyZZogs33sgSk3BjkiW6cONGlujCjS5LTMKNLktMssQkS0zCjU8KN7os0YUbXZa4kSW6cGMSbnRZYvKw1lrHw1prHQ9rrXV88Qfhxo0scSNLdOHGJEtMskQXbvykcKPLEjfCjRtZogs3JuHGG1miCze6LDHJEm+EGzfCjRtZ4kaWuBFudFmiCzduZIkuS0yyxI2HtdY6HtZa63hYa63jiz/IEl24MQk3uizRhRs/Kdy4EW50WeJGlphkiTfCjTeyxBvhxiTcuJElunBjkiW6cKMLNyZZogs3unDjRpbowo1JlngjS3ThRpclPulhrbWOh7XWOh7WWuv49f3P728uhBtdlujCjUmWmIQbb2SJN8KNG1miCze6LNGFG12WeCPc+KQsMQk3uizxN4Ubn5QlJuHGJEt04cYkS3Thxo0s0YUbXZbowo0uS0we1lrreFhrreNhrbWOX9///P7mhXCjyxJduPFGlngj3OiyxCTc6LJEF25MssSNcKPLEl240WWJLty4kSW6cKPLEpNw42/KEj8p3LiRJbpwY5IlJuHG35QlJg9rrXU8rLXW8bDWWscX/7Is0YUbk3CjyxI3wo1Jlngj3OiyxCRL3Ag3JlliEm50WeKTskQXbkyyRBduTMKNLku8kSW6cKPLEpMs8UaWmIQbN7JEF27ceFhrreNhrbWOh7XWOr74g3BjkiXeCDcm4UaXJSbhRpclboQbb2SJLtzoskQXbnRZ4kaW6MKNLkt0WaILNyZZYpIlunCjyxI3skQXbnRZ4o1wo8sSk3CjyxKTcGOSJT4pS3zSw1prHQ9rrXU8rLXW8ev7n9/fXAg3bmSJLtzossQk3OiyxI1wo8sSN8KNLkt04cYkS3ThRpclboQbXZa4EW50WWISbtzIEpNwo8sSXbgxyRI3wo0uS/ykcKPLEjfCjS5LdOHGjSxx42GttY6HtdY6HtZa6/j1/c/vb/5F4cYkS3ThRpclflK4cSNLTMKNLkt04UaXJbpw42/KEl24cSNLvBFudFnijXCjyxJduNFliRvhRpclboQbXZaYhBs3ssTkYa21joe11joe1lrr+OJSuPFGluiyRBdu/JvCjS5L/KRwo8sSXbjRZYku3OiyxBvhxo0s8UnhxiTcmGSJLtx4I9zossQkS3ThRpclunBjEm5MssQnPay11vGw1lrHw1prHV/8QbjRZYlJuNFliUm40WWJLty4EW50WWISbnRZogs33sgSXZbowo1JlujCjUm40WWJLtz4SeHGJEvcyBJvZIku3LiRJbpw42/KEl240YUbN7LE5GGttY6HtdY6HtZa6/jiD7LEJNyYhBtdluiyRBdudFniRpbowo1JlujCjS5LdOFGlyW6cKMLN7os0WWJLtyYZIk3skQXbnxSlrgRbkzCjS5L3Ag3/k1Zogs3uizRhRuTLHEj3LjxsNZax8Naax0Pa611fHEp3JhkiS7cmIQbk3CjyxKTcGOSJSZZ4pOyRBduTLJEF27cCDe6LNGFG39TuNFliRtZogs3JlmiyxJduDHJEpMsMQk3unCjyxJduPGTssSNh7XWOh7WWut4WGut44t/WZbowo0uS3ThxhvhRpclunDjk8KNSZaYZIkbWaILN7os0YUbXZaYZIku3OiyRJclunDjjSzRhRuTcOO/JEt8UrjRZYnJw1prHQ9rrXU8rLXW8ev7n9/ffFC48UlZogs3uixxI9yYZIkb4UaXJSbhxiRLdOHGJEt04cYbWWISbkyyRBdudFmiCze6LDEJNyZZYhJufFKWmIQbkyxxI9zossQnPay11vGw1lrHw1prHb++//n9zQvhRpclJuFGlyW6cKPLEl240WWJLty4kSW6cKPLEl24cSNL3Ag3uizxRrjxRpaYhBtdlujCjTeyxCTcmGSJSbjRZYku3OiyRBdudFmiCzfeyBJduNFliS7c6LLEjYe11joe1lrreFhrrePX9z+/v7kQbnRZogs3uiwxCTc+KUtMwo0uS0zCjRtZYhJudFnibwo3JlliEm50WeJvCjc+KUu8EW50WeKTwo0bWeKNh7XWOh7WWut4WGut44tLWaILN7oscSNLTMKNLktMwo1JlpiEG2+EG12WuBFudFmiCzcmWaILN26EG12WeCPc6LLEJNyYZIku3OiyRBdu/KQsMQk3uizRhRtvZIku3OiyxI2HtdY6HtZa63hYa63jiz8IN26EG39TuDHJEl24MckSXbhxI0t04UaXJW6EG5Ms0YUbnxRudFliEm7cCDe6LPFJWaILN7pw40aWeCPceCNLTLJEF250WWLysNZax8Naax0Pa611fPFSlujCjUmWuBFudOFGlyUm4UaXJd7IEpNw40a40WWJLtyYhBs3ssSNcKMLN7osMckSXbjRZYku3OiyRBduvJElboQbXbjRZYku3JhkiRvhRhdu3MgSNx7WWut4WGut42GttY4vLmWJLtzoskQXbkzCjS5LvBFudFliEm5MskQXbnRZ4pPCjRtZogs3boQbXZa4EW7cyBJduNFliRtZogs3flKW6MKNLkt04cYk3OiyxCRL3Ag3uiwxeVhrreNhrbWOh7XWOr74gyzRhRtdlngjS/ykcGOSJbpwY5IlJlmiCzfeyBI3skQXbkyyxI0s0YUbnxRufFKW6MKNSZaYhBuflCXeCDe6LNFliRsPa611PKy11vGw1lrHF5eyxBvhxk/KEl248Unhxo0sMckSXbjRhRufFG68EW50WaILN7pwo8sSkywxCTd+UrhxI0vcCDfeCDduhBtdlpg8rLXW8bDWWsfDWmsdX7wUbnRZYpIlboQbk3DjjXBjEm50WaILNz4pS9wIN7os0YUbXZZ4I9z4pCzxRrjRZYkbWaILN94IN7osMQk3uiwxCTcm4cYbD2utdTystdbxsNZax6/vf35/Mwg3uizRhRuflCUm4UaXJbpwo8sSk3CjyxJvhBuTLHEj3OiyRBduvJElboQbkyxxI9zoskQXbnRZ4pPCjS5LdOFGlyW6cONGlujCjUmW6MKNLkt04cYkS0we1lrreFhrreNhrbWOLy6FG12W6MKNSZaYhBuTLNGFG5Nw441wY5IlJlliEm50WaLLEjeyxL8p3JhkiUm40WWJLtzoskQXbnRZYpIlJllikiW6cKPLEl240WWJN8KNT3pYa63jYa21joe11jq+uJQlbmSJSbgxyRJduNFliS7cmGSJLtyYZIkbWaILNz4p3OiyRBdudFmiCzd+Upbowo2fFG78pHDjjXBjEm50WaILNyZZogs3uixx42GttY6HtdY6HtZa6/jiD7LET8oSN7JEF250WWISbnRZYhJuTLJEF268EW58UrgxyRKTcKPLEpNw40aW6MKNSZaYhBuTcGOSJSZZogs3JlmiCzcm4UaXJbpwY5Il3nhYa63jYa21joe11jq++INw45PCjRtZogs3boQbXZZ4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",
-      "estado": "CONFIRMADO",
-      "creadoEn": "2026-09-27T00:52:58.836Z",
-      "actualizadoEn": "2026-09-27T00:52:58.836Z",
-      "facturaId": "fac-fafe2787"
-    },
-    {
-      "id": "ord-d359cad5",
-      "codigoPedido": "BOL-PED-1003",
-      "clienteNombre": "Carlos Montaño Hurtado",
-      "clienteTelefono": "+591 76012345",
-      "clienteCiNit": "4876543-SC",
-      "razonSocialFactura": "Carlos Montaño",
-      "departamentoDestino": "Santa Cruz",
-      "ciudadDestino": "Santa Cruz de la Sierra",
-      "direccionEntrega": "Av. Las Américas #320",
-      "tipoEntrega": "EXPRESS_LOCAL",
-      "sucursalOrigenId": "suc-scz-01",
-      "items": [
-        {
-          "productoId": "prod-003",
-          "nombreProducto": "Cuñapé Cruceño Horneado Especial",
-          "cantidad": 6,
-          "precioUnitarioBs": 3.5,
-          "subtotalBs": 21
-        },
-        {
-          "productoId": "prod-004",
-          "nombreProducto": "Pan de Arani Cochabambino con Canela y Queso",
-          "cantidad": 1,
-          "precioUnitarioBs": 15,
-          "subtotalBs": 15
-        }
-      ],
-      "subtotalBs": 36,
-      "costoEnvioBs": 10,
-      "descuentoBs": 0,
-      "totalBs": 46,
-      "metodoPago": "QR_SIMPLE",
-      "estadoPago": "PAGADO",
-      "qrSimpleDataUri": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAAEECAYAAADOCEoKAAAAAklEQVR4AewaftIAABZ2SURBVO3BwY0l2a5swVWB1IFCUBTKS1FcCBehBoX8fxADjnYjECer+z7Q7Nf3n9/frLXW/3ex1lq3i7XWul2stdbtYq21bhdrrXW7WGut28Vaa92++AeVwd/UMlNlcNIyU2UwtcxJZfBJLTNVBlPLnFQGU8ucVAZTyzxRGTzRMieVwSe1zFQZTC0zVQZTy0yVwdQyU2UwtcxUGUwtM1UGJy0zVQZ/U8ucXKy11u1irbVuF2utdfvioZb5pMrgpGWmyuCkZabK4KRlTiqDk5Y5aZmpMpha5o2WmSqDqWWeaJl/U8uctMxJy0yVwdQyJy3zb2qZT6oMnrhYa63bxVpr3S7WWuv2xUuVwRMt80bLTJXB1DJTy0yVwUllMLXMVBmcVAZTy5xUBlPLTJXBG5XB1DJTy5xUBm+0zBOVwRMtc9IyU2UwtcxUGUwtM7XMVBn8pMrgiZZ542KttW4Xa611u1hrrdsX/3GVwUnLPNEyU2VwUhlMLXPSMk+0zFQZTC3zRmUwVQZvtMxUGZxUBictM7XMVBm8URlMLfNGZXDSMlNl8L/kYq21bhdrrXW7WGut2xf/x1UGU8u8URlMLTNVBlPLnFQGT1QGU8tMlcHf1DInlcFJZfBEy0yVwUnLTJXBScuctMxUGUyVwdQy/0su1lrrdrHWWreLtda6ffFSy/xNLTNVBlPLPNEyT1QGU2VwUhk80TJTZTC1zFQZTC0zVQZTyzxRGUyVwdQyJy1zUhmctMwTLXPSMlNl8ERlcNIyn9Qyf9PFWmvdLtZa63ax1lq3Lx6qDP4vqQymlpkqg6llpspgapmpMphaZqoM/k2VwdQyJy0zVQZTy0yVwdQyJy0zVQZTyzxRGUwt80RlMLXMVBmcVAZTy5xUBv+mi7XWul2stdbtYq21bl/8g5b5L6kMTiqDqWWmyuCkMpha5o2WmSqDqWWeqAymlpkqgyda5onKYGqZqTJ4omWmymBqmZOW+aTK4ImWmSqDJ1rmv+RirbVuF2utdbtYa63br+8/v785qAymlnmiMphaZqoM3miZJyqDqWWmymBqmakyeKJlTiqDJ1pmqgz+TS1zUhk80TInlcFJy0yVwUnLnFQGJy0zVQZTy0yVwSe1zEllMLXMycVaa90u1lrrdrHWWrdf339+f/NBlcETLTNVBk+0zFQZnLTMVBmctMxPqgymlvmkyuCJlpkqg5OWeaMyOGmZqTJ4omWmymBqmakymFrmpDI4aZmTyuCJlpkqg6ll3rhYa63bxVpr3S7WWuv26/vP728OKoOTlpkqgzdaZqoMnmiZn1QZnLTMVBk80TInlcFJy0yVwdQyT1QGJy0zVQZTyzxRGZy0zFQZTC3zSZXBSctMlcFJy0yVwdQyb1QGU8s8cbHWWreLtda6Xay11u2Lf9AyU2XwSS0zVQZTy5xUBlNlMLXMT2qZN1rmiZaZKoOTlnmjZabKYKoMTiqDqWWeaJknKoOf1DJPtMxUGUwtM1UGJy0zVQYnlcHUMicXa611u1hrrdvFWmvdfn3/+f3ND6oMppaZKoOpZU4qg6llpsrgiZaZKoOTljmpDJ5omZPK4KRlpspgapknKoOpZU4qgzda5onK4KRlpspgapmpMnijZd6oDKaWmSqDqWV+0sVaa90u1lrrdrHWWrdf339+f/NCZTC1zFQZTC1zUhmctMxUGUwtc1IZnLTMVBmctMxJZTC1zBuVwdQyJ5XBJ7XMG5XBEy0zVQYnLfNJlcHUMlNlMLXMVBlMLTNVBlPLnFQGJy0zVQZTy5xcrLXW7WKttW4Xa611+/X95/c3D1QGJy3zRGVw0jInlcFJyzxRGZy0zCdVBictc1IZnLTMVBlMLfNEZTC1zBOVwU9qmb+pMnijZabK4ImW+aSLtda6Xay11u1irbVuX/zLWmaqDE4qg6llpsrgicpgapmpMpgqgyda5qRlpsrgpDI4aZmpMphaZqoMppZ5ozKYWuakZabK4KRlpsrgjcpgapmpMphaZmqZk8rgpDKYWmaqDJ6oDKaWeeJirbVuF2utdbtYa63bF/+gMniiMnijZZ6oDKaWmSqDqWWeaJmTymBqmTdaZqoMppaZKoOTlnmjMpha5pMqgzdaZqoMTlpmapmpMjipDE5a5qRlTiqDqWWeaJmpMpha5uRirbVuF2utdbtYa63br+8/v7/5iyqDqWWmymBqmZPKYGqZJyqDN1rmpDKYWmaqDKaWeaIyOGmZqTKYWmaqDKaWOakMppZ5ojKYWmaqDKaWOakMppaZKoOpZZ6oDE5a5pMqg6llpsrgpGWeuFhrrdvFWmvdLtZa6/br+8/vbw4qg6llnqgM3miZqTI4aZmpMpha5idVBlPLTJXB39QyT1QGU8tMlcHUMieVwdQyb1QGJy0zVQZPtMxUGUwtc1IZfFLL/E0Xa611u1hrrdvFWmvdvnioMniiZabKYGqZqTJ4ozJ4ozKYWmaqDE5a5omWOakMppaZKoOpZabK4CdVBp9UGUwtM7XM39QyT7TMSWUwtcxUGUyVwSe1zMnFWmvdLtZa63ax1lq3X99/fn9zUBmctMwblcFJyzxRGUwtM1UGU8tMlcEbLTNVBk+0zE+qDE5aZqoMppY5qQzeaJk3KoOTljmpDKaWeaMymFpmqgymlpkqg6llpsrgiZY5uVhrrdvFWmvdLtZa6/bFP2iZqTJ4ojKYWmZqmZPK4KRlppaZKoOpZabKYGqZk8pgapmTlpkqg6llpsrgk1pmapmpMvikljmpDKaWOakMppZ5omX+TS0zVQZTyzxRGUwtc1IZPHGx1lq3i7XWul2stdbt1/ef398cVAYnLfNEZfCTWuakMpha5qQyOGmZqTKYWuakMjhpmScqg5OWOakMppaZKoMnWuakMniiZd6oDN5omZPKYGqZqTKYWmaqDKaWOakMnmiZk4u11rpdrLXW7WKttW5fvFQZPNEy/yWVwUnLTJXBE5XBSctMlcFUGUwtc9IyJ5XB1DJTy5y0zEllMFUGn1QZTC1zUhn8L2mZT2qZJy7WWut2sdZat4u11rp98Q9aZqoMTlrmicpgapmpMpha5onK4CdVBp/UMlNlcFIZTC0zVQYnlcETLTNVBlPLTJXBSctMlcHUMlNlMFUGT7TMVBm8URmcVAZPVAYnLTO1zCddrLXW7WKttW4Xa611+/X95/c3D1QGU8tMlcFJyzxRGTzRMm9UBlPLTJXBEy1zUhmctMxUGfyklpkqgydaZqoMppb5pMpgapmpMjhpmZPK4KRlpsrgjZaZKoOpZU4qg6llnrhYa63bxVpr3S7WWuv2xQ9rmakyOGmZJ1rmpDI4aZmpZU5a5onK4I3KYGqZJyqDqWWeaJmpMjipDD6pMphaZmqZqTI4aZmTyuCkZabKYGqZqTL4pMpgapmTymBqmZOLtda6Xay11u1irbVuv77//P7moDKYWmaqDKaWmSqDk5Y5qQymlpkqg6llPqkymFrmjcrgpGWmyuCJlnmjMphaZqoMnmiZJyqDqWWmymBqmZPK4JNa5o3KYGqZqTJ4o2WmymBqmZOLtda6Xay11u1irbVuX7zUMm9UBk9UBieVwdQyT1QGJ5XBEy1z0jJTZXDSMlNlcFIZvFEZnLTMVBlMlcFJyzzRMlNl8ETLTJXBE5XBJ1UGb7TMJ12stdbtYq21bhdrrXX74h+0zBOVwUnLPFEZTC3zRGXwSS3zSZXB1DJTZXDSMk+0zBOVwdQyT7TMSWUwtcxJZfBGZTC1zEllMLXMVBlMLTNVBlPLPFEZTC0zVQYnLfPExVpr3S7WWut2sdZaty9eqgymlpkqg5PKYGqZk8rgpGVOWmaqDN6oDJ5omSdaZqoMppaZKoMnKoOpZU4qg6llppaZKoOpZZ6oDKaWmSqDn9QyP6kymFrm33Sx1lq3i7XWul2stdbti39QGZy0zFQZPNEyP6llpspgapmpMjipDE5aZqoM3qgMppY5aZmpMjhpmSda5idVBlPLvNEyU2VwUhn8TS3zRstMlcFUGUwtc3Kx1lq3i7XWul2stdbti3/QMlNlMFUGT1QGb7TME5XB1DJTZTC1zEll8EZlMLXMVBn8pMrgJ1UGJ5XB1DJTZXBSGUwtc1IZTC0zVQZPtMxUGUyVwUll8EmVwdQyU2XwxMVaa90u1lrrdrHWWrcvXmqZqTI4aZmTymBqmZPK4I2WOakMppaZKoNPapmTymBqmakyOGmZk8rgb6oM3qgM3miZqTJ4o2WeqAw+qTJ442KttW4Xa611u1hrrdsXD7XMVBmctMxJZTC1zBMtc1IZnFQGU8ucVAZTy0yVwUnLTJXBSctMLTNVBictc1IZTC1zUhlMLfNEy0yVwdQyb7TMJ7XME5XB1DJTZTC1zFQZTC0zVQYnLfPGxVpr3S7WWut2sdZaty8eqgymlpkqg5PKYGqZqTI4aZknWmaqDKaWOWmZqTJ4omXeqAymljlpmaky+Jta5o3K4KRlpspgqgymljmpDE4qg6llppaZKoOpMphaZqoMppZ5omU+6WKttW4Xa611u1hrrduv7z+/v3mhMpha5onKYGqZJyqDqWWmymBqmakymFrmicrgpGWmymBqmTcqg6llTiqDk5Z5ojKYWmaqDE5a5onK4KRlpsrgpGVOKoOpZZ6oDN5omScqg6llnrhYa63bxVpr3S7WWuv2xV9WGUwtc1IZTC0ztcxJy0yVwdQyJ5XB1DJTy0yVwRuVwUnLPFEZnLTMVBlMLTNVBlPLTJXBE5XB1DInLXNSGZy0zFQZTC1zUhlMLXPSMlNlcNIyU2UwtcxJy7xxsdZat4u11rpdrLXW7df3n9/fPFAZvNEyU2Vw0jJTZTC1zFQZnLTMG5XB1DInlcEntcxJZTC1zBuVwRst80Rl8ETLTJXBGy3zSZXB1DJvVAZTy3zSxVpr3S7WWut2sdZaty8+rGVOKoOpZU4qgzdaZqoMppaZKoOpZU4qgzda5qQymCqDqWVOKoOTljlpmZPKYGqZqTI4aZmTlnmiZU4qg5PKYGqZqTI4aZknKoMnWmaqDE5a5omLtda6Xay11u1irbVuv77//P7mB1UGT7TME5XB1DJPVAYnLfNGZfA3tcwTlcETLfNEZfBEy0yVwUnLfFJlcNIyU2UwtcwblcFJy0yVwdQyU2UwtczJxVpr3S7WWut2sdZaty8eqgzeaJmTyuCNyuCJlnmiMjhpmTdaZqoMppaZKoOpMjhpmSdaZqoMppY5aZknKoMnKoOTljmpDE5a5onKYGqZk8rgicpgaplPulhrrdvFWmvdLtZa6/br+8/vbw4qg6llpspgapknKoOpZZ6oDKaWmSqDqWWmymBqmakymFrmjcpgaplPqgymlpkqg5/UMm9UBk+0zBuVwdQyb1QGU8tMlcHUMk9UBictM1UGU8ucXKy11u1irbVuF2utdfviH7TMG5XB1DJTy0yVwUnLTC3zRGUwtcxUGUwtc1IZPNEyU2Vw0jInlcFJZTC1zEllMLXMVBmcVAZTy/yXVAYnlcHUMk+0zFQZTC1zUhn8my7WWut2sdZat4u11rr9+v7z+5uDyuCNljmpDN5omakymFpmqgymljmpDE5aZqoMflLLTJXBJ7XMSWUwtcxUGUwtc1IZnLTMVBk80TJPVAYnLfNJlcHUMlNlMLXMVBlMLfPGxVpr3S7WWut2sdZat1/ff35/80GVwdQy/yWVwUnL/E2VwdQyJ5XBScucVAZvtMxJZfBGy0yVwdQyU2Vw0jJvVAZvtMxUGbzRMj/pYq21bhdrrXW7WGut26/vP7+/eaAymFrmjcrgiZY5qQymlnmiMphaZqoMppb5SZXBSctMlcHUMieVwdQyU2UwtcxUGbzRMm9UBm+0zFQZnLTMVBk80TJTZTC1zEllcNIyb1ystdbtYq21bhdrrXX79f3n9zcPVAYnLfNJlcFJy0yVwd/UMlNl8ETLTJXBScucVAZvtMxJZfBEy0yVwRMtM1UGU8ucVAYnLXNSGUwtc1IZTC0zVQZTy0yVwdQyU2XwRsucXKy11u1irbVuF2utdfviH1QGU8tMlcFUGZy0zFQZTC0ztcxUGbzRMlNlMLXMVBlMLXPSMk9UBlPLPFEZTC0zVQYnLXNSGUwtc1IZTJXB1DInlcFJy5xUBm9UBk9UBlPLTJXB1DJTZTC1zFQZTC1zUhlMLfPExVpr3S7WWut2sdZat1/ff35/80Bl8Ektc1IZTC3zRGXwRstMlcHUMieVwU9qmTcqg6ll/qbK4KRlpsrgiZaZKoOpZd6oDKaWmSqDn9Qyn3Sx1lq3i7XWul2stdbti4daZqoM3qgMnqgMppaZKoOpZU4qg6llTlrmiZZ5ojJ4ojKYWuaJlnmiMphaZqoMppZ5omWmyuDfVBlMLfNJLXNSGUwtc1IZTC3zxMVaa90u1lrrdrHWWrdf339+f3NQGTzRMlNlMLXMSWUwtcwTlcHUMieVwdQyb1QGb7TMVBlMLTNVBlPLTJXBSctMlcFPapmTymBqmZPKYGqZqTKYWmaqDD6pZU4qg09qmZPKYGqZk4u11rpdrLXW7WKttW6/vv/8/uagMnijZU4qg5OWOakMTlpmqgymlpkqg5OWmSqDqWVOKoOpZT6pMvhJLTNVBm+0zFQZTC3zRGVw0jInlcFJy5xUBv8lLfPExVpr3S7WWut2sdZat1/ff35/8x9WGUwtM1UGT7TME5XBT2qZqTI4aZmTyuCkZZ6oDE5a5qQymFpmqgxOWmaqDE5aZqoMppb5pMrgiZZ5ojKYWmaqDKaWeeNirbVuF2utdbtYa63bF/+gMvibWuakMvikymBqmallPqkymCqDqWWeqAymlpkqg5PKYGqZv6llTiqDN1rmjcpgaplPqgymljmpDE4qg6llnrhYa63bxVpr3S7WWuv2xUMt80mVwUnLTJXBSctMlcFUGUwt80Rl8EbLnFQGT7TMVBk80TKfVBlMLXNSGTzRMlNl8EZl8ERlMLXMSWVw0jL/JRdrrXW7WGut28Vaa92+eKkyeKJlnqgMppaZKoOpMphaZqoMPqllpsrgpDI4aZmpMphaZqoMppaZKoOpMvg3VQYnLTNVBk9UBictM7XMVBmctMxUGTxRGbzRMieVwRsXa611u1hrrdvFWmvdvviPa5mpMphaZqoMTlpmqgxOWmZqmZOWmSqDqWVOKoM3KoOpZabK4ImWeaJl/ssqg6llnqgMppaZKoOpZU4qg6llTiqDqWWmlpkqg6llTi7WWut2sdZat4u11rp98T+mZU5a5o2W+aSWmSqDqWWmlpkqg6ky+Jsqg5OWOakMppaZKoOTlpkqgydaZqoMpsrgpGVOKoOpZX5Sy5xUBlPLPHGx1lq3i7XWul2stdbti5da5m+qDE5aZqoMppaZWuakMphaZqoMTlpmapmpMpha5qRlpsrgiZZ5ozJ4omVOWmaqDKaWOWmZk8rgjcrgpGWmymBqmakymFpmqgymljmpDD7pYq21bhdrrXW7WGut2xcPVQZ/U2UwtcxJZTC1zEllMLXM1DL/ZS0zVQZPVAYnLTO1zE9qmZOWOakMTlpmqgymlnmiMpha5qRlTlrmkyqDqWVOLtZa63ax1lq3i7XWuv36/vP7m7XW+v8u1lrrdrHWWreLtda6Xay11u1irbVuF2utdbtYa63b/wOf5LThkFGYSQAAAABJRU5ErkJggg==",
-      "estado": "CONFIRMADO",
-      "creadoEn": "2026-09-27T00:52:27.270Z",
-      "actualizadoEn": "2026-09-27T00:52:27.270Z"
-    },
-    {
       "id": "ord-1001",
       "codigoPedido": "BOL-PED-1001",
       "clienteId": "usr-cliente-01",
@@ -1845,18 +1726,18 @@
       "sucursalOrigenId": "suc-cbb-01",
       "items": [
         {
-          "productoId": "prod-004",
-          "nombreProducto": "Pan de Arani Cochabambino con Canela y Queso",
           "cantidad": 2,
-          "precioUnitarioBs": 15,
-          "subtotalBs": 30
+          "productoId": "prod-004",
+          "subtotalBs": 30,
+          "nombreProducto": "Pan de Arani Cochabambino con Canela y Queso",
+          "precioUnitarioBs": 15
         },
         {
-          "productoId": "prod-003",
-          "nombreProducto": "Cuñapé Cruceño Horneado Especial",
           "cantidad": 10,
-          "precioUnitarioBs": 3.5,
-          "subtotalBs": 35
+          "productoId": "prod-003",
+          "subtotalBs": 35,
+          "nombreProducto": "Cuñapé Cruceño Horneado Especial",
+          "precioUnitarioBs": 3.5
         }
       ],
       "subtotalBs": 65,
@@ -1885,11 +1766,11 @@
       "sucursalOrigenId": "suc-scz-01",
       "items": [
         {
-          "productoId": "prod-014",
-          "nombreProducto": "Caja Regalo \"Sabores de Toda Bolivia\" (Apta Envíos a todo el País)",
           "cantidad": 2,
-          "precioUnitarioBs": 110,
-          "subtotalBs": 220
+          "productoId": "prod-014",
+          "subtotalBs": 220,
+          "nombreProducto": "Caja Regalo \"Sabores de Toda Bolivia\" (Apta Envíos a todo el País)",
+          "precioUnitarioBs": 110
         }
       ],
       "subtotalBs": 220,
@@ -1906,42 +1787,6 @@
     }
   ],
   "invoices": [
-    {
-      "id": "fac-c6fb98d1",
-      "numeroFactura": 5003,
-      "cuf": "8738F87D43858F511231C9013BCDBCC138F234F1CFAB4044",
-      "cufd": "CUFD-SAN-20260927-001",
-      "nitEmisor": "3049182019",
-      "razonSocialEmisor": "PANADERIA & PASTELERIA ARTESANAL BOLIVIA S.R.L.",
-      "sucursalNombre": "Sucursal Equipetrol (Casa Matriz)",
-      "departamento": "Santa Cruz",
-      "nitCiCliente": "4876543-SC",
-      "razonSocialCliente": "Carlos Montaño",
-      "fechaEmision": "2026-09-27T14:42:19.630Z",
-      "montoTotalBs": 46,
-      "montoSujetoCreditoFiscalBs": 46,
-      "qrSiatDataUri": "data:image/png;base64,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QkSutxCR6734C13Jqa5kMg92mAdTV/I08+BUVzKZB0/rSibzYId5MHUlO7qSyTzY1ZWc6kom82CHefA082DqSp5kHuzoSnYsROR6CxG53kJErrcQkeu9+AvmwdSV7DAPTnUlTzMPpq7klHlwqit5xzx4Uldyyjx4mnkwdSU7upInmQe7upJTXclkHny1hYhcbyEi11uIyPUWInK9X7//4APmwU/XlZwyD57UlUzmwU/XlXzCPHhSV7LDPJi6ksk8+Be6kh3mwY6uZMdCRK63EJHrLUTkegsRud6Lv2AeTF3JKfNgR1eyyzx4UleywzzYYR58ois5ZR5MXclkHuwwD3Z1JafMg8k82NGVTObBjq5kl3kwdSWTeTB1JTu6klMLEbneQkSutxCR6y1E5Hov/kJXcso8mLqSyTyYzINbdCW7zIPJPJi6kid1Jae6knfMgyd1JZN5cKor+URXMpkHU1eyoyt50kJErrcQkestROR6CxG53ov/gK5kMg/e6Up2mAdTVzKZB1NXsqMrmcyDqSt5mnkwdSWTebCjK5m6kl1dyQ7zYOpKdnQlk3kwdSVPMw92mAc7upInLUTkegsRud5CRK63EJHrLUTkei8+ZB5MXcnUlezoSibzYOpKPtGV/BTmwSfMg6krOdWVTObB07qSqSuZzIOfriuZzIOpK9lhHkxdyamFiFxvISLXW4jI9RYicr1fv//gA+bBjq5kMg+mrmSHebCrK9lhHpzqSnaYB7u6kh3mwamuZId5MHUlk3nwia5kh3kwdSWTebCjK9llHjypK5nMg6krObUQkestROR6CxG53kJErvfr9x9sMg92dCWTefCkruQT5sHUlZwyD051Je+YB1NXMpkHU1cymQffpSuZzIOpK/lq5sFP0pXsMA+mrmTHQkSutxCR6y1E5HoLEbnei7/QlewwD6auZId5MHUlk3nwTlcymQdTV/KkrmQyD/6FrmQyD6auZDIPpq5kMg+mrmSXeTB1JZN5sKMr+S5dySnzYId58KSFiFxvISLXW4jI9RYicr0XX6ArmcyDqSvZYR5MXck75sEO82DqSnaYB6e6ksk8+BfMg6kreZJ58F3Mg6krmbqS79KVTObBjq7k1EJErrcQkestROR6CxG53osPmQdTVzJ1JTu6kk90JZN5MHUlO8yDqSvZYR48zTzY0ZXsMA+mruRfMA92dCWTefAk82DqSt4xD051JVNXMpkHT1qIyPUWInK9hYhcbyEi13vxoa7klHkwdSWTebCrKzllHkxdyWQe/AtdyQ7zYDIPpq5kh3lwqit5mnmwoyuZzINT5sGurmQyD3aYB19tISLXW4jI9RYicr2FiFzvxYfMg6/WlUzmwTvmwdSVfLWuZId58AnzYOpKJvNgMg+mrmQyD6auZId58E5XMpkHO7qSU13JDvNg6kreMQ9OmQc7upLJPJi6kh0LEbneQkSutxCR6y1E5Hq/fv/BJvNg6kp2mAc7upLJPNjVlUzmwdSVnDIPntSVvGMe/BRdyWQefJeuZId58JN0JafMg6kr2bEQkestROR6CxG53kJErvfr9x9cxDw41ZXsMA92dCWfMA9OdSWnzIOndSU7zIOpK5nMg6krmcyDU13JJ8yDJ3UlpxYicr2FiFxvISLXW4jI9RYicr0Xf8E8+Cm6kk90JTvMg6krmcyDyTyYupJdXckO82CHeTB1JTu6kh3mwSe6ksk82GEeTF3JZB58wjyYupIdXclkHkxdyZMWInK9hYhcbyEi11uIyPVefKgr+WrmwdPMg6kr+Q7mwTtdyWQenOpKnmQeTF3JJ8yDU13JZB48rSs5ZR7sMA+mruTUQkSutxCR6y1E5HoLEbneiy9gHpzqSp7WlewwD6au5FRXMpkHu8yDqSuZzIPJPHiSeTB1JZ8wD6auZId5sKMr2WEeTObB07qSHebBkxYicr2FiFxvISLXW4jI9V78HzAPpq5kh3nwpK5kl3lwqiuZzIOpK5nMg6kr2WEe7OpKJvNgR1cymQenupLJPNjVlUzmwWQe7OhKJvNg6kp2LETkegsRud5CRK63EJHrvbhMVzKZB5N5MHUlk3mwoys5ZR6805X8FObB1JVMXck75sFkHpwyD6auZId5MJkHU1fyjnlwqivZYR48aSEi11uIyPUWInK9hYhc78UX6Ep+kq7kpzAPpq5kl3kwdSU7upLJPDhlHkxdya6uZDIPdnQlk3lwqiuZzIN3upJT5sF3WIjI9RYicr2FiFxvISLXe/Eh8+AnMQ+mrmQyD6auZOpKTpkHU1fyL5gHU1fypK5kV1cymQc7upIdXcm/YB7s6Eom82DqSr7aQkSutxCR6y1E5HoLEbner99/ICJXW4jI9RYicr2FiFxvISLXW4jI9RYicr2FiFxvISLXW4jI9f4Hx5itZiVFDvwAAAAASUVORK5CYII=",
-      "leyendaFiscal": "Ley N° 453: El proveedor deberá suministrar el servicio en las modalidades y términos ofertados o convenidos.",
-      "pedidoId": "ord-e33e22f3"
-    },
-    {
-      "id": "fac-fafe2787",
-      "numeroFactura": 5002,
-      "cuf": "3F73E33851F45B72A70B145A5453D790EBCC4ACE6C7B98B8",
-      "cufd": "CUFD-SAN-20260927-001",
-      "nitEmisor": "3049182019",
-      "razonSocialEmisor": "PANADERIA & PASTELERIA ARTESANAL BOLIVIA S.R.L.",
-      "sucursalNombre": "Sucursal Equipetrol (Casa Matriz)",
-      "departamento": "Santa Cruz",
-      "nitCiCliente": "4876543-SC",
-      "razonSocialCliente": "Carlos Montaño",
-      "fechaEmision": "2026-09-27T00:52:58.853Z",
-      "montoTotalBs": 46,
-      "montoSujetoCreditoFiscalBs": 46,
-      "qrSiatDataUri": "data:image/png;base64,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",
-      "leyendaFiscal": "Ley N° 453: El proveedor deberá suministrar el servicio en las modalidades y términos ofertados o convenidos.",
-      "pedidoId": "ord-37a65ac2"
-    },
     {
       "id": "fac-1001",
       "numeroFactura": 4890,
@@ -1961,5 +1806,5 @@
       "pedidoId": "ord-1001"
     }
   ],
-  "lastPersistedAt": "2026-09-27T14:42:20.296Z"
+  "lastPersistedAt": "2026-09-27T23:43:31.063Z"
 }
