@@ -3,6 +3,7 @@
 
 [![CI Pipeline](https://github.com/ArielCusipumaOrtega/PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL/actions/workflows/ci.yml/badge.svg)](https://github.com/ArielCusipumaOrtega/PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL/actions)
 ![NestJS](https://img.shields.io/badge/NestJS-12-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B%20%7C%2018-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-20%2B%20%7C%2022%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-OpenAPI%203.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
@@ -84,12 +85,29 @@ cd PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL
 npm install
 ```
 
-### 2. Compilar el Proyecto
+### 2. Configurar Variables de Entorno y PostgreSQL
+Crea un archivo `.env` a partir de `.env.example`:
+```bash
+cp .env.example .env
+```
+Configura tus credenciales de PostgreSQL en `.env`:
+```env
+PORT=3000
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=usr_panaderia_la_suprema
+DB_PASSWORD=123456
+DB_NAME=panaderia_la_suprema
+JWT_SECRET=SECRETO_PANADERIA_BOLIVIANA_CLASE_MUNDIAL_2026
+```
+> **Nota de Alta Disponibilidad:** El sistema crea automáticamente las 8 tablas en PostgreSQL (`users`, `branches`, `products`, `stock`, `raw_materials`, `production_batches`, `orders`, `invoices`) y siembra el catálogo de panadería boliviana en el primer arranque. Si PostgreSQL no está disponible temporalmente, entra en modo de contingencia con respaldo JSON local sin interrumpir el servicio.
+
+### 3. Compilar el Proyecto
 ```bash
 npm run build
 ```
 
-### 3. Iniciar el Servidor en Modo Desarrollo
+### 4. Iniciar el Servidor en Modo Desarrollo
 ```bash
 npm run start:dev
 ```

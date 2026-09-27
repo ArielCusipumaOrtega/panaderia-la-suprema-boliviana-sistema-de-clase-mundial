@@ -276,14 +276,24 @@ El sistema cuenta con usuarios precargados para cada perfil de trabajo:
 
 ---
 
-## 8. Persistencia y Cero Dependencias Externas
+## 8. Persistencia Empresarial en PostgreSQL & Alta Disponibilidad
 
-Para permitir que el sistema funcione de inmediato en cualquier computadora o entorno sin obligar a instalar y configurar servidores de base de datos como PostgreSQL o Docker previamente, se implementó un motor de persistencia en `DatabaseService` que sincroniza el estado en el archivo:
-`data/sistema-panaderia-db.json`
+El sistema implementa persistencia empresarial relacional conectada a **PostgreSQL** mediante un pool de conexiones optimizado (`pg.Pool`), configurado transparentemente mediante variables de entorno en el archivo `.env`:
 
-Cualquier nuevo pedido, producto, sucursal, hornada o factura que se cree en la aplicación **se guarda en disco automáticamente y sobrevive al reinicio del servidor**.
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=usr_panaderia_la_suprema
+DB_PASSWORD=123456
+DB_NAME=panaderia_la_suprema
+```
 
-> **Nota para Producción:** La arquitectura fue construida bajo el patrón Repositorio / Entidad desacoplado. Para conectar a una base de datos PostgreSQL en la nube (AWS RDS, Supabase, Google Cloud SQL o Railway), únicamente se debe reemplazar el proveedor en `DatabaseService` por **TypeORM** o **Prisma ORM**, sin necesidad de modificar los controladores ni los servicios de negocio.
+### Características de la Capa de Datos:
+1. **Auto-provisión de Esquemas Relacionales (DDL):** Al arrancar la aplicación, `DatabaseService` crea automáticamente las 8 tablas requeridas si aún no existen (`users`, `branches`, `products`, `stock`, `raw_materials`, `production_batches`, `orders`, `invoices`).
+2. **Siembra Automática de Datos Iniciales (Seeding):** Si la base de datos está vacía, se siembra de inmediato el catálogo completo de panes tradicionales bolivianos, sucursales en los 9 departamentos, lotes de producción y facturación SIAT.
+3. **Sincronización Bidireccional:** Toda modificación de stock, creación de pedidos, hornadas o facturas se persiste en PostgreSQL mediante `UPSERT` (`ON CONFLICT (id) DO UPDATE ...`).
+4. **Alta Disponibilidad y Tolerancia a Fallos:** En caso de que el servidor de PostgreSQL esté temporalmente inaccesible o en entornos de prueba aislados, el sistema conmuta suavemente a su motor de persistencia local en `data/sistema-panaderia-db.json` sin interrumpir la operación del negocio.
+5. **Telemetría y Monitoreo en Vivo:** Endpoint dedicado `GET /api/analitica/db-status` para inspeccionar el estado de la conexión a la base de datos y el conteo de registros en tiempo real.
 
 ---
 
