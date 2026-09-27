@@ -15,6 +15,10 @@
     "qr-simple-bcb",
     "logistics"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArielCusipumaOrtega/PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL.git"
+  },
   "scripts": {
     "build": "nest build",
     "deploy": "nest deploy",
