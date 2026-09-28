@@ -70,6 +70,12 @@ Incluye **Facturación Computarizada en Línea SIAT / SIN** (con CUF, CUFD, NIT 
 - Interfaz gráfica moderna, elegante y responsiva servida en `http://localhost:3000/`.
 - Permite seleccionar ciudad/departamento, agregar al carrito, cotizar flete en vivo, pagar con QR Simple y visualizar o imprimir la factura oficial SIAT.
 
+### 8. 🟢 Listo para Backend de Frontend Desacoplado (Vue.js 3 / Vite / Nuxt)
+- **CORS Profesional con Credenciales:** Compatible con Vite (`http://localhost:5173`), Vue CLI (`http://localhost:8080`) y orígenes de producción configurables mediante `FRONTEND_URL` / `CORS_ORIGIN`.
+- **Health Check & Uptime:** Endpoint `GET /api/health` para monitorización del frontend y verificación de base de datos.
+- **Generación Automática de Tipos TypeScript:** Esquema OpenAPI v3 disponible en `GET /api/docs-json` para herramientas como `openapi-typescript` o `@hey-api/openapi-ts`.
+- **Guía Completa de Integración:** Consulta [VUE_INTEGRATION_GUIDE.md](./VUE_INTEGRATION_GUIDE.md) para clientes Axios, tiendas Pinia y componentes de pago QR listos para copiar y usar en tu repositorio de Vue.js.
+
 ---
 
 ## 🚀 Puesta en Marcha Rápida
