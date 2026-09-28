@@ -132,4 +132,24 @@ describe('Panadería La Suprema Boliviana (E2E Tests)', () => {
     expect(dash.totalVentasBs).toBeGreaterThan(0);
     expect(dash.ventasPorDepartamento).toBeDefined();
   });
+
+  it('8. GET /api/health - Debe responder con estado de salud y uptime para clientes Vue.js', async () => {
+    const res = await request(app.getHttpServer())
+      .get('/api/health')
+      .expect(200);
+    expect(res.body.exito).toBe(true);
+    expect(res.body.data.status).toBe('ok');
+    expect(res.body.data.service).toContain('Panadería La Suprema Boliviana');
+    expect(res.body.data.database).toBeDefined();
+    expect(res.body.data.features.bolivianDepartments).toBe(9);
+  });
+
+  it('9. GET /api - Debe retornar catálogo de rutas y metadatos para desarrollo frontend', async () => {
+    const res = await request(app.getHttpServer())
+      .get('/api')
+      .expect(200);
+    expect(res.body.exito).toBe(true);
+    expect(res.body.data.endpoints).toBeDefined();
+    expect(res.body.data.cors.enabled).toBe(true);
+  });
 });

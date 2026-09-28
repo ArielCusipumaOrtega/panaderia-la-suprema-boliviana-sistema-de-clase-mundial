@@ -12,6 +12,7 @@ import { PaymentsModule } from './modules/payments/payments.module.js';
 import { BillingModule } from './modules/billing/billing.module.js';
 import { AnalyticsModule } from './modules/analytics/analytics.module.js';
 import { StorefrontModule } from './modules/storefront/storefront.module.js';
+import { HealthModule } from './modules/health/health.module.js';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor.js';
 import { AllExceptionsFilter } from './common/filters/http-exception.filter.js';
 
@@ -22,6 +23,7 @@ import { AllExceptionsFilter } from './common/filters/http-exception.filter.js';
       envFilePath: '.env',
     }),
     DatabaseModule,
+    HealthModule,
     AuthModule,
     BranchesModule,
     ProductsModule,
