@@ -23,145 +23,34 @@ import {
 } from '../common/enums/payment-method.enum.js';
 import { DepartamentoBolivia } from '../common/constants/bolivia-regions.constant.js';
 
-export interface UserEntity {
-  id: string;
-  email: string;
-  passwordHash: string;
-  nombreCompleto: string;
-  telefono: string;
-  ciNit: string;
-  departamento: DepartamentoBolivia;
-  ciudad: string;
-  direccion: string;
-  role: UserRole;
-  sucursalId?: string;
-  activo: boolean;
-  creadoEn: string;
-}
+export type { UserEntity } from '../modules/auth/domain/user.entity.js';
+export type { BranchEntity } from '../modules/branches/domain/branch.entity.js';
+export type {
+  ProductEntity,
+  StockBranchEntity,
+} from '../modules/products/domain/product.entity.js';
+export type {
+  RawMaterialEntity,
+  ProductionBatchEntity,
+} from '../modules/production/domain/production.entity.js';
+export type {
+  OrderItemEntity,
+  OrderEntity,
+} from '../modules/orders/domain/order.entity.js';
+export type { InvoiceEntity } from '../modules/billing/domain/invoice.entity.js';
 
-export interface BranchEntity {
-  id: string;
-  codigo: string;
-  nombre: string;
-  departamento: DepartamentoBolivia;
-  ciudad: string;
-  direccion: string;
-  telefono: string;
-  horarioAtencion: string;
-  esMatriz: boolean;
-  capacidadProduccionDiaria: number; // unidades de pan al día
-  activa: boolean;
-}
-
-export interface ProductEntity {
-  id: string;
-  codigoSku: string;
-  nombre: string;
-  descripcion: string;
-  categoria: ProductCategory;
-  precioBs: number;
-  unidadMedida: 'unidad' | 'docena' | 'kilo' | 'canasta' | 'porción';
-  tiempoVidaUtilHoras: number;
-  aptoEnvioNacional: boolean; // si resiste viaje interdepartamental o es solo consumo local caliente
-  horarioRecomendado: BakingShift;
-  ingredientesPrincipales: string[];
-  imagenUrl: string;
-  destacado: boolean;
-  activo: boolean;
-}
-
-export interface StockBranchEntity {
-  id: string;
-  productoId: string;
-  sucursalId: string;
-  cantidadDisponible: number;
-  cantidadMinimaAlerta: number;
-  ultimaActualizacion: string;
-}
-
-export interface RawMaterialEntity {
-  id: string;
-  nombre: string;
-  unidad: 'kg' | 'litros' | 'unidades';
-  stockActual: number;
-  stockMinimoAlerta: number;
-  sucursalId: string;
-  costoUnitarioBs: number;
-}
-
-export interface ProductionBatchEntity {
-  id: string;
-  codigoLote: string;
-  sucursalId: string;
-  productoId: string;
-  turno: BakingShift;
-  cantidadPlaneada: number;
-  cantidadObtenida: number;
-  mermaUnidades: number;
-  motivoMerma?: string;
-  temperaturaHornoC: number;
-  maestroPanadero: string;
-  iniciadoEn: string;
-  finalizadoEn?: string;
-  estado: 'PROGRAMADO' | 'EN_HORNEADA' | 'FINALIZADO_CONFORME' | 'OBSERVADO';
-}
-
-export interface OrderItemEntity {
-  productoId: string;
-  nombreProducto: string;
-  cantidad: number;
-  precioUnitarioBs: number;
-  subtotalBs: number;
-}
-
-export interface OrderEntity {
-  id: string;
-  codigoPedido: string;
-  clienteId?: string;
-  clienteNombre: string;
-  clienteTelefono: string;
-  clienteCiNit: string;
-  razonSocialFactura: string;
-  departamentoDestino: DepartamentoBolivia;
-  ciudadDestino: string;
-  direccionEntrega: string;
-  referenciaDireccion?: string;
-  tipoEntrega: DeliveryType;
-  sucursalOrigenId: string;
-  items: OrderItemEntity[];
-  subtotalBs: number;
-  costoEnvioBs: number;
-  descuentoBs: number;
-  totalBs: number;
-  metodoPago: PaymentMethod;
-  estadoPago: PaymentStatus;
-  comprobantePagoUrl?: string;
-  qrSimpleDataUri?: string;
-  estado: OrderStatus;
-  observaciones?: string;
-  facturaId?: string;
-  creadoEn: string;
-  actualizadoEn: string;
-}
-
-export interface InvoiceEntity {
-  id: string;
-  numeroFactura: number;
-  cuf: string;
-  cufd: string;
-  nitEmisor: string;
-  razonSocialEmisor: string;
-  sucursalNombre: string;
-  departamento: DepartamentoBolivia;
-  nitCiCliente: string;
-  razonSocialCliente: string;
-  fechaEmision: string;
-  montoTotalBs: number;
-  montoSujetoCreditoFiscalBs: number;
-  qrSiatDataUri: string;
-  leyendaFiscal: string;
-  pedidoId: string;
-}
+import type { UserEntity } from '../modules/auth/domain/user.entity.js';
+import type { BranchEntity } from '../modules/branches/domain/branch.entity.js';
+import type {
+  ProductEntity,
+  StockBranchEntity,
+} from '../modules/products/domain/product.entity.js';
+import type {
+  RawMaterialEntity,
+  ProductionBatchEntity,
+} from '../modules/production/domain/production.entity.js';
+import type { OrderEntity } from '../modules/orders/domain/order.entity.js';
+import type { InvoiceEntity } from '../modules/billing/domain/invoice.entity.js';
 
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
@@ -592,7 +481,12 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   // PERSISTENCIA EN POSTGRESQL (UPSERT)
   // ============================================================================
   public async saveToPostgres(): Promise<void> {
-    if (!this.pool || !this.isPostgresConnected || (this.pool as { ended?: boolean }).ended) return;
+    if (
+      !this.pool ||
+      !this.isPostgresConnected ||
+      (this.pool as { ended?: boolean }).ended
+    )
+      return;
 
     try {
       // 1. Users
@@ -891,7 +785,10 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
         );
       }
     } catch (err) {
-      if ((err as Error).message?.includes('after calling end') || !this.isPostgresConnected) {
+      if (
+        (err as Error).message?.includes('after calling end') ||
+        !this.isPostgresConnected
+      ) {
         return;
       }
       this.logger.error('Error al persistir registros en PostgreSQL:', err);
