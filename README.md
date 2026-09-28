@@ -1,104 +1,101 @@
 # 🥖 Panadería & Pastelería "La Suprema Boliviana"
-### Sistema Empresarial de Clase Mundial para Comercialización & Logística en toda Bolivia 🇧🇴
+### Monorepo Empresarial de Clase Mundial (NestJS Backend + Vue 3 Frontend) 🇧🇴
 
 [![CI Pipeline](https://github.com/ArielCusipumaOrtega/PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL/actions/workflows/ci.yml/badge.svg)](https://github.com/ArielCusipumaOrtega/PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL/actions)
 ![NestJS](https://img.shields.io/badge/NestJS-12-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B%20%7C%2018-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-20%2B%20%7C%2022%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7%2B-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-OpenAPI%203.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
-![Jest](https://img.shields.io/badge/Jest-100%25%20Passing-C21325?style=for-the-badge&logo=jest&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-Sistema integral desarrollado en **NestJS** (TypeScript / Node.js) diseñado para operar una red de panaderías y pastelerías artesanales de alta gama con cobertura logística y despacho en los **9 departamentos de Bolivia** (Santa Cruz, La Paz, Cochabamba, Tarija, Chuquisaca, Oruro, Potosí, Beni y Pando).
-
-Incluye **Facturación Computarizada en Línea SIAT / SIN** (con CUF, CUFD, NIT y QR Tributario), pasarela de pagos integrada para **QR Simple Interoperable (BCB / ASOBAN)** y **Tigo Money**, control estricto de **horneadas (turnos madrugada y tarde)**, materias primas, mermas y un **portal web interactivo de clase mundial** listo para usar.
+Monorepo de alto rendimiento diseñado para operar una red de panaderías y pastelerías artesanales con cobertura logística nacional en los **9 departamentos de Bolivia** (*Santa Cruz, La Paz, Cochabamba, Tarija, Chuquisaca, Oruro, Potosí, Beni y Pando*).
 
 ---
 
-## 🌟 Características Principales
+## 🏛️ Estructura del Monorepo
 
-### 1. 🗺️ Cobertura Nacional en los 9 Departamentos de Bolivia
-- **Sucursales Físicas:** Santa Cruz (Equipetrol y Montero), La Paz (Sopocachi y Calacoto Zona Sur), Cochabamba (Cala Cala), Sucre (Ciudad Blanca), Tarija (El Tejar), Oruro (Pagador), Potosí (Villa Imperial), Beni (Trinidad) y Pando (Cobija).
-- **Modalidades de Entrega:**
-  - **Delivery Express Local:** Entrega en moto con caja térmica (30 - 45 min) para pan recién salido del horno.
-  - **Retiro en Sucursal (Click & Collect):** Recogida sin costo en 15 - 30 minutos.
-  - **Envío Nacional Interdepartamental:** Despacho terrestre y aéreo (courier / flota / BOA) en 24 a 48 horas con empaque en atmósfera modificada para panes de Arani, Laja, galletas y canastas.
+```
+panaderia-la-suprema-boliviana-sistema-de-clase-mundial/
+├── package.json                 # Orquestador del Monorepo (NPM Workspaces)
+├── docker-compose.yml           # Stack completo: PostgreSQL + Backend + Frontend Nginx
+├── .env.example                 # Variables de entorno globales
+├── .github/workflows/ci.yml     # Pipeline de Integración Continua (Lint, Build & Test)
+│
+├── backend/                     # API RESTful en NestJS 12 (Clean Architecture & DDD)
+│   ├── src/                     # Capas: Dominio, Aplicación, Infraestructura y Presentación
+│   ├── test/                    # Pruebas End-to-End con Jest
+│   ├── data/                    # Semilla de datos y contingencia JSON
+│   ├── Dockerfile               # Contenedor Node.js optimizado
+│   └── package.json             # @panaderia-bolivia/backend
+│
+└── frontend/                    # SPA Reactiva en Vue.js 3 + Vite + Tailwind CSS
+    ├── src/
+    │   ├── views/               # Catálogo, Sucursales Bolivia, Checkout, Rastreo & Dashboard
+    │   ├── components/          # Navbar, Footer, QrPaymentModal, InvoiceModal, AuthModal
+    │   ├── stores/              # Pinia Stores (Auth, Catalog, Cart, Order)
+    │   ├── services/            # Cliente Axios con interceptor Bearer JWT
+    │   └── types/               # Tipos TypeScript compartidos con backend
+    ├── Dockerfile               # Contenedor Nginx estático con reverse proxy
+    └── package.json             # @panaderia-bolivia/frontend
+```
 
-### 2. 🥐 Catálogo de Panadería & Pastelería Tradicional e Internacional
-- **Panes Tradicionales:**
-  - *Marraqueta Paceña Tradicional:* Corteza crujiente cocida a la piedra con inyección de vapor.
-  - *Sarnita Caliente con Queso Criollo:* Pan tierno con costra dorada de queso criollo.
-  - *Cuñapé Cruceño Horneado Especial:* Almidón de yuca beniana con abundante queso chaqueño maduro.
-  - *Pan de Arani Cochabambino:* Hogaza dulce del Valle Alto con canela y tapa de queso.
-  - *Pan de Laja Altiplánico:* Horneado a la leña de larga conservación natural.
-  - *Empanadas Blasonadas y Rollitos de Queso.*
-- **Línea de Masa Madre & Artesanal:** Baguettes francesas y campesino con centeno fermentado 24 horas.
-- **Línea Saludable Andina:** Pan de Quinua Real de Uyuni orgánica & Chía chiquitana.
-- **Pastelería & Repostería Fina:** Torta Selva Negra macerada con **Singani boliviano de altura** y Tres Leches Suprema.
-- **Canastas Familiares & Corporativas:** "Desayuno Paceño Imperial", "Lonche Camba Tradicional" y Caja de Regalo "Sabores de Toda Bolivia".
+---
 
-### 3. 🧾 Facturación Computarizada en Línea SIAT (SIN Bolivia)
-- Generación de **CUF (Código Único de Facturación)** según algoritmo oficial SHA-256.
+## 🌟 Capacidades de Clase Mundial
+
+### 1. 🥐 Catálogo de Panes & Masas Típicas de Bolivia
+- **Marraqueta Paceña Tradicional:** Corteza crocante cocida a la piedra con inyección de vapor.
+- **Cuñapé Cruceño Especial:** Elaborado con queso chaqueño maduro y almidón de yuca beniana.
+- **Pan de Arani Cochabambino:** Hogaza dulce tradicional del Valle Alto con canela y queso.
+- **Pan de Laja Altiplánico:** Horneado a la leña con receta centenaria.
+- **Pastelería con Singani Boliviano:** Tortas maceradas con Singani de altura.
+- **Línea Saludable Andina:** Pan de Quinua Real de Uyuni y Chía chiquitana.
+
+### 2. 🗺️ Cobertura Logística en los 9 Departamentos
+- **Delivery Express Local:** Entrega en 30 a 45 minutos para pan recién salido del horno.
+- **Despacho Nacional (Courier/Flota/BOA):** Cobertura interdepartamental en 24 a 48 horas con empaque en atmósfera controlada.
+
+### 3. 🧾 Facturación Electrónica en Línea SIAT (SIN Bolivia)
+- Generación de **CUF (Código Único de Facturación)** con algoritmo oficial SHA-256.
 - Control de **CUFD (Código Único de Facturación Diario)**.
-- Validación de NIT / CI de clientes bolivianos.
-- Generación dinámica de **Código QR Tributario oficial del SIN**:
-  `https://siat.impuestos.gob.bo/consulta/QR?nit=3049182019&cuf=...&numero=...&t=...`
-- Impresión en formato ticket fiscal con **Leyenda Fiscal Ley N° 453**.
+- **Código QR Tributario oficial de Impuestos Nacionales (SIN)**.
+- Cumplimiento de **Ley N° 453**.
 
 ### 4. 📲 Pasarela de Pagos Boliviana Integrada
-- **QR Simple Interoperable (Estándar BCB / ASOBAN):** Generación en tiempo real del código QR escaneable por cualquier aplicación bancaria boliviana (*Banco Unión, BCP, BNB, BancoSol, Banco Bisa, Banco Ganadero, Banco FIE, BMSC*).
-- **Tigo Money:** Billetera móvil por número de celular.
-- **Efectivo contra entrega:** Con cambio requerido en Bolivianos (BOB).
-- **Tarjetas de Débito/Crédito:** Red Enlace / Libélula.
+- **QR Simple Interoperable (BCB / ASOBAN):** Generación dinámica de QR en formato `dataUri` compatible con Banco Unión, BCP, BNB, BancoSol, Banco FIE, Banco Bisa, etc.
+- **Tigo Money:** Pagos con billetera móvil.
+- **Efectivo contra Entrega:** Cobro en Bolivianos (BOB - Bs.) al recibir el pedido.
 
-### 5. 👨‍🍳 Módulo Maestro Panadero & Producción
-- Registro de lotes de horneada con código único (ej. `LOT-20260926-MAD-A1B2`).
-- Turnos: **Madrugada (04:30 - 07:00 AM)**, **Tarde (15:30 - 18:30 PM)** y **Nocturno**.
-- Control de temperatura del horno (°C) y maestro panadero responsable.
-- **Control de Mermas de Horneada:** Registro de unidades no conformes y cálculo de porcentaje de merma para costeo exacto.
-- **Actualización automática del stock** disponible por sucursal al finalizar el lote.
-
-### 6. 📊 Tablero Gerencial & Arqueo de Caja (Analytics)
-- Ventas consolidadas en Bolivianos (Bs.).
-- Desglose de ventas por departamento de Bolivia.
-- Productos más vendidos (Top Sellers).
-- Alertas de stock mínimo en sucursales y depósitos.
-- Arqueo diario de caja (desglose por efectivo, QR Simple y tarjetas).
-
-### 7. 🌐 Portal Web & E-Commerce Integrado
-- Interfaz gráfica moderna, elegante y responsiva servida en `http://localhost:3000/`.
-- Permite seleccionar ciudad/departamento, agregar al carrito, cotizar flete en vivo, pagar con QR Simple y visualizar o imprimir la factura oficial SIAT.
-
-### 8. 🟢 Listo para Backend de Frontend Desacoplado (Vue.js 3 / Vite / Nuxt)
-- **CORS Profesional con Credenciales:** Compatible con Vite (`http://localhost:5173`), Vue CLI (`http://localhost:8080`) y orígenes de producción configurables mediante `FRONTEND_URL` / `CORS_ORIGIN`.
-- **Health Check & Uptime:** Endpoint `GET /api/health` para monitorización del frontend y verificación de base de datos.
-- **Generación Automática de Tipos TypeScript:** Esquema OpenAPI v3 disponible en `GET /api/docs-json` para herramientas como `openapi-typescript` o `@hey-api/openapi-ts`.
-- **Guía Completa de Integración:** Consulta [VUE_INTEGRATION_GUIDE.md](./VUE_INTEGRATION_GUIDE.md) para clientes Axios, tiendas Pinia y componentes de pago QR listos para copiar y usar en tu repositorio de Vue.js.
+### 5. 📊 Tablero Gerencial & Eficiencia de Horno
+- Métricas consolidadas en Bolivianos (Bs.).
+- Desglose de ingresos por departamento.
+- Control de **mermas de horneada** y eficiencia del maestro panadero.
 
 ---
 
-## 🚀 Puesta en Marcha Rápida
+## 🚀 Puesta en Marcha Rápida (Local)
 
-### Requisitos Previos
-- **Node.js**: v18, v20, v22 o v26+.
-- **NPM**: v9 o superior.
-
-### 1. Clonar e Instalar Dependencias
+### 1. Clonar e Instalar Dependencias del Monorepo
 ```bash
 git clone https://github.com/ArielCusipumaOrtega/PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL.git
 cd PANADERIA-LA-SUPREMA-BOLIVIANA-SISTEMA-DE-CLASE-MUNDIAL
 npm install
 ```
 
-### 2. Configurar Variables de Entorno y PostgreSQL
-Crea un archivo `.env` a partir de `.env.example`:
+### 2. Configurar Variables de Entorno
+Crea los archivos `.env` tanto en la raíz como en `backend/`:
 ```bash
 cp .env.example .env
+cp .env.example backend/.env
 ```
-Configura tus credenciales de PostgreSQL en `.env`:
+
+Configura tus credenciales de PostgreSQL en `backend/.env`:
 ```env
 PORT=3000
+NODE_ENV=development
 DB_HOST=localhost
 DB_PORT=5432
 DB_USERNAME=usr_panaderia_la_suprema
@@ -106,135 +103,61 @@ DB_PASSWORD=123456
 DB_NAME=panaderia_la_suprema
 JWT_SECRET=SECRETO_PANADERIA_BOLIVIANA_CLASE_MUNDIAL_2026
 ```
-> **Nota de Alta Disponibilidad:** El sistema crea automáticamente las 8 tablas en PostgreSQL (`users`, `branches`, `products`, `stock`, `raw_materials`, `production_batches`, `orders`, `invoices`) y siembra el catálogo de panadería boliviana en el primer arranque. Si PostgreSQL no está disponible temporalmente, entra en modo de contingencia con respaldo JSON local sin interrumpir el servicio.
 
-### 3. Compilar el Proyecto
+### 3. Iniciar Backend y Frontend Simultáneamente
 ```bash
-npm run build
+npm run dev
 ```
 
-### 4. Iniciar el Servidor en Modo Desarrollo
-```bash
-npm run start:dev
-```
-
-El sistema iniciará y mostrará en consola:
-```
-================================================================
-🥖 PANADERÍA LA SUPREMA BOLIVIANA - SISTEMA DE CLASE MUNDIAL 🇧🇴
-================================================================
-🌐 Portal Web & E-Commerce:   http://localhost:3000/
-📑 Documentación Swagger:    http://localhost:3000/api/docs
-⚡ Moneda oficial:           BOB (Bolivianos - Bs.)
-🛡️ Facturación SIAT activa:  NIT 3049182019
-📲 Pagos habilitados:        QR Simple Interoperable BCB / Tigo Money
-================================================================
-```
+* **Frontend Vue 3 (Vite):** `http://localhost:5173/`
+* **Backend API (NestJS):** `http://localhost:3000/api`
+* **Swagger UI Interactivo:** `http://localhost:3000/api/docs`
+* **Especificación OpenAPI JSON:** `http://localhost:3000/api/docs-json`
+* **Health Check & Uptime:** `http://localhost:3000/api/health`
 
 ---
 
-## 🧪 Ejecución de Pruebas
+## 🐳 Despliegue con Docker Compose (Recomendado)
 
-### Pruebas Unitarias (Jest)
-```bash
-npm test
-```
-*Verifica la lógica de negocio del catálogo de panes bolivianos y el cotizador de fletes de los 9 departamentos.*
+Inicia todo el ecosistema (PostgreSQL + Backend NestJS + Frontend Vue 3 en Nginx) con un solo comando:
 
-### Pruebas de Integración Extremo a Extremo (E2E)
 ```bash
-npm run test:e2e
+docker compose up -d --build
 ```
-*Verifica el flujo completo: Portal Web -> Catálogo -> Sucursales -> Cotización -> Pedidos con QR Simple -> Facturación SIAT -> Dashboard de analítica.*
+
+El stack quedará operativo en:
+- 🌐 **Frontend Web:** `http://localhost/` (Puerto 80)
+- 🔌 **Backend REST API:** `http://localhost:3000/api`
+- 📑 **Swagger API Docs:** `http://localhost:3000/api/docs`
+- 🐘 **PostgreSQL:** `localhost:5432`
 
 ---
 
-## 📑 Documentación Interactiva de la API (Swagger UI)
+## 🧪 Comandos y Scripts del Monorepo
 
-Una vez iniciado el servidor, accede a:
-👉 **[http://localhost:3000/api/docs](http://localhost:3000/api/docs)**
-
-Módulos documentados con OpenAPI 3.0:
-1. `1. Autenticación & Usuarios` (Login JWT, Registro con CI/NIT, Perfil)
-2. `2. Sucursales & Cobertura Bolivia` (Listado por departamento, creación y estado)
-3. `3. Catálogo de Panadería & Pastelería` (Productos, stock por sucursal, filtros)
-4. `4. Logística & Envíos Nacionales Bolivia` (Tarifas de los 9 departamentos, cotizador)
-5. `5. Producción & Hornadas (Maestro Panadero)` (Lotes de horneada, insumos, mermas)
-6. `6. Pedidos & Ventas Omnicanal` (Creación de pedidos, cálculo de flete, estados)
-7. `7. Pasarela de Pagos Bolivia (QR Simple & Tigo Money)` (Generación y confirmación)
-8. `8. Facturación Computarizada en Línea SIAT / SIN Bolivia` (Emisión con CUF y QR)
-9. `9. Reportes & Analítica de Negocio Bolivia` (Dashboard KPI en Bs., arqueo de caja)
+| Comando | Acción |
+| :--- | :--- |
+| `npm run dev` | Ejecuta concurrentemente Backend (NestJS) y Frontend (Vue 3 Vite) |
+| `npm run dev:backend` | Inicia únicamente el servidor backend en modo desarrollo |
+| `npm run dev:frontend` | Inicia únicamente el servidor de desarrollo Vite |
+| `npm run build` | Compila tanto el backend de TypeScript como el frontend de Vue |
+| `npm run lint` | Ejecuta Oxlint en los workspaces de backend y frontend |
+| `npm run test` | Ejecuta la suite de pruebas unitarias del backend |
+| `npm run test:e2e` | Ejecuta las pruebas de integración End-to-End |
 
 ---
 
-## 🔐 Usuarios y Credenciales Semilla del Sistema
+## 👤 Cuentas de Acceso Rápido (Demo)
 
-El sistema viene pre-poblado con cuentas para todos los roles clave:
-
-| Rol | Correo Electrónico | Contraseña | Departamento / Sucursal |
+| Rol | Correo Electrónico | Contraseña | Permisos |
 | :--- | :--- | :--- | :--- |
-| **Administrador General** | `admin@panaderia.bo` | `Admin123!` | Santa Cruz (Equipetrol) |
-| **Maestro Panadero** | `panadero@panaderia.bo` | `Panadero123!` | La Paz (Sopocachi) |
-| **Cajera / Ventas** | `cajero@panaderia.bo` | `Admin123!` | Santa Cruz (Equipetrol) |
-| **Cliente Frecuente** | `cliente@gmail.com` | `Cliente123!` | Cochabamba (Cala Cala) |
+| **Administrador** | `admin@panaderia.bo` | `Admin123!` | Control total, sucursales, finanzas y reportes |
+| **Maestro Panadero** | `panadero@panaderia.bo` | `Pan123!` | Planificación de hornadas, recetas y mermas |
+| **Cajero Sucursal** | `cajero@panaderia.bo` | `Cajero123!` | Arqueo de caja, POS y confirmación de cobros |
+| **Cliente** | `cliente@gmail.com` | `Cliente123!` | Catálogo, pedidos online y factura SIAT |
 
 ---
 
-## 🏛️ Arquitectura Limpia (Clean Architecture & DDD)
+## 📜 Licencia
 
-El proyecto está diseñado bajo los principios de **Clean Architecture** (Robert C. Martin), **Domain-Driven Design (DDD)** y los principios **SOLID**, garantizando máxima testabilidad, desacoplamiento y escalabilidad:
-
-```
-src/
-├── common/
-│   ├── domain/
-│   │   ├── value-objects/
-│   │   │   └── bolivian-currency.vo.ts      # Value Object para aritmética financiera exacta en Bs.
-│   │   └── exceptions/
-│   │       └── domain.exceptions.ts         # Excepciones puras de dominio desacopladas de HTTP
-│   ├── constants/
-│   │   └── bolivia-regions.constant.ts      # 9 Departamentos, tarifas de flete y tiempos
-│   ├── enums/                               # Roles, categorías de pan, turnos de horneada, pagos
-│   ├── decorators/                          # @Roles, @CurrentUser
-│   ├── guards/                              # JwtAuthGuard, RolesGuard
-│   ├── filters/                             # AllExceptionsFilter (Mapeo global de errores a JSON)
-│   └── interceptors/                        # TransformInterceptor (Envoltorio estándar de respuesta)
-├── database/                                # Capa de Infraestructura & Persistencia
-│   ├── database.service.ts                  # Pool PostgreSQL (pg.Pool) y persistencia reactiva
-│   ├── database.module.ts                   # Inyección global de dependencias (DIP)
-│   └── repositories/                        # Adaptadores de Repositorio (PostgreSQL Implementation)
-│       ├── postgres-products.repository.ts
-│       ├── postgres-branches.repository.ts
-│       ├── postgres-users.repository.ts
-│       ├── postgres-orders.repository.ts
-│       ├── postgres-billing.repository.ts
-│       └── postgres-production.repository.ts
-├── modules/                                 # Módulos de Dominio (Bounded Contexts)
-│   ├── [modulo]/
-│   │   ├── domain/                          # Entidades de Dominio e Interfaces (Puertos / DIP)
-│   │   │   ├── [entidad].entity.ts
-│   │   │   └── [modulo].repository.interface.ts
-│   │   ├── dto/                             # Data Transfer Objects validados con class-validator
-│   │   ├── [modulo].service.ts              # Casos de Uso / Servicios de Aplicación (Inversión de Dependencias)
-│   │   ├── [modulo].controller.ts           # Controladores REST con documentación OpenAPI Swagger
-│   │   └── [modulo].module.ts               # Encapsulación NestJS
-│   └── storefront/
-│       ├── views/                           # Vistas desacopladas (Single Responsibility Principle)
-│       │   └── storefront.view.ts
-│       ├── storefront.controller.ts
-│       └── storefront.module.ts
-├── app.module.ts                            # Ensamblador raíz de la aplicación
-└── main.ts                                  # Bootstrap con Swagger, CORS y variables de entorno
-```
-
----
-
-## 🇧🇴 Cumplimiento Legal y Tributario en Bolivia
-- **Razón Social:** `PANADERIA & PASTELERIA ARTESANAL BOLIVIA S.R.L.`
-- **NIT:** `3049182019`
-- **Normativa:** Resolución Normativa de Directorio (RND) del **Servicio de Impuestos Nacionales (SIN)** para la Modalidad de Facturación Computarizada en Línea.
-- **Ley N° 453:** Ley General de los Derechos de las Usuarias y los Usuarios y de las Consumidoras y los Consumidores.
-
----
-
-Desarrollado con pasión para llevar el auténtico pan boliviano a nivel de clase mundial.
+Distribuido bajo la Licencia **MIT**. Desarrollado con orgullo para impulsar la gastronomía y tecnología en toda Bolivia 🇧🇴.
