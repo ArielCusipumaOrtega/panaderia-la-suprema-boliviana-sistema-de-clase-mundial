@@ -8,11 +8,55 @@ async function bootstrap() {
   const logger = new Logger('PanaderiaBoliviaBootstrap');
   const app = await NestFactory.create(AppModule);
 
-  // CORS
+  // Configuración de CORS profesional para clientes frontend (Vue.js, React, Mobile)
+  const configuredOrigins = process.env.CORS_ORIGIN || process.env.FRONTEND_URL;
+  const explicitOrigins = configuredOrigins
+    ? configuredOrigins.split(',').map((o) => o.trim())
+    : [];
+
   app.enableCors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    origin: (
+      origin: string | undefined,
+      callback: (err: Error | null, allow?: boolean) => void,
+    ) => {
+      // Permitir peticiones sin origen (SSR, curl, Postman, mobile, etc.)
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      // Orígenes locales habituales en desarrollo (Vite: 5173, Vue CLI: 8080, Nuxt: 3000, preview: 4173)
+      const isLocalhost =
+        /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+
+      const isAllowed =
+        explicitOrigins.includes('*') ||
+        explicitOrigins.includes(origin) ||
+        isLocalhost ||
+        process.env.NODE_ENV !== 'production';
+
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        logger.warn(`[CORS] Origen bloqueado: ${origin}`);
+        callback(
+          new Error(
+            `El origen ${origin} no está autorizado por la política CORS del backend`,
+          ),
+        );
+      }
+    },
     credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: [
+      'Origin',
+      'X-Requested-With',
+      'Content-Type',
+      'Accept',
+      'Authorization',
+      'X-Sucursal-Id',
+    ],
+    exposedHeaders: ['Authorization', 'Content-Disposition'],
+    maxAge: 3600,
   });
 
   // Configuración de Documentación Interactiva Swagger / OpenAPI
@@ -31,6 +75,10 @@ async function bootstrap() {
       * **Control de Producción:** Hornadas en turnos Madrugada/Tarde, insumos y control estricto de mermas.`,
     )
     .setVersion('1.0.0')
+    .addTag(
+      '0. Estado del Sistema & Salud (Frontend Integration)',
+      'Health check y verificación de conectividad para clientes Vue.js',
+    )
     .addTag(
       '1. Autenticación & Usuarios',
       'Registro, inicio de sesión y gestión de perfiles con roles',
@@ -84,7 +132,25 @@ async function bootstrap() {
   SwaggerModule.setup('api/docs', app, document, {
     customSiteTitle: 'Panadería La Suprema Boliviana | Documentación API',
     customCss: '.swagger-ui .topbar { background-color: #3D1C08; }',
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
   });
+
+  // Endpoints explícitos de especificación OpenAPI para generadores de clientes TypeScript en Vue
+  const httpAdapter = app.getHttpAdapter();
+  httpAdapter.get(
+    '/api/docs-json',
+    (_req: unknown, res: { json: (data: unknown) => void }) => {
+      res.json(document);
+    },
+  );
+  httpAdapter.get(
+    '/api-json',
+    (_req: unknown, res: { json: (data: unknown) => void }) => {
+      res.json(document);
+    },
+  );
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
@@ -98,6 +164,8 @@ async function bootstrap() {
   );
   logger.log(`🌐 Portal Web & E-Commerce:   http://localhost:${port}/`);
   logger.log(`📑 Documentación Swagger:    http://localhost:${port}/api/docs`);
+  logger.log(`📄 Especificación OpenAPI:   http://localhost:${port}/api/docs-json`);
+  logger.log(`💓 Health Check Endpoint:    http://localhost:${port}/api/health`);
   logger.log(
     `🐘 Base de Datos:            PostgreSQL (${process.env.DB_NAME ?? 'panaderia_la_suprema'} en ${process.env.DB_HOST ?? 'localhost'}:${process.env.DB_PORT ?? 5432})`,
   );
@@ -105,6 +173,9 @@ async function bootstrap() {
   logger.log(`🛡️ Facturación SIAT activa:  NIT 3049182019`);
   logger.log(
     `📲 Pagos habilitados:        QR Simple Interoperable BCB / Tigo Money`,
+  );
+  logger.log(
+    `🟢 Integración Vue.js:       CORS habilitado con credenciales (Vite, Pinia, Axios)`,
   );
   logger.log(
     `================================================================`,

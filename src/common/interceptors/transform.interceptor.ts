@@ -23,11 +23,14 @@ export class TransformInterceptor<T> implements NestInterceptor<
     next: CallHandler,
   ): Observable<ApiResponse<T>> {
     const req = context.switchToHttp().getRequest();
-    // If request asks for html or raw static file, don't wrap
+    // If request asks for html, raw static file, or OpenAPI/Swagger JSON/YAML, don't wrap
     if (
       req.url.startsWith('/portal') ||
       req.url === '/' ||
-      req.url.startsWith('/api/docs')
+      req.url.startsWith('/api/docs') ||
+      req.url.startsWith('/api-json') ||
+      req.url.endsWith('-json') ||
+      req.url.endsWith('-yaml')
     ) {
       return next.handle();
     }
