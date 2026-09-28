@@ -28,14 +28,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Check code formatting & linting
+      - name: Check code formatting & linting (Backend & Frontend)
         run: npm run lint
 
-      - name: Compile application (NestJS build)
+      - name: Compile application (NestJS & Vue 3 Vite build)
         run: npm run build
 
-      - name: Execute unit test suite
+      - name: Execute backend unit test suite
         run: npm test
 
-      - name: Execute end-to-end (E2E) integration tests
+      - name: Execute backend end-to-end (E2E) integration tests
         run: npm run test:e2e

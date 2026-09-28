@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: panaderia-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: usr_panaderia_la_suprema
+      POSTGRES_PASSWORD: password_suprema_bo_2026
+      POSTGRES_DB: panaderia_la_suprema
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U usr_panaderia_la_suprema -d panaderia_la_suprema"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: panaderia-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: 3000
+      NODE_ENV: production
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: usr_panaderia_la_suprema
+      DB_PASSWORD: password_suprema_bo_2026
+      DB_NAME: panaderia_la_suprema
+      JWT_SECRET: SECRETO_PANADERIA_BOLIVIANA_CLASE_MUNDIAL_2026
+      SIAT_NIT_EMISOR: "3049182019"
+      SIAT_RAZON_SOCIAL: "PANADERIA & PASTELERIA ARTESANAL BOLIVIA S.R.L."
+      FRONTEND_URL: "http://localhost,http://localhost:80,http://localhost:5173"
+      CORS_ORIGIN: "http://localhost,http://localhost:80,http://localhost:5173"
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: panaderia-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  postgres_data:
