@@ -174,45 +174,51 @@ El sistema viene pre-poblado con cuentas para todos los roles clave:
 
 ---
 
-## 🏗️ Arquitectura del Software
+## 🏛️ Arquitectura Limpia (Clean Architecture & DDD)
+
+El proyecto está diseñado bajo los principios de **Clean Architecture** (Robert C. Martin), **Domain-Driven Design (DDD)** y los principios **SOLID**, garantizando máxima testabilidad, desacoplamiento y escalabilidad:
 
 ```
-sistema-panaderia/
-├── data/                               # Base de datos persistente JSON auto-guardada
-│   └── sistema-panaderia-db.json
-├── src/
-│   ├── common/
-│   │   ├── constants/
-│   │   │   └── bolivia-regions.constant.ts   # 9 Departamentos, ciudades y tarifas
-│   │   ├── enums/
-│   │   │   ├── role.enum.ts                  # Roles de usuario
-│   │   │   ├── order-status.enum.ts          # Estados de pedido y tipos de entrega
-│   │   │   ├── payment-method.enum.ts        # QR Simple, Tigo Money, Efectivo, Tarjeta
-│   │   │   └── product-category.enum.ts      # Panes, masa madre, pastelería, turnos
-│   │   ├── decorators/                       # @Roles, @CurrentUser
-│   │   ├── guards/                           # JwtAuthGuard, RolesGuard
-│   │   ├── filters/                          # AllExceptionsFilter
-│   │   └── interceptors/                     # TransformInterceptor
-│   ├── database/
-│   │   ├── database.service.ts               # Almacén de datos reactivo y semillas
-│   │   └── database.module.ts
-│   ├── modules/
-│   │   ├── auth/                             # JWT, bcrypt, registro y login
-│   │   ├── branches/                         # Sucursales en toda Bolivia
-│   │   ├── products/                         # Panes, recetas, precios en Bs., stock
-│   │   ├── logistics/                        # Cotizador y despachos express/nacionales
-│   │   ├── production/                       # Lotes de horneada y control de mermas
-│   │   ├── orders/                           # Pedidos omnicanal con stock sincronizado
-│   │   ├── payments/                         # QR Simple BCB interoperable y pagos
-│   │   ├── billing/                          # Facturación electrónica SIAT / SIN Bolivia
-│   │   ├── analytics/                        # Tablero gerencial y arqueo de caja
-│   │   └── storefront/                       # Aplicación Web y Portal de E-commerce
-│   ├── app.module.ts                         # Módulo principal y proveedores globales
-│   └── main.ts                               # Bootstrap con Swagger y CORS
-├── test/
-│   └── app.e2e-spec.ts                       # Suite completa de pruebas E2E
-├── package.json
-└── tsconfig.json
+src/
+├── common/
+│   ├── domain/
+│   │   ├── value-objects/
+│   │   │   └── bolivian-currency.vo.ts      # Value Object para aritmética financiera exacta en Bs.
+│   │   └── exceptions/
+│   │       └── domain.exceptions.ts         # Excepciones puras de dominio desacopladas de HTTP
+│   ├── constants/
+│   │   └── bolivia-regions.constant.ts      # 9 Departamentos, tarifas de flete y tiempos
+│   ├── enums/                               # Roles, categorías de pan, turnos de horneada, pagos
+│   ├── decorators/                          # @Roles, @CurrentUser
+│   ├── guards/                              # JwtAuthGuard, RolesGuard
+│   ├── filters/                             # AllExceptionsFilter (Mapeo global de errores a JSON)
+│   └── interceptors/                        # TransformInterceptor (Envoltorio estándar de respuesta)
+├── database/                                # Capa de Infraestructura & Persistencia
+│   ├── database.service.ts                  # Pool PostgreSQL (pg.Pool) y persistencia reactiva
+│   ├── database.module.ts                   # Inyección global de dependencias (DIP)
+│   └── repositories/                        # Adaptadores de Repositorio (PostgreSQL Implementation)
+│       ├── postgres-products.repository.ts
+│       ├── postgres-branches.repository.ts
+│       ├── postgres-users.repository.ts
+│       ├── postgres-orders.repository.ts
+│       ├── postgres-billing.repository.ts
+│       └── postgres-production.repository.ts
+├── modules/                                 # Módulos de Dominio (Bounded Contexts)
+│   ├── [modulo]/
+│   │   ├── domain/                          # Entidades de Dominio e Interfaces (Puertos / DIP)
+│   │   │   ├── [entidad].entity.ts
+│   │   │   └── [modulo].repository.interface.ts
+│   │   ├── dto/                             # Data Transfer Objects validados con class-validator
+│   │   ├── [modulo].service.ts              # Casos de Uso / Servicios de Aplicación (Inversión de Dependencias)
+│   │   ├── [modulo].controller.ts           # Controladores REST con documentación OpenAPI Swagger
+│   │   └── [modulo].module.ts               # Encapsulación NestJS
+│   └── storefront/
+│       ├── views/                           # Vistas desacopladas (Single Responsibility Principle)
+│       │   └── storefront.view.ts
+│       ├── storefront.controller.ts
+│       └── storefront.module.ts
+├── app.module.ts                            # Ensamblador raíz de la aplicación
+└── main.ts                                  # Bootstrap con Swagger, CORS y variables de entorno
 ```
 
 ---

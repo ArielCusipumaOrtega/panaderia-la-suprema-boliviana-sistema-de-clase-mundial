@@ -54,4 +54,18 @@ describe('Panadería Boliviana Services (Unit Tests)', () => {
     expect(cotizacion.costoEnvioBs).toBe(40);
     expect(cotizacion.tiempoEstimado).toContain('48 horas');
   });
+
+  it('debe operar con precisión aritmética financiera en Bolivianos usando BolivianCurrency VO', async () => {
+    const { BolivianCurrency } = await import(
+      './common/domain/value-objects/bolivian-currency.vo.js'
+    );
+    const precioUnitario = BolivianCurrency.of(0.8); // Marraqueta 80 ctvs.
+    const totalDoce = precioUnitario.times(12);
+    expect(totalDoce.value).toBe(9.6);
+    expect(totalDoce.format()).toBe('Bs. 9.60');
+
+    // Test exact decimal rounding against floating point artifacts
+    const suma = BolivianCurrency.of(0.1).plus(0.2);
+    expect(suma.value).toBe(0.3);
+  });
 });
