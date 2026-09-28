@@ -55,11 +55,24 @@ import type { InvoiceEntity } from '../modules/billing/domain/invoice.entity.js'
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(DatabaseService.name);
-  private readonly dbFilePath = path.join(
-    process.cwd(),
-    'data',
-    'sistema-panaderia-db.json',
-  );
+  private readonly dbFilePath = this.resolveDbFilePath();
+
+  private resolveDbFilePath(): string {
+    const candidates = [
+      path.join(process.cwd(), 'data', 'sistema-panaderia-db.json'),
+      path.join(process.cwd(), 'backend', 'data', 'sistema-panaderia-db.json'),
+      path.join(process.cwd(), '..', 'data', 'sistema-panaderia-db.json'),
+      path.join(process.cwd(), '..', 'backend', 'data', 'sistema-panaderia-db.json'),
+    ];
+    for (const file of candidates) {
+      if (fs.existsSync(file)) {
+        return file;
+      }
+    }
+    return fs.existsSync(path.join(process.cwd(), 'backend'))
+      ? path.join(process.cwd(), 'backend', 'data', 'sistema-panaderia-db.json')
+      : path.join(process.cwd(), 'data', 'sistema-panaderia-db.json');
+  }
 
   public pool: Pool | null = null;
   public isPostgresConnected = false;

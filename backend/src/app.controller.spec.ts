@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DatabaseModule } from './database/database.module.js';
+import { AppModule } from './app.module.js';
 import { ProductsService } from './modules/products/products.service.js';
 import { LogisticsService } from './modules/logistics/logistics.service.js';
 import { DepartamentoBolivia } from './common/constants/bolivia-regions.constant.js';
@@ -11,20 +11,19 @@ describe('Panadería Boliviana Services (Unit Tests)', () => {
 
   let module: TestingModule;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     module = await Test.createTestingModule({
-      imports: [DatabaseModule],
-      providers: [ProductsService, LogisticsService],
+      imports: [AppModule],
     }).compile();
 
     await module.init();
 
     productsService = module.get<ProductsService>(ProductsService);
     logisticsService = module.get<LogisticsService>(LogisticsService);
-  });
+  }, 15000);
 
-  afterEach(async () => {
-    await module.close();
+  afterAll(async () => {
+    await module?.close();
   });
 
   it('debe listar los productos y verificar panes tradicionales bolivianos', () => {
