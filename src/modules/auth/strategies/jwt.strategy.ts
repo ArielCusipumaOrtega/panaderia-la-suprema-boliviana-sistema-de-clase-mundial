@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { DatabaseService } from '../../../database/database.service.js';
+import { UsersRepository } from '../domain/users.repository.interface.js';
 
 export interface JwtPayload {
   sub: string;
@@ -13,7 +13,7 @@ export interface JwtPayload {
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private readonly db: DatabaseService) {
+  constructor(private readonly usersRepo: UsersRepository) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -24,8 +24,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: JwtPayload) {
-    const user = this.db.users.find((u) => u.id === payload.sub && u.activo);
-    if (!user) {
+    const user = this.usersRepo.findById(payload.sub);
+    if (!user || !user.activo) {
       throw new UnauthorizedException('Usuario no encontrado o inactivo');
     }
     return {

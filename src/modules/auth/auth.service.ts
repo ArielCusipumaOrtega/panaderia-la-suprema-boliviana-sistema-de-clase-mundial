@@ -7,10 +7,8 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  DatabaseService,
-  UserEntity,
-} from '../../database/database.service.js';
+import { UsersRepository } from './domain/users.repository.interface.js';
+import { UserEntity } from './domain/user.entity.js';
 import { LoginDto } from './dto/login.dto.js';
 import { RegisterDto } from './dto/register.dto.js';
 import { UserRole } from '../../common/enums/role.enum.js';
@@ -20,14 +18,12 @@ export class AuthService {
   private readonly logger = new Logger(AuthService.name);
 
   constructor(
-    private readonly db: DatabaseService,
+    private readonly usersRepo: UsersRepository,
     private readonly jwtService: JwtService,
   ) {}
 
   async login(dto: LoginDto) {
-    const user = this.db.users.find(
-      (u) => u.email.toLowerCase() === dto.email.toLowerCase(),
-    );
+    const user = this.usersRepo.findByEmail(dto.email);
     if (!user) {
       throw new UnauthorizedException('Credenciales inválidas');
     }
@@ -70,9 +66,7 @@ export class AuthService {
   }
 
   async register(dto: RegisterDto) {
-    const existing = this.db.users.find(
-      (u) => u.email.toLowerCase() === dto.email.toLowerCase(),
-    );
+    const existing = this.usersRepo.findByEmail(dto.email);
     if (existing) {
       throw new ConflictException(
         'Ya existe un usuario registrado con este correo',
@@ -98,8 +92,7 @@ export class AuthService {
       creadoEn: new Date().toISOString(),
     };
 
-    this.db.users.push(newUser);
-    this.db.save();
+    this.usersRepo.create(newUser);
 
     this.logger.log(
       `Nuevo usuario registrado: ${newUser.email} (${newUser.role})`,
@@ -130,7 +123,7 @@ export class AuthService {
   }
 
   async getProfile(userId: string) {
-    const user = this.db.users.find((u) => u.id === userId);
+    const user = this.usersRepo.findById(userId);
     if (!user) {
       throw new UnauthorizedException('Usuario no encontrado');
     }

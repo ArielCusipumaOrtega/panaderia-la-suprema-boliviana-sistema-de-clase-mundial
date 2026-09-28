@@ -5,52 +5,26 @@ import {
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  DatabaseService,
-  ProductEntity,
-} from '../../database/database.service.js';
+  ProductsRepository,
+  ProductFilterQuery,
+} from './domain/products.repository.interface.js';
+import { ProductEntity, StockBranchEntity } from './domain/product.entity.js';
+import { BranchesRepository } from '../branches/domain/branches.repository.interface.js';
 import { CreateProductDto, UpdateStockDto } from './dto/create-product.dto.js';
-import { ProductCategory } from '../../common/enums/product-category.enum.js';
 
 @Injectable()
 export class ProductsService {
-  constructor(private readonly db: DatabaseService) {}
+  constructor(
+    private readonly productsRepo: ProductsRepository,
+    private readonly branchesRepo: BranchesRepository,
+  ) {}
 
-  findAll(query?: {
-    categoria?: ProductCategory;
-    aptoEnvioNacional?: boolean;
-    destacado?: boolean;
-    busqueda?: string;
-  }) {
-    let list = this.db.products.filter((p) => p.activo);
-
-    if (query?.categoria) {
-      list = list.filter((p) => p.categoria === query.categoria);
-    }
-    if (query?.aptoEnvioNacional !== undefined) {
-      list = list.filter(
-        (p) => p.aptoEnvioNacional === query.aptoEnvioNacional,
-      );
-    }
-    if (query?.destacado !== undefined) {
-      list = list.filter((p) => p.destacado === query.destacado);
-    }
-    if (query?.busqueda) {
-      const q = query.busqueda.toLowerCase();
-      list = list.filter(
-        (p) =>
-          p.nombre.toLowerCase().includes(q) ||
-          p.descripcion.toLowerCase().includes(q) ||
-          p.codigoSku.toLowerCase().includes(q),
-      );
-    }
-
-    return list;
+  findAll(query?: ProductFilterQuery): ProductEntity[] {
+    return this.productsRepo.findAll(query);
   }
 
   findById(id: string): ProductEntity {
-    const prod = this.db.products.find(
-      (p) => p.id === id || p.codigoSku === id,
-    );
+    const prod = this.productsRepo.findById(id);
     if (!prod) {
       throw new NotFoundException(
         `Producto con ID o SKU '${id}' no encontrado`,
@@ -61,14 +35,10 @@ export class ProductsService {
 
   getProductWithStock(id: string, sucursalId?: string) {
     const product = this.findById(id);
-    let stockEntries = this.db.stock.filter((s) => s.productoId === product.id);
+    const stockEntries = this.productsRepo.getStock(product.id, sucursalId);
 
-    if (sucursalId) {
-      stockEntries = stockEntries.filter((s) => s.sucursalId === sucursalId);
-    }
-
-    const stockPorSucursal = stockEntries.map((stk) => {
-      const branch = this.db.branches.find((b) => b.id === stk.sucursalId);
+    const stockPorSucursal = stockEntries.map((stk: StockBranchEntity) => {
+      const branch = this.branchesRepo.findById(stk.sucursalId);
       return {
         sucursalId: stk.sucursalId,
         sucursalNombre: branch?.nombre || stk.sucursalId,
@@ -79,7 +49,7 @@ export class ProductsService {
     });
 
     const stockTotalBolivia = stockEntries.reduce(
-      (sum, s) => sum + s.cantidadDisponible,
+      (sum: number, s: StockBranchEntity) => sum + s.cantidadDisponible,
       0,
     );
 
@@ -91,9 +61,7 @@ export class ProductsService {
   }
 
   create(dto: CreateProductDto): ProductEntity {
-    const existing = this.db.products.find(
-      (p) => p.codigoSku.toUpperCase() === dto.codigoSku.toUpperCase(),
-    );
+    const existing = this.productsRepo.findBySku(dto.codigoSku);
     if (existing) {
       throw new ConflictException(
         `Ya existe un producto con SKU ${dto.codigoSku}`,
@@ -117,46 +85,15 @@ export class ProductsService {
       activo: true,
     };
 
-    this.db.products.push(newProduct);
-
-    // Inicializar stock en todas las sucursales existentes
-    for (const b of this.db.branches) {
-      this.db.stock.push({
-        id: `stk-${b.id}-${newProduct.id}`,
-        productoId: newProduct.id,
-        sucursalId: b.id,
-        cantidadDisponible: 40,
-        cantidadMinimaAlerta: 10,
-        ultimaActualizacion: new Date().toISOString(),
-      });
-    }
-
-    this.db.save();
-    return newProduct;
+    return this.productsRepo.create(newProduct);
   }
 
-  updateStock(productId: string, dto: UpdateStockDto) {
+  updateStock(productId: string, dto: UpdateStockDto): StockBranchEntity {
     this.findById(productId);
-    let stockItem = this.db.stock.find(
-      (s) => s.productoId === productId && s.sucursalId === dto.sucursalId,
+    return this.productsRepo.updateStock(
+      dto.sucursalId,
+      productId,
+      dto.cantidadDisponible,
     );
-
-    if (!stockItem) {
-      stockItem = {
-        id: `stk-${dto.sucursalId}-${productId}`,
-        productoId: productId,
-        sucursalId: dto.sucursalId,
-        cantidadDisponible: dto.cantidadDisponible,
-        cantidadMinimaAlerta: 10,
-        ultimaActualizacion: new Date().toISOString(),
-      };
-      this.db.stock.push(stockItem);
-    } else {
-      stockItem.cantidadDisponible = dto.cantidadDisponible;
-      stockItem.ultimaActualizacion = new Date().toISOString();
-    }
-
-    this.db.save();
-    return stockItem;
   }
 }

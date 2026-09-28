@@ -1,17 +1,22 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { DatabaseService } from '../../database/database.service.js';
+import { BranchesRepository } from '../branches/domain/branches.repository.interface.js';
+import { ProductsRepository } from '../products/domain/products.repository.interface.js';
 import { REGIONES_BOLIVIA } from '../../common/constants/bolivia-regions.constant.js';
 import { DeliveryType } from '../../common/enums/order-status.enum.js';
 import { ShippingQuoteDto } from './dto/shipping-quote.dto.js';
 
 @Injectable()
 export class LogisticsService {
-  constructor(private readonly db: DatabaseService) {}
+  constructor(
+    private readonly branchesRepo: BranchesRepository,
+    private readonly productsRepo: ProductsRepository,
+  ) {}
 
   getAllDepartments() {
+    const allBranches = this.branchesRepo.findAll(true);
     return Object.values(REGIONES_BOLIVIA).map((reg) => {
-      const sucursales = this.db.branches.filter(
-        (b) => b.departamento === reg.departamento && b.activa,
+      const sucursales = allBranches.filter(
+        (b) => b.departamento === reg.departamento,
       );
       return {
         ...reg,
@@ -35,19 +40,21 @@ export class LogisticsService {
       throw new BadRequestException('Departamento de Bolivia no reconocido');
     }
 
-    const sucursalLocal = this.db.branches.find(
-      (b) => b.departamento === dto.departamentoDestino && b.activa,
+    const sucursalesDepto = this.branchesRepo.findByDepartment(
+      dto.departamentoDestino,
     );
+    const sucursalLocal =
+      sucursalesDepto.length > 0 ? sucursalesDepto[0] : null;
 
     let costoEnvioBs = 0;
     let tiempoEstimado = '';
     let sucursalAsignada = sucursalLocal;
-    let advertencias: string[] = [];
+    const advertencias: string[] = [];
 
     // Validar productos según tipo de envío
     if (dto.productosIds && dto.productosIds.length > 0) {
       for (const pid of dto.productosIds) {
-        const prod = this.db.products.find((p) => p.id === pid);
+        const prod = this.productsRepo.findById(pid);
         if (
           prod &&
           !prod.aptoEnvioNacional &&
@@ -76,8 +83,8 @@ export class LogisticsService {
       tiempoEstimado = `${region.tiempoEstimadoNacionalHoras} horas (Despacho interdepartamental con empaque sellado)`;
       // Asignar casa matriz o sucursal principal
       if (!sucursalAsignada) {
-        sucursalAsignada =
-          this.db.branches.find((b) => b.esMatriz) || this.db.branches[0];
+        const todas = this.branchesRepo.findAll(true);
+        sucursalAsignada = todas.find((b) => b.esMatriz) || todas[0];
       }
     }
 

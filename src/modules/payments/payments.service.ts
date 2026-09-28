@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import * as QRCode from 'qrcode';
-import { DatabaseService } from '../../database/database.service.js';
+import { OrdersRepository } from '../orders/domain/orders.repository.interface.js';
 import {
   GenerateQrSimpleDto,
   ConfirmPaymentDto,
@@ -12,12 +12,10 @@ import { OrderStatus } from '../../common/enums/order-status.enum.js';
 export class PaymentsService {
   private readonly logger = new Logger(PaymentsService.name);
 
-  constructor(private readonly db: DatabaseService) {}
+  constructor(private readonly ordersRepo: OrdersRepository) {}
 
   async generateQrSimple(dto: GenerateQrSimpleDto) {
-    const order = this.db.orders.find(
-      (o) => o.id === dto.pedidoId || o.codigoPedido === dto.pedidoId,
-    );
+    const order = this.ordersRepo.findById(dto.pedidoId);
     if (!order) {
       throw new NotFoundException(`Pedido ${dto.pedidoId} no encontrado`);
     }
@@ -46,8 +44,7 @@ export class PaymentsService {
       },
     });
 
-    order.qrSimpleDataUri = qrDataUri;
-    this.db.save();
+    this.ordersRepo.update(order.id, { qrSimpleDataUri: qrDataUri });
 
     return {
       exito: true,
@@ -72,32 +69,32 @@ export class PaymentsService {
   }
 
   confirmPayment(dto: ConfirmPaymentDto) {
-    const order = this.db.orders.find(
-      (o) => o.id === dto.pedidoId || o.codigoPedido === dto.pedidoId,
-    );
+    const order = this.ordersRepo.findById(dto.pedidoId);
     if (!order) {
       throw new NotFoundException(`Pedido ${dto.pedidoId} no encontrado`);
     }
 
-    order.estadoPago = PaymentStatus.PAGADO;
-    order.metodoPago = dto.metodoPago;
-    if (order.estado === OrderStatus.PENDIENTE_PAGO) {
-      order.estado = OrderStatus.CONFIRMADO;
-    }
-    order.actualizadoEn = new Date().toISOString();
+    const nuevoEstado =
+      order.estado === OrderStatus.PENDIENTE_PAGO
+        ? OrderStatus.CONFIRMADO
+        : order.estado;
 
-    this.db.save();
+    const updated = this.ordersRepo.update(order.id, {
+      estadoPago: PaymentStatus.PAGADO,
+      metodoPago: dto.metodoPago,
+      estado: nuevoEstado,
+    });
 
     this.logger.log(
-      `Pago confirmado para pedido ${order.codigoPedido} mediante ${dto.metodoPago}. Tx: ${dto.numeroTransaccion || 'N/A'}`,
+      `Pago confirmado para pedido ${updated.codigoPedido} mediante ${dto.metodoPago}. Tx: ${dto.numeroTransaccion || 'N/A'}`,
     );
 
     return {
       mensaje: 'Pago registrado y confirmado con éxito',
-      pedidoId: order.id,
-      codigoPedido: order.codigoPedido,
-      estadoPago: order.estadoPago,
-      nuevoEstadoPedido: order.estado,
+      pedidoId: updated.id,
+      codigoPedido: updated.codigoPedido,
+      estadoPago: updated.estadoPago,
+      nuevoEstadoPedido: updated.estado,
     };
   }
 }

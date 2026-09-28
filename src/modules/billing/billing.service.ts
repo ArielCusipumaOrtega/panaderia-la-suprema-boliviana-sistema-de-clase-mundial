@@ -2,10 +2,10 @@ import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { createHash } from 'crypto';
 import * as QRCode from 'qrcode';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  DatabaseService,
-  InvoiceEntity,
-} from '../../database/database.service.js';
+import { BillingRepository } from './domain/billing.repository.interface.js';
+import { InvoiceEntity } from './domain/invoice.entity.js';
+import { OrdersRepository } from '../orders/domain/orders.repository.interface.js';
+import { BranchesRepository } from '../branches/domain/branches.repository.interface.js';
 import { GenerateInvoiceDto } from './dto/generate-invoice.dto.js';
 
 @Injectable()
@@ -17,19 +17,18 @@ export class BillingService {
   private readonly LEYENDA_SIAT =
     'Ley N° 453: El proveedor deberá suministrar el servicio en las modalidades y términos ofertados o convenidos.';
 
-  constructor(private readonly db: DatabaseService) {}
+  constructor(
+    private readonly billingRepo: BillingRepository,
+    private readonly ordersRepo: OrdersRepository,
+    private readonly branchesRepo: BranchesRepository,
+  ) {}
 
-  findAll() {
-    return this.db.invoices;
+  findAll(): InvoiceEntity[] {
+    return this.billingRepo.findAll();
   }
 
   findById(id: string): InvoiceEntity {
-    const invoice = this.db.invoices.find(
-      (inv) =>
-        inv.id === id ||
-        inv.numeroFactura.toString() === id ||
-        inv.pedidoId === id,
-    );
+    const invoice = this.billingRepo.findById(id);
     if (!invoice) {
       throw new NotFoundException(
         `Factura con identificador '${id}' no encontrada`,
@@ -39,28 +38,26 @@ export class BillingService {
   }
 
   async generateInvoice(dto: GenerateInvoiceDto): Promise<InvoiceEntity> {
-    const order = this.db.orders.find(
-      (o) => o.id === dto.pedidoId || o.codigoPedido === dto.pedidoId,
-    );
+    const order = this.ordersRepo.findById(dto.pedidoId);
     if (!order) {
       throw new NotFoundException(`Pedido ${dto.pedidoId} no encontrado`);
     }
 
     if (order.facturaId) {
-      const existing = this.db.invoices.find((i) => i.id === order.facturaId);
+      const existing = this.billingRepo.findById(order.facturaId);
       if (existing) {
         return existing;
       }
     }
 
     const branch =
-      this.db.branches.find((b) => b.id === order.sucursalOrigenId) ||
-      this.db.branches[0];
+      this.branchesRepo.findById(order.sucursalOrigenId) ||
+      this.branchesRepo.findAll()[0];
 
-    const numeroFactura = this.db.invoices.length + 5001;
+    const numeroFactura = this.billingRepo.getNextInvoiceNumber();
     const fechaEmision = new Date().toISOString();
 
-    // Generar Código Único de Facturación (CUF) simulado conforme algoritmo estándar SIAT
+    // Generar Código Único de Facturación (CUF) conforme algoritmo estándar SIAT
     const fechaRaw = fechaEmision.replace(/[-:T.Z]/g, '').slice(0, 14);
     const cadenaParaCuf = `${this.NIT_EMISOR}${fechaRaw}0${numeroFactura}1`;
     const cufHash = createHash('sha256')
@@ -69,7 +66,8 @@ export class BillingService {
       .toUpperCase()
       .slice(0, 48);
 
-    const cufd = `CUFD-${branch.departamento.substring(0, 3).toUpperCase()}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-001`;
+    const departamentoNombre = branch?.departamento || 'BOL';
+    const cufd = `CUFD-${departamentoNombre.substring(0, 3).toUpperCase()}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-001`;
 
     const nitCiCliente = dto.nitCiCliente || order.clienteCiNit || '0';
     const razonSocialCliente =
@@ -96,8 +94,8 @@ export class BillingService {
       cufd,
       nitEmisor: this.NIT_EMISOR,
       razonSocialEmisor: this.RAZON_SOCIAL_EMISOR,
-      sucursalNombre: branch.nombre,
-      departamento: branch.departamento,
+      sucursalNombre: branch ? branch.nombre : 'Casa Matriz',
+      departamento: branch ? branch.departamento : order.departamentoDestino,
       nitCiCliente,
       razonSocialCliente,
       fechaEmision,
@@ -108,14 +106,13 @@ export class BillingService {
       pedidoId: order.id,
     };
 
-    this.db.invoices.unshift(newInvoice);
-    order.facturaId = newInvoice.id;
-    this.db.save();
+    const created = this.billingRepo.create(newInvoice);
+    this.ordersRepo.update(order.id, { facturaId: created.id });
 
     this.logger.log(
-      `Factura Electrónica SIAT emitida: N° ${newInvoice.numeroFactura} por Bs. ${newInvoice.montoTotalBs} para ${newInvoice.razonSocialCliente} (NIT/CI: ${newInvoice.nitCiCliente})`,
+      `Factura Electrónica SIAT emitida: N° ${created.numeroFactura} por Bs. ${created.montoTotalBs} para ${created.razonSocialCliente} (NIT/CI: ${created.nitCiCliente})`,
     );
 
-    return newInvoice;
+    return created;
   }
 }

@@ -5,26 +5,32 @@ import {
   Logger,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
+import { ProductionRepository } from './domain/production.repository.interface.js';
 import {
-  DatabaseService,
   ProductionBatchEntity,
-} from '../../database/database.service.js';
+  RawMaterialEntity,
+} from './domain/production.entity.js';
+import { ProductsRepository } from '../products/domain/products.repository.interface.js';
+import { BranchesRepository } from '../branches/domain/branches.repository.interface.js';
 import { CreateBatchDto, FinishBatchDto } from './dto/create-batch.dto.js';
 
 @Injectable()
 export class ProductionService {
   private readonly logger = new Logger(ProductionService.name);
 
-  constructor(private readonly db: DatabaseService) {}
+  constructor(
+    private readonly productionRepo: ProductionRepository,
+    private readonly productsRepo: ProductsRepository,
+    private readonly branchesRepo: BranchesRepository,
+  ) {}
 
   findAll(sucursalId?: string) {
-    let list = this.db.productionBatches;
-    if (sucursalId) {
-      list = list.filter((b) => b.sucursalId === sucursalId);
-    }
+    const list = this.productionRepo.findAllBatches(
+      sucursalId ? { sucursalId } : undefined,
+    );
     return list.map((b) => {
-      const prod = this.db.products.find((p) => p.id === b.productoId);
-      const suc = this.db.branches.find((s) => s.id === b.sucursalId);
+      const prod = this.productsRepo.findById(b.productoId);
+      const suc = this.branchesRepo.findById(b.sucursalId);
       return {
         ...b,
         productoNombre: prod?.nombre || b.productoId,
@@ -34,20 +40,17 @@ export class ProductionService {
     });
   }
 
-  getRawMaterials(sucursalId?: string) {
-    if (sucursalId) {
-      return this.db.rawMaterials.filter((m) => m.sucursalId === sucursalId);
-    }
-    return this.db.rawMaterials;
+  getRawMaterials(sucursalId?: string): RawMaterialEntity[] {
+    return this.productionRepo.findAllRawMaterials(sucursalId);
   }
 
   createBatch(dto: CreateBatchDto): ProductionBatchEntity {
-    const prod = this.db.products.find((p) => p.id === dto.productoId);
+    const prod = this.productsRepo.findById(dto.productoId);
     if (!prod) {
       throw new NotFoundException(`Producto ${dto.productoId} no encontrado`);
     }
 
-    const suc = this.db.branches.find((s) => s.id === dto.sucursalId);
+    const suc = this.branchesRepo.findById(dto.sucursalId);
     if (!suc) {
       throw new NotFoundException(`Sucursal ${dto.sucursalId} no encontrada`);
     }
@@ -70,17 +73,16 @@ export class ProductionService {
       estado: 'EN_HORNEADA',
     };
 
-    this.db.productionBatches.unshift(newBatch);
-    this.db.save();
+    const created = this.productionRepo.createBatch(newBatch);
 
     this.logger.log(
       `Hornada iniciada: ${codigoLote} - ${dto.cantidadPlaneada} unidades de ${prod.nombre} en ${suc.nombre}`,
     );
-    return newBatch;
+    return created;
   }
 
   finishBatch(batchId: string, dto: FinishBatchDto): ProductionBatchEntity {
-    const batch = this.db.productionBatches.find((b) => b.id === batchId);
+    const batch = this.productionRepo.findBatchById(batchId);
     if (!batch) {
       throw new NotFoundException(
         `Lote de producción ${batchId} no encontrado`,
@@ -96,40 +98,36 @@ export class ProductionService {
       );
     }
 
-    batch.cantidadObtenida = dto.cantidadObtenida;
-    batch.mermaUnidades = dto.mermaUnidades;
-    batch.motivoMerma = dto.motivoMerma;
-    batch.finalizadoEn = new Date().toISOString();
-    batch.estado =
-      dto.mermaUnidades > batch.cantidadPlaneada * 0.1
-        ? 'OBSERVADO'
-        : 'FINALIZADO_CONFORME';
+    const updates: Partial<ProductionBatchEntity> = {
+      cantidadObtenida: dto.cantidadObtenida,
+      mermaUnidades: dto.mermaUnidades,
+      motivoMerma: dto.motivoMerma,
+      finalizadoEn: new Date().toISOString(),
+      estado:
+        dto.mermaUnidades > batch.cantidadPlaneada * 0.1
+          ? 'OBSERVADO'
+          : 'FINALIZADO_CONFORME',
+    };
+
+    const updated = this.productionRepo.updateBatch(batchId, updates);
 
     // Aumentar el stock de producto terminado en la sucursal correspondiente
-    let stockItem = this.db.stock.find(
-      (s) =>
-        s.productoId === batch.productoId && s.sucursalId === batch.sucursalId,
+    const currentStock = this.productsRepo.getStock(
+      batch.productoId,
+      batch.sucursalId,
     );
-    if (stockItem) {
-      stockItem.cantidadDisponible += dto.cantidadObtenida;
-      stockItem.ultimaActualizacion = new Date().toISOString();
-    } else {
-      this.db.stock.push({
-        id: `stk-${batch.sucursalId}-${batch.productoId}`,
-        productoId: batch.productoId,
-        sucursalId: batch.sucursalId,
-        cantidadDisponible: dto.cantidadObtenida,
-        cantidadMinimaAlerta: 15,
-        ultimaActualizacion: new Date().toISOString(),
-      });
-    }
-
-    this.db.save();
+    const existingQuantity =
+      currentStock.length > 0 ? currentStock[0].cantidadDisponible : 0;
+    this.productsRepo.updateStock(
+      batch.sucursalId,
+      batch.productoId,
+      existingQuantity + dto.cantidadObtenida,
+    );
 
     this.logger.log(
-      `Hornada finalizada: ${batch.codigoLote} -> ${dto.cantidadObtenida} ingresadas al stock. Merma: ${dto.mermaUnidades}`,
+      `Hornada finalizada: ${updated.codigoLote} -> ${dto.cantidadObtenida} ingresadas al stock. Merma: ${dto.mermaUnidades}`,
     );
 
-    return batch;
+    return updated;
   }
 }

@@ -7,10 +7,13 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import * as QRCode from 'qrcode';
 import {
-  DatabaseService,
-  OrderEntity,
-  OrderItemEntity,
-} from '../../database/database.service.js';
+  OrdersRepository,
+  OrderFilterQuery,
+} from './domain/orders.repository.interface.js';
+import { OrderEntity, OrderItemEntity } from './domain/order.entity.js';
+import { ProductsRepository } from '../products/domain/products.repository.interface.js';
+import { BranchesRepository } from '../branches/domain/branches.repository.interface.js';
+import { BolivianCurrency } from '../../common/domain/value-objects/bolivian-currency.vo.js';
 import {
   CreateOrderDto,
   UpdateOrderStatusDto,
@@ -29,36 +32,18 @@ import { REGIONES_BOLIVIA } from '../../common/constants/bolivia-regions.constan
 export class OrdersService {
   private readonly logger = new Logger(OrdersService.name);
 
-  constructor(private readonly db: DatabaseService) {}
+  constructor(
+    private readonly ordersRepo: OrdersRepository,
+    private readonly productsRepo: ProductsRepository,
+    private readonly branchesRepo: BranchesRepository,
+  ) {}
 
-  findAll(query?: {
-    departamento?: string;
-    sucursalId?: string;
-    estado?: OrderStatus;
-    clienteCiNit?: string;
-  }) {
-    let list = this.db.orders;
-
-    if (query?.departamento) {
-      list = list.filter((o) => o.departamentoDestino === query.departamento);
-    }
-    if (query?.sucursalId) {
-      list = list.filter((o) => o.sucursalOrigenId === query.sucursalId);
-    }
-    if (query?.estado) {
-      list = list.filter((o) => o.estado === query.estado);
-    }
-    if (query?.clienteCiNit) {
-      list = list.filter((o) => o.clienteCiNit.includes(query.clienteCiNit!));
-    }
-
-    return list;
+  findAll(query?: OrderFilterQuery): OrderEntity[] {
+    return this.ordersRepo.findAll(query);
   }
 
   findById(id: string): OrderEntity {
-    const order = this.db.orders.find(
-      (o) => o.id === id || o.codigoPedido.toUpperCase() === id.toUpperCase(),
-    );
+    const order = this.ordersRepo.findById(id);
     if (!order) {
       throw new NotFoundException(`Pedido '${id}' no encontrado`);
     }
@@ -75,24 +60,24 @@ export class OrdersService {
     // 1. Determinar sucursal de origen
     let sucursalOrigenId = dto.sucursalOrigenId;
     if (!sucursalOrigenId) {
-      const sucursalLocal = this.db.branches.find(
-        (b) => b.departamento === dto.departamentoDestino && b.activa,
+      const sucursalesDepto = this.branchesRepo.findByDepartment(
+        dto.departamentoDestino,
       );
-      if (sucursalLocal) {
-        sucursalOrigenId = sucursalLocal.id;
+      if (sucursalesDepto.length > 0) {
+        sucursalOrigenId = sucursalesDepto[0].id;
       } else {
-        const matriz =
-          this.db.branches.find((b) => b.esMatriz) || this.db.branches[0];
-        sucursalOrigenId = matriz.id;
+        const todas = this.branchesRepo.findAll(true);
+        const matriz = todas.find((b) => b.esMatriz) || todas[0];
+        sucursalOrigenId = matriz ? matriz.id : 'suc-scz-01';
       }
     }
 
     // 2. Calcular ítems y validar stock
     const processedItems: OrderItemEntity[] = [];
-    let subtotalBs = 0;
+    let subtotalCur = BolivianCurrency.of(0);
 
     for (const itemDto of dto.items) {
-      const product = this.db.products.find((p) => p.id === itemDto.productoId);
+      const product = this.productsRepo.findById(itemDto.productoId);
       if (!product) {
         throw new NotFoundException(
           `Producto con ID ${itemDto.productoId} no existe`,
@@ -108,32 +93,30 @@ export class OrdersService {
         );
       }
 
-      // Validar y decrementar stock en la sucursal de origen
-      const stockEntry = this.db.stock.find(
-        (s) => s.productoId === product.id && s.sucursalId === sucursalOrigenId,
-      );
-      if (stockEntry) {
-        if (stockEntry.cantidadDisponible < itemDto.cantidad) {
-          this.logger.warn(
-            `Stock insuficiente en sucursal ${sucursalOrigenId} para ${product.nombre}. Disponible: ${stockEntry.cantidadDisponible}, Solicitado: ${itemDto.cantidad}`,
-          );
-        }
-        stockEntry.cantidadDisponible = Math.max(
-          0,
-          stockEntry.cantidadDisponible - itemDto.cantidad,
+      // Decrementar stock en la sucursal de origen
+      try {
+        this.productsRepo.decrementStock(
+          sucursalOrigenId,
+          product.id,
+          itemDto.cantidad,
+        );
+      } catch (err) {
+        this.logger.warn(
+          `No se pudo decrementar stock: ${(err as Error).message}`,
         );
       }
 
-      const itemSubtotal =
-        Math.round(product.precioBs * itemDto.cantidad * 100) / 100;
-      subtotalBs += itemSubtotal;
+      const itemSubtotal = BolivianCurrency.of(product.precioBs).times(
+        itemDto.cantidad,
+      );
+      subtotalCur = subtotalCur.plus(itemSubtotal);
 
       processedItems.push({
         productoId: product.id,
         nombreProducto: product.nombre,
         cantidad: itemDto.cantidad,
         precioUnitarioBs: product.precioBs,
-        subtotalBs: itemSubtotal,
+        subtotalBs: itemSubtotal.value,
       });
     }
 
@@ -147,11 +130,11 @@ export class OrdersService {
     }
 
     const descuentoBs = 0;
-    const totalBs =
-      Math.round((subtotalBs + costoEnvioBs - descuentoBs) * 100) / 100;
+    const totalCur = subtotalCur.plus(costoEnvioBs).minus(descuentoBs);
 
     // 4. Generar código único de pedido boliviano
-    const correlativo = (this.db.orders.length + 1001).toString();
+    const totalOrders = this.ordersRepo.findAll().length;
+    const correlativo = (totalOrders + 1001).toString();
     const codigoPedido = `BOL-PED-${correlativo}`;
 
     // 5. Generar QR Simple si el pago es QR
@@ -159,7 +142,7 @@ export class OrdersService {
     if (dto.metodoPago === PaymentMethod.QR_SIMPLE) {
       const qrSimplePayload = JSON.stringify({
         glosa: `Panaderia Suprema Bolivia - Pedido ${codigoPedido}`,
-        monto: totalBs,
+        monto: totalCur.value,
         moneda: 'BOB',
         cuentaDestino: '10000034872910-BCP',
         titular: 'PANADERIA & PASTELERIA ARTESANAL BOLIVIA S.R.L.',
@@ -192,15 +175,15 @@ export class OrdersService {
       tipoEntrega: dto.tipoEntrega,
       sucursalOrigenId,
       items: processedItems,
-      subtotalBs,
+      subtotalBs: subtotalCur.value,
       costoEnvioBs,
       descuentoBs,
-      totalBs,
+      totalBs: totalCur.value,
       metodoPago: dto.metodoPago,
       estadoPago:
         dto.metodoPago === PaymentMethod.EFECTIVO_CONTRAENTREGA
           ? PaymentStatus.PENDIENTE
-          : PaymentStatus.PAGADO, // Para demostración fluida
+          : PaymentStatus.PAGADO,
       qrSimpleDataUri,
       estado: OrderStatus.CONFIRMADO,
       observaciones: dto.observaciones,
@@ -208,29 +191,30 @@ export class OrdersService {
       actualizadoEn: new Date().toISOString(),
     };
 
-    this.db.orders.unshift(newOrder);
-    this.db.save();
+    const savedOrder = this.ordersRepo.create(newOrder);
 
     this.logger.log(
-      `Pedido creado: ${newOrder.codigoPedido} por Bs. ${newOrder.totalBs} para ${newOrder.clienteNombre} (${newOrder.departamentoDestino})`,
+      `Pedido creado: ${savedOrder.codigoPedido} por Bs. ${savedOrder.totalBs} para ${savedOrder.clienteNombre} (${savedOrder.departamentoDestino})`,
     );
 
-    return newOrder;
+    return savedOrder;
   }
 
   updateStatus(id: string, dto: UpdateOrderStatusDto): OrderEntity {
     const order = this.findById(id);
-    order.estado = dto.nuevoEstado;
-    order.actualizadoEn = new Date().toISOString();
+    const updates: Partial<OrderEntity> = {
+      estado: dto.nuevoEstado,
+      actualizadoEn: new Date().toISOString(),
+    };
     if (dto.nota) {
-      order.observaciones = order.observaciones
+      updates.observaciones = order.observaciones
         ? `${order.observaciones} | ${dto.nota}`
         : dto.nota;
     }
-    this.db.save();
+    const updated = this.ordersRepo.update(id, updates);
     this.logger.log(
-      `Pedido ${order.codigoPedido} actualizado a estado: ${dto.nuevoEstado}`,
+      `Pedido ${updated.codigoPedido} actualizado a estado: ${dto.nuevoEstado}`,
     );
-    return order;
+    return updated;
   }
 }

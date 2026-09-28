@@ -4,27 +4,29 @@ import {
   ConflictException,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  DatabaseService,
-  BranchEntity,
-} from '../../database/database.service.js';
+import { BranchesRepository } from './domain/branches.repository.interface.js';
+import { BranchEntity } from './domain/branch.entity.js';
+import { ProductsRepository } from '../products/domain/products.repository.interface.js';
 import { CreateBranchDto } from './dto/create-branch.dto.js';
 import { DepartamentoBolivia } from '../../common/constants/bolivia-regions.constant.js';
 
 @Injectable()
 export class BranchesService {
-  constructor(private readonly db: DatabaseService) {}
+  constructor(
+    private readonly branchesRepo: BranchesRepository,
+    private readonly productsRepo: ProductsRepository,
+  ) {}
 
-  findAll(departamento?: DepartamentoBolivia) {
-    let result = this.db.branches.filter((b) => b.activa);
+  findAll(departamento?: DepartamentoBolivia): BranchEntity[] {
+    const list = this.branchesRepo.findAll(true);
     if (departamento) {
-      result = result.filter((b) => b.departamento === departamento);
+      return list.filter((b) => b.departamento === departamento);
     }
-    return result;
+    return list;
   }
 
   findById(id: string): BranchEntity {
-    const branch = this.db.branches.find((b) => b.id === id || b.codigo === id);
+    const branch = this.branchesRepo.findById(id);
     if (!branch) {
       throw new NotFoundException(
         `Sucursal con ID o código '${id}' no encontrada`,
@@ -34,9 +36,7 @@ export class BranchesService {
   }
 
   create(dto: CreateBranchDto): BranchEntity {
-    const existing = this.db.branches.find(
-      (b) => b.codigo.toUpperCase() === dto.codigo.toUpperCase(),
-    );
+    const existing = this.branchesRepo.findById(dto.codigo);
     if (existing) {
       throw new ConflictException(
         `Ya existe una sucursal con el código ${dto.codigo}`,
@@ -57,28 +57,19 @@ export class BranchesService {
       activa: true,
     };
 
-    this.db.branches.push(newBranch);
+    const created = this.branchesRepo.create(newBranch);
 
     // Inicializar stock de productos para la nueva sucursal
-    for (const p of this.db.products) {
-      this.db.stock.push({
-        id: `stk-${newBranch.id}-${p.id}`,
-        productoId: p.id,
-        sucursalId: newBranch.id,
-        cantidadDisponible: 50,
-        cantidadMinimaAlerta: 10,
-        ultimaActualizacion: new Date().toISOString(),
-      });
+    const allProducts = this.productsRepo.findAll();
+    for (const p of allProducts) {
+      this.productsRepo.updateStock(created.id, p.id, 50);
     }
 
-    this.db.save();
-    return newBranch;
+    return created;
   }
 
   toggleActive(id: string): BranchEntity {
     const branch = this.findById(id);
-    branch.activa = !branch.activa;
-    this.db.save();
-    return branch;
+    return this.branchesRepo.update(id, { activa: !branch.activa });
   }
 }
