@@ -4,22 +4,38 @@
 
 @layer base {
   body {
-    @apply bg-bakery-50 text-gray-900;
+    @apply bg-[#FAF8F5] text-stone-900 font-sans;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
 }
 
-/* Custom scrollbars and styling */
+/* Custom premium scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FDF8F3;
+  background: #F5F1EB;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D58235;
-  border-radius: 4px;
+  background: #C8B99F;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9E4C1E;
+  background: #AD9A7B;
 }
+
+/* Subtle luxury glow and card borders */
+.luxury-border {
+  border: 1px solid rgba(197, 160, 58, 0.2);
+}
+
+.luxury-card-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(28, 25, 23, 0.08);
+}
+

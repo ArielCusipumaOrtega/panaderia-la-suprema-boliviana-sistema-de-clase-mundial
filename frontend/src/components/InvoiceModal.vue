@@ -14,27 +14,27 @@ function printInvoice() {
 <template>
   <div
     v-if="orderStore.isInvoiceModalOpen && invoice"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-obsidian-950/85 backdrop-blur-md overflow-y-auto"
   >
-    <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border border-gray-200 my-8">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border border-stone-200 my-8">
       <!-- Actions Bar -->
-      <div class="bg-bakery-950 p-4 text-white flex items-center justify-between print:hidden">
-        <div class="flex items-center gap-2">
-          <ShieldCheck class="w-5 h-5 text-emerald-400" />
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-300">
-            Factura Oficial SIAT / SIN Bolivia
+      <div class="bg-obsidian-950 p-4.5 text-stone-100 flex items-center justify-between print:hidden border-b border-stone-800">
+        <div class="flex items-center gap-2.5">
+          <ShieldCheck class="w-4 h-4 text-gold-400" />
+          <span class="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold-300">
+            Documento Tributario Oficial SIAT / SIN
           </span>
         </div>
         <div class="flex items-center gap-2">
           <button
             @click="printInvoice"
-            class="bg-amber-600 hover:bg-amber-500 text-white px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition"
+            class="bg-gold-500 hover:bg-gold-400 text-obsidian-950 px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-sm active:scale-95"
           >
-            <Printer class="w-4 h-4" /> Imprimir
+            <Printer class="w-3.5 h-3.5" /> Imprimir
           </button>
           <button
             @click="orderStore.isInvoiceModalOpen = false"
-            class="text-gray-400 hover:text-white p-1 rounded-lg hover:bg-bakery-800 transition"
+            class="text-stone-400 hover:text-white p-1 rounded-lg hover:bg-stone-800 transition"
           >
             <X class="w-5 h-5" />
           </button>

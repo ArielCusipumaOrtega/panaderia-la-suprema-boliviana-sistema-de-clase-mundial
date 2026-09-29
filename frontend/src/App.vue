@@ -10,7 +10,7 @@ const showAuth = ref(false);
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-bakery-50 text-gray-900 font-sans selection:bg-amber-500 selection:text-white">
+  <div class="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 font-sans selection:bg-gold-500/20 selection:text-gold-950">
     <!-- Navbar -->
     <Navbar v-model:showAuth="showAuth" />
 
