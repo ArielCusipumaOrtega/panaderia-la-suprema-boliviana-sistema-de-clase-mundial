@@ -120,19 +120,26 @@ export interface Invoice {
   pedidoId: string;
 }
 
+export interface DepartmentSalesData {
+  totalBs: number;
+  cantidadPedidos: number;
+}
+
 export interface DashboardMetrics {
-  fechaReporte: string;
+  fechaReporte?: string;
   moneda: string;
   totalVentasBs: number;
   totalPedidosRegistrados: number;
   totalSucursalesActivas: number;
-  ventasPorDepartamento: Record<string, number>;
+  ventasPorDepartamento: Record<string, DepartmentSalesData | number>;
   ventasPorMetodoPago: Record<string, number>;
   topProductos: Array<{
-    productoId: string;
+    productoId?: string;
     nombre: string;
-    unidadesVendidas: number;
-    totalRecaudadoBs: number;
+    unidades?: number;
+    unidadesVendidas?: number;
+    totalBs?: number;
+    totalRecaudadoBs?: number;
   }>;
   produccion: {
     totalPiezasPlaneadas: number;
@@ -141,5 +148,41 @@ export interface DashboardMetrics {
     porcentajeMerma: string;
     estadoEficiencia: string;
   };
-  alertasStockCritico: any[];
+  alertasStockCritico: Array<{
+    producto?: string;
+    sucursal?: string;
+    departamento?: string;
+    cantidadDisponible: number;
+    cantidadMinimaAlerta: number;
+  }>;
+}
+
+export interface ProductionBatch {
+  id: string;
+  codigoLote: string;
+  sucursalId: string;
+  sucursalNombre?: string;
+  departamento?: string;
+  productoId: string;
+  productoNombre?: string;
+  turno: 'MADRUGADA' | 'TARDE' | 'NOCTURNO';
+  cantidadPlaneada: number;
+  cantidadObtenida: number;
+  mermaUnidades: number;
+  motivoMerma?: string;
+  temperaturaHornoC: number;
+  maestroPanadero: string;
+  iniciadoEn: string;
+  finalizadoEn?: string;
+  estado: 'PROGRAMADO' | 'EN_HORNEADA' | 'FINALIZADO_CONFORME' | 'OBSERVADO';
+}
+
+export interface RawMaterial {
+  id: string;
+  nombre: string;
+  unidad: 'kg' | 'litros' | 'unidades';
+  stockActual: number;
+  stockMinimoAlerta: number;
+  sucursalId: string;
+  costoUnitarioBs: number;
 }
