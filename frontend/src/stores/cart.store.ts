@@ -2,12 +2,16 @@ import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import type { CartItem, Product, DepartamentoBolivia, ShippingQuote } from '@/types';
 import api from '@/services/api';
+import { useToastStore } from '@/stores/toast.store';
 
 export const useCartStore = defineStore('cart', () => {
+  const toastStore = useToastStore();
+
   const items = ref<CartItem[]>(
     JSON.parse(localStorage.getItem('cart_suprema_bo') || '[]')
   );
 
+  const isDrawerOpen = ref<boolean>(false);
   const selectedDepartment = ref<DepartamentoBolivia>('Santa Cruz');
   const selectedCity = ref<string>('Santa Cruz de la Sierra');
   const deliveryType = ref<'EXPRESS_LOCAL' | 'PROGRAMADO' | 'DESPACHO_INTERDEPARTAMENTAL'>('EXPRESS_LOCAL');
@@ -38,7 +42,15 @@ export const useCartStore = defineStore('cart', () => {
     localStorage.setItem('cart_suprema_bo', JSON.stringify(items.value));
   }
 
-  function addItem(producto: Product, cantidad = 1) {
+  function openDrawer() {
+    isDrawerOpen.value = true;
+  }
+
+  function closeDrawer() {
+    isDrawerOpen.value = false;
+  }
+
+  function addItem(producto: Product, cantidad = 1, showDrawer = false) {
     const existing = items.value.find((i) => i.producto.id === producto.id);
     if (existing) {
       existing.cantidad += cantidad;
@@ -46,6 +58,13 @@ export const useCartStore = defineStore('cart', () => {
       items.value.push({ producto, cantidad });
     }
     persistCart();
+    toastStore.success(
+      'Agregado a la canasta',
+      `${cantidad}x ${producto.nombre} (Bs. ${(producto.precioBs * cantidad).toFixed(2)})`
+    );
+    if (showDrawer) {
+      isDrawerOpen.value = true;
+    }
   }
 
   function updateQuantity(productoId: string, delta: number) {
@@ -60,6 +79,10 @@ export const useCartStore = defineStore('cart', () => {
   }
 
   function removeItem(productoId: string) {
+    const item = items.value.find((i) => i.producto.id === productoId);
+    if (item) {
+      toastStore.info('Pieza retirada', `${item.producto.nombre} removido de la canasta`);
+    }
     items.value = items.value.filter((i) => i.producto.id !== productoId);
     persistCart();
   }
@@ -91,6 +114,7 @@ export const useCartStore = defineStore('cart', () => {
 
   return {
     items,
+    isDrawerOpen,
     selectedDepartment,
     selectedCity,
     deliveryType,
@@ -100,6 +124,8 @@ export const useCartStore = defineStore('cart', () => {
     subtotalBs,
     shippingCostBs,
     totalBs,
+    openDrawer,
+    closeDrawer,
     addItem,
     updateQuantity,
     removeItem,

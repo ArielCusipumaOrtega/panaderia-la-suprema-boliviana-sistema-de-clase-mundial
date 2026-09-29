@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useCatalogStore } from '@/stores/catalog.store';
 import { useCartStore } from '@/stores/cart.store';
+import type { Product } from '@/types';
+import ProductDetailModal from '@/components/ProductDetailModal.vue';
 import {
   Sparkles,
   Search,
@@ -13,10 +15,19 @@ import {
   Wheat,
   ShieldCheck,
   Flame,
+  Info,
 } from 'lucide-vue-next';
 
 const catalogStore = useCatalogStore();
 const cartStore = useCartStore();
+
+const selectedProduct = ref<Product | null>(null);
+const isDetailModalOpen = ref<boolean>(false);
+
+function openDetailModal(product: Product) {
+  selectedProduct.value = product;
+  isDetailModalOpen.value = true;
+}
 
 onMounted(async () => {
   if (catalogStore.products.length === 0) {
@@ -86,12 +97,21 @@ onMounted(async () => {
                   <span class="text-xs text-stone-400 uppercase tracking-widest block font-medium">Precio</span>
                   <span class="text-xl font-bold text-gold-300 font-mono">Bs. 0.80</span>
                 </div>
-                <button
-                  @click="cartStore.addItem(catalogStore.products[0] || { id: 'prod-001', nombre: 'Marraqueta Paceña Clásica', precioBs: 0.80 }, 1)"
-                  class="bg-gold-500 hover:bg-gold-400 text-obsidian-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95"
-                >
-                  Agregar a Canasta
-                </button>
+                <div class="flex items-center gap-2">
+                  <button
+                    v-if="catalogStore.products[0]"
+                    @click="openDetailModal(catalogStore.products[0])"
+                    class="bg-stone-800/90 hover:bg-stone-700 text-stone-300 hover:text-white px-3 py-2 rounded-xl text-xs font-medium transition-all border border-stone-700 active:scale-95"
+                  >
+                    Ver Ficha
+                  </button>
+                  <button
+                    @click="cartStore.addItem(catalogStore.products[0] || { id: 'prod-001', nombre: 'Marraqueta Paceña Clásica', precioBs: 0.80 }, 1)"
+                    class="bg-gold-500 hover:bg-gold-400 text-obsidian-950 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-md active:scale-95"
+                  >
+                    Agregar a Canasta
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -146,12 +166,34 @@ onMounted(async () => {
         <p class="text-xs uppercase tracking-widest text-stone-500 font-medium">Preparando catálogo de panes artesanales...</p>
       </div>
 
+      <!-- Empty State -->
+      <div
+        v-else-if="catalogStore.filteredProducts.length === 0"
+        class="text-center py-20 bg-white rounded-3xl border border-stone-200/90 p-8 shadow-sm space-y-4 max-w-xl mx-auto"
+      >
+        <div class="w-14 h-14 mx-auto rounded-full bg-gold-500/10 flex items-center justify-center border border-gold-500/20 text-gold-600">
+          <Wheat class="w-7 h-7 stroke-1" />
+        </div>
+        <h3 class="font-serif text-xl font-bold text-stone-900">No encontramos variedades con esos criterios</h3>
+        <p class="text-xs text-stone-500 leading-relaxed font-light">
+          No hay productos disponibles para los filtros seleccionados. Intenta restablecer los filtros para explorar la colección completa.
+        </p>
+        <button
+          @click="catalogStore.resetFilters()"
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-stone-900 hover:bg-gold-500 text-stone-100 hover:text-obsidian-950 rounded-xl text-xs font-semibold transition-all shadow-sm active:scale-95 border border-stone-800"
+        >
+          <Sparkles class="w-3.5 h-3.5 text-gold-400 group-hover:text-obsidian-950" />
+          Restablecer Filtros
+        </button>
+      </div>
+
       <!-- Products Grid -->
       <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div
           v-for="product in catalogStore.filteredProducts"
           :key="product.id"
-          class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-gold-500/40 transition-all duration-300 border border-stone-200/80 flex flex-col justify-between group"
+          @click="openDetailModal(product)"
+          class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-gold-500/50 transition-all duration-300 border border-stone-200/80 flex flex-col justify-between group cursor-pointer"
         >
           <!-- Product Image Frame -->
           <div>
@@ -180,6 +222,13 @@ onMounted(async () => {
               <div class="absolute bottom-3 right-3">
                 <span class="bg-obsidian-950/80 backdrop-blur-sm text-stone-300 text-[10px] font-medium px-2 py-0.5 rounded-md border border-stone-800">
                   Horneada {{ product.horarioRecomendado }}
+                </span>
+              </div>
+
+              <!-- Quick View Floating Cue on Hover -->
+              <div class="absolute inset-0 bg-obsidian-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                <span class="bg-obsidian-950/90 text-gold-300 text-[11px] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full border border-gold-500/40 shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                  <Info class="w-3.5 h-3.5 text-gold-400" /> Ver Ficha Técnica
                 </span>
               </div>
             </div>
@@ -217,7 +266,7 @@ onMounted(async () => {
               </div>
 
               <button
-                @click="cartStore.addItem(product, 1)"
+                @click.stop="cartStore.addItem(product, 1)"
                 class="bg-stone-900 hover:bg-gold-500 text-stone-100 hover:text-obsidian-950 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm active:scale-95 border border-stone-800 hover:border-gold-400"
               >
                 <Plus class="w-3.5 h-3.5" /> Agregar
@@ -227,5 +276,12 @@ onMounted(async () => {
         </div>
       </div>
     </div>
+
+    <!-- Modal de Ficha Técnica Artesanal y Maridajes -->
+    <ProductDetailModal
+      :product="selectedProduct"
+      :is-open="isDetailModalOpen"
+      @close="isDetailModalOpen = false"
+    />
   </div>
 </template>

@@ -168,9 +168,10 @@ onMounted(async () => {
           </button>
 
           <!-- Shopping Cart Pill Trigger -->
-          <router-link
-            to="/carrito"
+          <button
+            @click="cartStore.openDrawer"
             class="relative flex items-center gap-2.5 bg-gradient-to-r from-stone-900 via-obsidian-900 to-stone-900 hover:border-gold-400 text-stone-100 px-4 py-2.5 rounded-xl text-xs font-medium border border-stone-700/80 shadow-lg hover:shadow-gold-500/5 transition-all group"
+            title="Abrir Canasta Artesanal"
           >
             <ShoppingBag class="w-4 h-4 text-gold-400 group-hover:scale-110 transition-transform" />
             <span class="hidden sm:inline font-mono text-xs tracking-tight font-semibold text-stone-200">
@@ -182,7 +183,7 @@ onMounted(async () => {
             >
               {{ cartStore.itemCount }}
             </span>
-          </router-link>
+          </button>
         </div>
       </div>
     </div>

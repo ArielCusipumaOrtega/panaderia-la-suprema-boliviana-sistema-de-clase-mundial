@@ -5,6 +5,8 @@ import Footer from '@/components/Footer.vue';
 import QrPaymentModal from '@/components/QrPaymentModal.vue';
 import InvoiceModal from '@/components/InvoiceModal.vue';
 import AuthModal from '@/components/AuthModal.vue';
+import CartDrawer from '@/components/CartDrawer.vue';
+import ToastContainer from '@/components/ToastContainer.vue';
 
 const showAuth = ref(false);
 </script>
@@ -22,9 +24,11 @@ const showAuth = ref(false);
     <!-- Footer -->
     <Footer />
 
-    <!-- Global Floating Modals -->
+    <!-- Global Floating Modals & Drawers -->
+    <CartDrawer />
     <QrPaymentModal />
     <InvoiceModal />
     <AuthModal v-if="showAuth" @close="showAuth = false" />
+    <ToastContainer />
   </div>
 </template>

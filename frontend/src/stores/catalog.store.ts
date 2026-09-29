@@ -63,6 +63,12 @@ export const useCatalogStore = defineStore('catalog', () => {
     }
   }
 
+  function resetFilters() {
+    selectedCategory.value = 'TODOS';
+    searchQuery.value = '';
+    onlyNationalShipping.value = false;
+  }
+
   return {
     products,
     branches,
@@ -76,5 +82,6 @@ export const useCatalogStore = defineStore('catalog', () => {
     featuredProducts,
     fetchProducts,
     fetchBranches,
+    resetFilters,
   };
 });
