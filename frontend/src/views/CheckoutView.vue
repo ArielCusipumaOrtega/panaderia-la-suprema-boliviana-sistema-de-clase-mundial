@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import { useCartStore } from '@/stores/cart.store';
 import { useOrderStore } from '@/stores/order.store';
 import { useAuthStore } from '@/stores/auth.store';
+import { useToastStore } from '@/stores/toast.store';
 import {
   Trash2,
   Plus,
@@ -15,6 +16,7 @@ import {
   ArrowRight,
   ShieldCheck,
   ShoppingBag,
+  Sparkles,
 } from 'lucide-vue-next';
 import type { DepartamentoBolivia } from '@/types';
 
@@ -22,6 +24,7 @@ const router = useRouter();
 const cartStore = useCartStore();
 const orderStore = useOrderStore();
 const authStore = useAuthStore();
+const toastStore = useToastStore();
 
 const clienteNombre = ref(authStore.user?.nombreCompleto || 'Andrea Villarroel Rojas');
 const clienteTelefono = ref(authStore.user?.telefono || '+591 70765432');
@@ -58,31 +61,47 @@ watch(
 );
 
 async function handleCheckout() {
-  if (cartStore.items.length === 0) return;
+  if (cartStore.items.length === 0) {
+    toastStore.warning('Canasta Vacía', 'Agrega al menos una pieza para continuar');
+    return;
+  }
+
+  if (
+    !clienteNombre.value.trim() ||
+    !clienteTelefono.value.trim() ||
+    !clienteCiNit.value.trim() ||
+    !direccionEntrega.value.trim()
+  ) {
+    toastStore.warning(
+      'Datos Requeridos',
+      'Por favor completa tu nombre, celular, CI/NIT y dirección de entrega.'
+    );
+    return;
+  }
 
   const payload = {
-    clienteNombre: clienteNombre.value,
-    clienteTelefono: clienteTelefono.value,
-    clienteCiNit: clienteCiNit.value,
-    razonSocialFactura: razonSocialFactura.value,
+    clienteNombre: clienteNombre.value.trim(),
+    clienteTelefono: clienteTelefono.value.trim(),
+    clienteCiNit: clienteCiNit.value.trim(),
+    razonSocialFactura: (razonSocialFactura.value || clienteNombre.value).trim(),
     departamentoDestino: cartStore.selectedDepartment,
     ciudadDestino: cartStore.selectedCity || cartStore.selectedDepartment,
-    direccionEntrega: direccionEntrega.value,
-    referenciaDireccion: referenciaDireccion.value,
+    direccionEntrega: direccionEntrega.value.trim(),
+    referenciaDireccion: referenciaDireccion.value.trim(),
     tipoEntrega: cartStore.deliveryType,
     items: cartStore.items.map((i) => ({
       productoId: i.producto.id,
       cantidad: i.cantidad,
     })),
     metodoPago: metodoPago.value,
-    observaciones: observaciones.value,
+    observaciones: observaciones.value.trim(),
   };
 
   try {
     await orderStore.createOrder(payload);
     cartStore.clearCart();
   } catch (err: any) {
-    alert(err.message || 'Error al procesar el pedido');
+    console.error('Error al generar pedido:', err);
   }
 }
 </script>
